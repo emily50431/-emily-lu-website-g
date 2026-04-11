@@ -2,20 +2,20 @@ name: Deploy Blog from Notion
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天台灣時間早上10點自動跑
-  workflow_dispatch:       # 也可以手動觸發
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: |
@@ -29,7 +29,7 @@ jobs:
         run: node scripts/fetch-notion.js
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
