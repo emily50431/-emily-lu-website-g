@@ -1,0 +1,36 @@
+name: Deploy Blog from Notion
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 每天台灣時間早上10點自動跑
+  workflow_dispatch:       # 也可以手動觸發
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install @notionhq/client notion-to-md
+
+      - name: Fetch Notion and generate HTML
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: node scripts/fetch-notion.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          exclude_assets: '.github,scripts,node_modules,package.json,package-lock.json'
