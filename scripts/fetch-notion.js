@@ -7,7 +7,7 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
-const BASE_URL = "https://emily50431.github.io/-emily-lu-website-g-";
+const BASE_URL = "https://emily50431.github.io/-emily-lu-website-g";
 
 async function fetchPosts() {
   const response = await notion.databases.query({
@@ -46,14 +46,14 @@ function generatePostHtml(title, date, category, content) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | Emily's LAB</title>
-  <link rel="stylesheet" href="/emily-lu-website-g-/assets/style.css" />
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
 </head>
 <body>
   <nav class="nav">
-    <a class="nav-logo" href="/emily-lu-website-g-/">Emily's <span>LAB</span></a>
+    <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
     <div class="nav-links">
-      <a href="/emily-lu-website-g-/">首頁</a>
-      <a href="/emily-lu-website-g-/blog/">文章</a>
+      <a href="/-emily-lu-website-g/">首頁</a>
+      <a href="/-emily-lu-website-g/blog/">文章</a>
     </div>
   </nav>
   <main class="post-wrap">
@@ -89,14 +89,14 @@ function generateBlogIndexHtml(posts) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>文章 | Emily's LAB</title>
-  <link rel="stylesheet" href="/emily-lu-website-g-/assets/style.css" />
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
 </head>
 <body>
   <nav class="nav">
-    <a class="nav-logo" href="/emily-lu-website-g-/">Emily's <span>LAB</span></a>
+    <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
     <div class="nav-links">
-      <a href="/emily-lu-website-g-/">首頁</a>
-      <a href="/emily-lu-website-g-/blog/">文章</a>
+      <a href="/-emily-lu-website-g/">首頁</a>
+      <a href="/-emily-lu-website-g/blog/">文章</a>
     </div>
   </nav>
   <main class="blog-wrap">
