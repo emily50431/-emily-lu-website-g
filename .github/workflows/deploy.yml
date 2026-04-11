@@ -18,9 +18,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: |
-          npm init -y
-          npm install @notionhq/client notion-to-md
+        run: npm install
 
       - name: Fetch Notion and generate HTML
         env:
