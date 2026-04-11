@@ -19,6 +19,12 @@
             background-color: #FDFDFF;
         }
 
+        /* 紫色光暈呼吸動畫 */
+        @keyframes glowPulse { 
+            0%, 100% { box-shadow: 0 0 0 0 rgba(93, 95, 239, 0.15); } 
+            50% { box-shadow: 0 0 24px 6px rgba(93, 95, 239, 0.3); } 
+        }
+
         /* 置頂導覽列 (對齊邊緣) */
         .sticky-nav {
             position: sticky; top: 0; z-index: 100;
@@ -40,12 +46,14 @@
         .photo-card {
             background: #ffffff;
             border-radius: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            /* 套用紫色呼吸光暈 */
+            box-shadow: 0 20px 40px rgba(93, 95, 239, 0.1); 
             width: 100%;
             aspect-ratio: 4/5;
             display: flex;
             align-items: center; justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(93, 95, 239, 0.2);
+            animation: glowPulse 4s ease-in-out infinite;
         }
 
         /* 中間區塊：精品互動資訊條 (修正字體大小) */
