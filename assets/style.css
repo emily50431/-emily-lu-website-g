@@ -207,3 +207,23 @@ body {
   font-size: 14px; color: #6B7280;
   line-height: 1.6;
 }
+/* Highlight 樣式 */
+mark.hl-yellow {
+  background: linear-gradient(120deg, rgba(250,199,117,0) 0%, rgba(250,199,117,0.6) 10%, rgba(250,199,117,0.6) 90%, rgba(250,199,117,0) 100%);
+  padding: 0 3px;
+  border-radius: 2px;
+  color: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hl-block {
+  background: rgba(93,95,239,0.08);
+  border-left: 3px solid #5D5FEF;
+  padding: 0.75rem 1rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1rem 0;
+  color: #3C3489;
+  font-weight: 600;
+  line-height: 1.7;
+}
