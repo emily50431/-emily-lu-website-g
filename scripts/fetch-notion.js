@@ -11,6 +11,9 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const BASE_URL = "https://emily50431.github.io/-emily-lu-website-g";
 
+const SUPABASE_URL = "https://bicpmisqilziyjuxytbl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3";
+
 const NAV_HTML = `
   <style>
     .sticky-nav {
@@ -116,7 +119,25 @@ async function getPostContent(pageId) {
   }
 }
 
-function markdownToHtml(md) {
+function makeDownloadBtn(downloadUrl) {
+  return `
+    <div class="download-section">
+      <a href="${downloadUrl}" target="_blank" class="download-btn"
+        onclick="fetch('${SUPABASE_URL}/rest/v1/downloads', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': '${SUPABASE_KEY}',
+            'Authorization': 'Bearer ${SUPABASE_KEY}'
+          },
+          body: JSON.stringify({ file_name: 'google-drive-folder', slug: '${downloadUrl}' })
+        })">
+        📥 下載學習資源
+      </a>
+    </div>`;
+}
+
+function markdownToHtml(md, downloadUrl = "") {
   return md
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
     .replace(/^## (.+)$/gm, "<h2>$1</h2>")
@@ -127,13 +148,14 @@ function markdownToHtml(md) {
     .replace(/^> (.+)$/gm, '<div class="hl-block">$1</div>')
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;margin:1rem 0;">')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl) : '')
     .replace(/\n\n/g, "</p><p>")
     .replace(/^(.+)$/gm, (line) =>
       line.startsWith("<") ? line : `<p>${line}</p>`
     );
 }
 
-function generatePostHtml(title, date, categories, content, downloadUrl = "") {
+function generatePostHtml(title, date, categories, content) {
   const categoryTags = categories
     .map((c) => `<span class="post-tag">${c}</span>`)
     .join("");
@@ -165,21 +187,6 @@ function generatePostHtml(title, date, categories, content, downloadUrl = "") {
     </div>
     <h1 class="post-title">${title}</h1>
     <div class="post-content">${content}</div>
-    ${downloadUrl ? `
-    <div class="download-section">
-      <a href="${downloadUrl}" target="_blank" class="download-btn"
-        onclick="fetch('https://bicpmisqilziyjuxytbl.supabase.co/rest/v1/downloads', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': 'sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3',
-            'Authorization': 'Bearer sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3'
-          },
-          body: JSON.stringify({ file_name: 'google-drive-folder', slug: '${downloadUrl}' })
-        })">
-        📥 下載學習資源
-      </a>
-    </div>` : ''}
   </main>
 </body>
 </html>`;
@@ -396,7 +403,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 保持快樂、保持專業
+            © 2026 EMILY LU — 保持快樂、保持思考
         </p>
     </footer>
     <script>
@@ -413,7 +420,11 @@ async function main() {
   const posts = await fetchPosts();
   const postData = [];
 
-  if (!fs.existsSync("blog")) fs.mkdirSync("blog");
+  if (fs.existsSync("blog")) {
+    fs.rmSync("blog", { recursive: true, force: true });
+  }
+  fs.mkdirSync("blog");
+
   if (!fs.existsSync(path.join("assets", "images"))) {
     fs.mkdirSync(path.join("assets", "images"), { recursive: true });
   }
@@ -428,13 +439,13 @@ async function main() {
     const downloadUrl = props.DownloadURL?.url || "";
     let content = await getPostContent(post.id);
     content = await processImages(content, slug);
-    const htmlContent = markdownToHtml(content);
+    const htmlContent = markdownToHtml(content, downloadUrl);
 
     const postDir = path.join("blog", slug);
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
     fs.writeFileSync(
       path.join(postDir, "index.html"),
-      generatePostHtml(title, date, categories, htmlContent, downloadUrl)
+      generatePostHtml(title, date, categories, htmlContent)
     );
 
     postData.push({ title, slug, date, categories, excerpt });
