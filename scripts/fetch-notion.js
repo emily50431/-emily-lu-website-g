@@ -56,8 +56,13 @@ async function fetchPosts() {
 }
 
 async function getPostContent(pageId) {
-  const mdBlocks = await n2m.pageToMarkdown(pageId);
-  return n2m.toMarkdownString(mdBlocks).parent;
+  try {
+    const mdBlocks = await n2m.pageToMarkdown(pageId);
+    const mdString = n2m.toMarkdownString(mdBlocks);
+    return mdString?.parent || mdString || "";
+  } catch (e) {
+    return "";
+  }
 }
 
 function markdownToHtml(md) {
