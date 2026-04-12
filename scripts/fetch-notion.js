@@ -9,6 +9,40 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const BASE_URL = "https://emily50431.github.io/-emily-lu-website-g";
 
+const NAV_HTML = `
+  <style>
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(25px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .nav-container { max-width: 1100px; margin: 0 auto; }
+    .mesh-gradient {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+      background-color: #FDFDFF;
+    }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container px-8 py-5 flex justify-between items-center">
+      <div class="text-xl font-black tracking-tighter">
+        <a href="/-emily-lu-website-g/" style="text-decoration:none;color:#1F2937;">
+          Emily's LAB<span style="color:#5D5FEF;">.</span>
+        </a>
+      </div>
+      <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+        <a href="/-emily-lu-website-g/" class="hover:text-[#5D5FEF] transition-colors">首頁</a>
+        <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
+        <a href="#" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
+      </div>
+    </div>
+  </nav>`;
+
 async function fetchPosts() {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
@@ -51,17 +85,12 @@ function generatePostHtml(title, date, categories, content) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | Emily's LAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
 </head>
-<body>
-  <nav class="nav">
-    <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
-    <div class="nav-links">
-      <a href="/-emily-lu-website-g/">首頁</a>
-      <a href="/-emily-lu-website-g/blog/">文章分享</a>
-      <a href="#" class="nav-cta">聯絡交流</a>
-    </div>
-  </nav>
+<body class="antialiased">
+  ${NAV_HTML}
   <main class="post-wrap">
     <div class="post-meta">
       ${categoryTags}
@@ -98,17 +127,12 @@ function generateBlogIndexHtml(posts) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>文章 | Emily's LAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
 </head>
-<body>
-  <nav class="nav">
-    <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
-    <div class="nav-links">
-      <a href="/-emily-lu-website-g/">首頁</a>
-      <a href="/-emily-lu-website-g/blog/">文章分享</a>
-      <a href="#" class="nav-cta">聯絡交流</a>
-    </div>
-  </nav>
+<body class="antialiased">
+  ${NAV_HTML}
   <main class="blog-wrap">
     <h1 class="section-title">所有文章</h1>
     <div class="post-list">${items}</div>
