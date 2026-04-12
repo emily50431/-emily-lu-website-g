@@ -36,7 +36,7 @@ const NAV_HTML = `
         </a>
       </div>
       <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
-        <a href="/-emily-lu-website-g/" class="hover:text-[#5D5FEF] transition-colors">首頁</a>
+        <a href="#" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
         <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
         <a href="#" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
       </div>
