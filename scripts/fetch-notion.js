@@ -2,6 +2,8 @@ const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
+const http = require("http");
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
@@ -43,6 +45,51 @@ const NAV_HTML = `
     </div>
   </nav>`;
 
+function downloadImage(url, filepath) {
+  return new Promise((resolve, reject) => {
+    const protocol = url.startsWith("https") ? https : http;
+    const file = fs.createWriteStream(filepath);
+    protocol.get(url, (response) => {
+      if (response.statusCode === 301 || response.statusCode === 302) {
+        downloadImage(response.headers.location, filepath).then(resolve).catch(reject);
+        return;
+      }
+      response.pipe(file);
+      file.on("finish", () => { file.close(); resolve(); });
+    }).on("error", (err) => {
+      fs.unlink(filepath, () => {});
+      reject(err);
+    });
+  });
+}
+
+async function processImages(md, slug) {
+  const imgDir = path.join("assets", "images", slug);
+  if (!fs.existsSync(imgDir)) fs.mkdirSync(imgDir, { recursive: true });
+
+  const imgRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  let result = md;
+  const matches = [...md.matchAll(imgRegex)];
+
+  for (let i = 0; i < matches.length; i++) {
+    const [full, alt, url] = matches[i];
+    if (!url || url.startsWith("/-emily-lu-website-g")) continue;
+
+    try {
+      const ext = url.split("?")[0].split(".").pop().split("/").pop() || "png";
+      const filename = `img-${i + 1}.${ext.length > 5 ? "png" : ext}`;
+      const filepath = path.join(imgDir, filename);
+      await downloadImage(url, filepath);
+      const localUrl = `${BASE_URL}/assets/images/${slug}/${filename}`;
+      result = result.replace(full, `![${alt}](${localUrl})`);
+      console.log(`圖片下載成功：${filename}`);
+    } catch (e) {
+      console.log(`圖片下載失敗：${url}`);
+    }
+  }
+  return result;
+}
+
 async function fetchPosts() {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
@@ -72,6 +119,7 @@ function markdownToHtml(md) {
     .replace(/^# (.+)$/gm, "<h1>$1</h1>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;margin:1rem 0;">')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
     .replace(/\n\n/g, "</p><p>")
     .replace(/^(.+)$/gm, (line) =>
@@ -303,7 +351,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 保持快樂、保持思考
+            © 2026 EMILY LU — 保持快樂、保持專業
         </p>
     </footer>
     <script>
@@ -321,6 +369,9 @@ async function main() {
   const postData = [];
 
   if (!fs.existsSync("blog")) fs.mkdirSync("blog");
+  if (!fs.existsSync(path.join("assets", "images"))) {
+    fs.mkdirSync(path.join("assets", "images"), { recursive: true });
+  }
 
   for (const post of posts) {
     const props = post.properties;
@@ -329,7 +380,8 @@ async function main() {
     const date = props.PublishedDate?.date?.start || "";
     const categories = props.Category?.multi_select?.map((c) => c.name) || [];
     const excerpt = props.Excerpt?.rich_text[0]?.plain_text || "";
-    const content = await getPostContent(post.id);
+    let content = await getPostContent(post.id);
+    content = await processImages(content, slug);
     const htmlContent = markdownToHtml(content);
 
     const postDir = path.join("blog", slug);
