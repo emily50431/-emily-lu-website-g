@@ -37,7 +37,7 @@ const NAV_HTML = `
           Emily's LAB<span style="color:#5D5FEF;">.</span>
         </a>
       </div>
-      <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+      <div class="flex items-center space-x-10 text-[13px] font-bold tracking-[0.15em] text-slate-400 uppercase">
         <a href="/-emily-lu-website-g/about/" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
         <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
@@ -175,7 +175,7 @@ function generatePostHtml(title, date, categories, content) {
     <div class="post-content">${content}</div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
 </body>
 </html>`;
@@ -224,7 +224,7 @@ function generateBlogIndexHtml(posts) {
     <div class="post-list">${items}</div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
 </body>
 </html>`;
@@ -237,13 +237,13 @@ function generateHomeCards(posts) {
     return `
       <div class="spec-item p-10 reveal" style="transition-delay: ${i * 0.15}s; display:flex; flex-direction:column;">
         <div class="mb-8 flex items-center justify-between">
-          <span class="text-[9px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">${category}</span>
-          <div class="text-[10px] font-black text-slate-200 uppercase">0${i + 1} /</div>
+          <span class="text-[12px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">${category}</span>
+          <div class="text-[12px] font-black text-slate-200 uppercase">0${i + 1} /</div>
         </div>
         <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">${p.title}</h3>
         <p class="text-slate-400 text-[13px] leading-relaxed" style="flex:1;">${p.excerpt}</p>
         <div style="margin-top:2.5rem;">
-          <a href="${BASE_URL}/blog/${p.slug}/" class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
+          <a href="${BASE_URL}/blog/${p.slug}/" class="text-[12px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
         </div>
       </div>`;
   }).join("");
@@ -275,7 +275,7 @@ function generateHomeHtml(posts) {
         }
         @keyframes dotPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
         @keyframes tagSlide { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
-        .hero-tag { display:inline-flex; align-items:center; gap:6px; font-size:9px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:#5D5FEF; background:rgba(93,95,239,0.08); border:1px solid rgba(93,95,239,0.15); padding:5px 12px; border-radius:20px; margin-bottom:1.5rem; animation:tagSlide .5s .3s both; }
+        .hero-tag { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:#5D5FEF; background:rgba(93,95,239,0.08); border:1px solid rgba(93,95,239,0.15); padding:5px 12px; border-radius:20px; margin-bottom:1.5rem; animation:tagSlide .5s .3s both; }
         .hero-dot { width:6px; height:6px; border-radius:50%; background:#5D5FEF; animation:dotPulse 2s infinite; flex-shrink:0; }
         .sticky-nav {
             position: sticky; top: 0; z-index: 100;
@@ -356,7 +356,7 @@ function generateHomeHtml(posts) {
     <nav class="sticky-nav">
         <div class="nav-container px-8 py-5 flex justify-between items-center">
             <div class="text-xl font-black tracking-tighter">Emily's LAB<span class="text-[#5D5FEF]">.</span></div>
-            <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+            <div class="flex items-center space-x-10 text-[13px] font-bold tracking-[0.15em] text-slate-400 uppercase">
                 <a href="/-emily-lu-website-g/about/" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
                 <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
                 <a href="mailto:emily50431@gmail.com" class="btn-brand px-6 py-2 rounded-full text-white font-bold">聯絡交流</a>
@@ -394,7 +394,7 @@ function generateHomeHtml(posts) {
         </section>
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
-        <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
+        <p class="text-[12px] font-black tracking-[0.3em] text-slate-300 uppercase">
             © 2026 EMILY LU — 保持學習、保持快樂
         </p>
     </footer>
@@ -447,13 +447,13 @@ function generateAboutHtml() {
     .win-dots { display: flex; gap: 5px; }
     .win-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.35); }
     .win-dot.g { background: rgba(255,255,255,0.85); }
-    .win-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.5rem; }
+    .win-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.5rem; }
     .photo-body { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 2rem; }
     .photo-frame { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 2.5px solid rgba(93,95,239,0.4); flex-shrink: 0; animation: photoGlow 4s ease-in-out infinite; }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
     .photo-info h2 { font-size: 24px; font-weight: 900; color: #1d1d1f; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .photo-info .role { font-size: 11px; font-weight: 700; color: #5D5FEF; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-    .photo-info p { font-size: 14px; color: #6e6e73; line-height: 1.6; font-weight: 300; }
+    .photo-info .role { font-size: 12px; font-weight: 700; color: #5D5FEF; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .photo-info p { font-size: 15px; color: #374151; line-height: 1.6; font-weight: 400; }
     .facts-body { padding: 0.75rem 1rem; }
     .fact { display: flex; align-items: center; gap: 1.25rem; padding: 0.875rem 1rem; border-radius: 10px; margin-bottom: 0.4rem; cursor: default; transition: all 0.3s; border: 1px solid transparent; }
     .fact:last-child { margin-bottom: 0; }
@@ -484,7 +484,7 @@ function generateAboutHtml() {
           Emily's LAB<span style="color:#5D5FEF;">.</span>
         </a>
       </div>
-      <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+      <div class="flex items-center space-x-10 text-[13px] font-bold tracking-[0.15em] text-slate-400 uppercase">
         <a href="/-emily-lu-website-g/about/" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
         <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
@@ -550,7 +550,7 @@ function generateAboutHtml() {
     </div>
   </main>
   <footer style="padding:3rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
 </body>
 </html>`;
