@@ -58,7 +58,8 @@ function generatePostHtml(title, date, categories, content) {
     <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
     <div class="nav-links">
       <a href="/-emily-lu-website-g/">首頁</a>
-      <a href="/-emily-lu-website-g/blog/">文章</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="#" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
   <main class="post-wrap">
@@ -104,7 +105,8 @@ function generateBlogIndexHtml(posts) {
     <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
     <div class="nav-links">
       <a href="/-emily-lu-website-g/">首頁</a>
-      <a href="/-emily-lu-website-g/blog/">文章</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="#" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
   <main class="blog-wrap">
