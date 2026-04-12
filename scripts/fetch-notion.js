@@ -40,7 +40,7 @@ const NAV_HTML = `
       <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
         <a href="#" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
         <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
-        <a href="#" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
+        <a href="mailto:emily50431@gmail.com" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
       </div>
     </div>
   </nav>`;
@@ -359,7 +359,7 @@ function generateHomeHtml(posts) {
             <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
                 <a href="#" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
                 <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
-                <a href="#" class="btn-brand px-6 py-2 rounded-full text-white font-bold">聯絡交流</a>
+                <a href="mailto:emily50431@gmail.com" class="btn-brand px-6 py-2 rounded-full text-white font-bold">聯絡交流</a>
             </div>
         </div>
     </nav>
