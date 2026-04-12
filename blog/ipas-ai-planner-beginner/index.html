@@ -4,15 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>如何在60日內取得AI應用規劃師初級證照 | Emily's LAB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
 </head>
-<body>
-  <nav class="nav">
-    <a class="nav-logo" href="/-emily-lu-website-g/">Emily's <span>LAB</span></a>
-    <div class="nav-links">
-      <a href="/-emily-lu-website-g/">首頁</a>
-      <a href="/-emily-lu-website-g/blog/">文章分享</a>
-      <a href="#" class="nav-cta">聯絡交流</a>
+<body class="antialiased">
+  
+  <style>
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(25px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .nav-container { max-width: 1100px; margin: 0 auto; }
+    .mesh-gradient {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+      background-color: #FDFDFF;
+    }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container px-8 py-5 flex justify-between items-center">
+      <div class="text-xl font-black tracking-tighter">
+        <a href="/-emily-lu-website-g/" style="text-decoration:none;color:#1F2937;">
+          Emily's LAB<span style="color:#5D5FEF;">.</span>
+        </a>
+      </div>
+      <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+        <a href="/-emily-lu-website-g/" class="hover:text-[#5D5FEF] transition-colors">首頁</a>
+        <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
+        <a href="#" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
+      </div>
     </div>
   </nav>
   <main class="post-wrap">
@@ -44,9 +71,9 @@
 <p>到這一步的時候通常已經有基礎60分的概念了，但為了讓我自己可以更有模擬寫題目的感覺，我請gemini每天跟我出100題讓我刷，我把我的筆記+官方資料練習+考試簡章裡面提到的範圍，都跟gemini說，在這邊個人分享超重要的一點：<strong>務必先把以下的prompt寫到gemini的個人化記憶中！</strong></p><p></p>
 <p>原因是我發現<u><strong>gemini很常會在對答案的時候，不見得每次都可以正確！</strong></u>（對於我這種新手，在練習時答案還給錯真的是要害死我...…），所以如果有加入這幾條，可以確保gemini在回應答案的時候至少有多做幾道防護。</p><p></p>
 <p>另外，gemini會自作聰明提供【互動式測驗】的方式去做問答，雖然使用【互動式測驗】的介面會比較簡單，但<u><strong>它無法記憶你錯了哪些題目</strong></u>，如果事後想找出自己錯的題目是沒有辦法的。</p><p></p>
-<p>!<a href="https://prod-files-secure.s3.us-west-2.amazonaws.com/0f31a635-97b3-81be-9ddb-0003991bfd4d/bc1ac96a-eb47-4481-aea3-a33856233136/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZMGFPMAW%2F20260412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260412T042836Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCID19wJJTtNOxzmmgt8BS12FTVgD4gdtYyLqxRYYD9BppAiEAyV5xVBw5%2FSaZPK5MiXsZ2TWMdvpfcibIJdRFB%2BQYAIAq%2FwMIVRAAGgw2Mzc0MjMxODM4MDUiDApZ3%2BNDww9WJZrLUCrcA4Bzlmt%2FdGhtbjj2%2B22wL%2BNJlhuiSWf%2FdntkCho9Uoqom46okK11mtpChGR%2BGDcG6ZDqQPI0HE%2BLoQr9xdDueOYOCmgm2fGtRH3cJxHeXGZ3AoZmV9JiT14Bl9tiFd8ChXx6T4WyX6bdcBtWagN%2FYIw2tvTz8WXvmSij5tuf26f2nF98LLIG0DnwZrGAmWpltDuK7BONVmkR%2BvjyZimalj0OJaKMqRZlwxkBow9VZMqvWhBV33F7YB35yHNG39fM33s4o3MXwO7kdR2RK32rAvEuQqISlFiakMBZb%2BkL3KMzrUf9LTTIOnuZAZ9Q2VpNhmIFExVMHl7M8cyY0JluEbH9J%2Fp6T1tQRIrLnvJCI1E%2FD0jthOC2fMGgxyNL5h5vxntLoO%2BC5FZ%2F9yfjPsE%2B6oFLa%2BbRxWPM3eJgNU4CdmsElItJSLKtYRcJz%2BernCAaVP4QDSY8TeveFaOBuWSc7xA3qZ%2BHNnC4TIlO8QGijhu7YvhnAv6ven7kZR4C1e0WcwrrEE8Y8DL%2Fx50opH8vl0Z0nVgmbnGc2YyHcaY14JK2fgIDIodqYGNOXIy9d%2Fxulk%2BqgCDHIkaXoIj4lOvI4dtSJFW%2FFazLa84Zg5ObtDKTSKMiEJcmpwDHOZQMMOu87M4GOqUBzbgIQ9fXDf%2FyaCeGl5f%2B5IvRRgoo2XJtjxuLtpaTfXpojoXlIYCyDuszsRzrBrhbsmu0x7%2BBoTPv425IRfiLy0yGVz51wi7UyVVAStze2sIkYRWBIFVFBA8%2BIKqYCBZdsLQzTHkNrjS8ZsWQPJXuNYK%2Bi9p60qdq4akPCg0Rl8EzrN%2BPZeckrabhTwiWAQQU6JsCXwgvLzIE94WKe%2BbjPqAmMAVl&X-Amz-Signature=1b74d25fdc29ef7fc8cf443f3913ed03add6afd7341cf44c4d6da64f9693dc22&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject">image.png</a></p><p></p>
+<p>!<a href="https://prod-files-secure.s3.us-west-2.amazonaws.com/0f31a635-97b3-81be-9ddb-0003991bfd4d/bc1ac96a-eb47-4481-aea3-a33856233136/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466T4SJNG2H%2F20260412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260412T043213Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIGOULKQUDwxRJHgQIA9xOaj3qFYhjUl7FfFOjGROO%2FQjAiEAx6Wy8JDq9meIQ5FKAil%2FjUAkWgerxZ4Idm8Ly0nVbf0q%2FwMIVRAAGgw2Mzc0MjMxODM4MDUiDEO%2B4pdtmItCyAlBPCrcA4rL58ghTQYl4zLIUgAtUFfKZ7z%2B5BsoiRvpNnOTrxFTyx7MZwdHvKFffp0zfYZ51nEM4swV1MOCfvm%2FZR3lEicaPdTA0eu0G1IlW%2Bl%2BPiy7wObry1PYWIUQi7ZaWGLIACqW9UNZX3PBxk2EUHx5O7Jy67It2LE68VTKPrhzRZkcFeJbXuQ3%2BeFQqDijnjeAYv0EsVgWyFf50qzJBjhCZw91y5hA49gKJwpeqxNWF9DezyGmWu9EHUl36NFxmqgHHb%2B%2B5LUuW0IbgOnrqWqptKEeRCMXd06wPqsxeLAmYjPfYT1G4h4NKq9op0oiPQq5F%2B2raZwXq1bRP60X1%2Fb%2F2FPWJPcStnD8aeYM6%2F5FLhCCidD8Ck9KyVQkYQRKYRnTgqd1sCnuczF5ZA5Qb9MAzUCYL73VAfpbHPie0ps2HEY2aVCaEXnyy%2BJ7twlkzRrcBUboLw3Ixq1cA9UNmGQveZbKxNs5X4NljY4c8nK%2BQIfhNs36tTX5I0tPf%2F3wDSOUUujLPpanGD2rSO3jSmAw7tuLRgSlJsIOTSy4f7LUk6GvZl4eGeD92Vu5b9%2BbJDxe3jEQYTjkJTi0mXe2ptsIStlMdr3LzZ8e6tFFoLmyvJWNgkEYG0tLO6LoWENaMOu87M4GOqUBluB7D8Iot0wV8lrIVhyuSpjOOai3LsyHTZ4y2gqqMQBfHbct%2B2OQz24YdZrFcjSxuFC8Mn%2F%2FPnDeL3W16K3ruVW7fJJM%2FS5CNJAJnK7tZ183jloIOJCiQ3F8OZo6gk2Qu3qXZx3ncS%2FzIZUlswu5O8aliwzJEbg8Bky3ZxvBGJ7jkUNiDciGOqi7zQhbJOMmoNqvCQOgGGsicbqy7FUAD0r0y8%2B%2F&X-Amz-Signature=3609066d1125c6695d1ae92acd5d76a22351f02069aba7af5d28af81f2da5345&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject">image.png</a></p><p></p>
 <p>互動式測驗長這樣</p><p></p>
-<p>!<a href="https://prod-files-secure.s3.us-west-2.amazonaws.com/0f31a635-97b3-81be-9ddb-0003991bfd4d/20611a8e-bd07-4dcf-aca6-ec0a17b6b29d/%E4%BA%92%E5%8B%95%E5%BC%8F%E9%80%A3%E7%B5%90%28x%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZMGFPMAW%2F20260412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260412T042836Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCID19wJJTtNOxzmmgt8BS12FTVgD4gdtYyLqxRYYD9BppAiEAyV5xVBw5%2FSaZPK5MiXsZ2TWMdvpfcibIJdRFB%2BQYAIAq%2FwMIVRAAGgw2Mzc0MjMxODM4MDUiDApZ3%2BNDww9WJZrLUCrcA4Bzlmt%2FdGhtbjj2%2B22wL%2BNJlhuiSWf%2FdntkCho9Uoqom46okK11mtpChGR%2BGDcG6ZDqQPI0HE%2BLoQr9xdDueOYOCmgm2fGtRH3cJxHeXGZ3AoZmV9JiT14Bl9tiFd8ChXx6T4WyX6bdcBtWagN%2FYIw2tvTz8WXvmSij5tuf26f2nF98LLIG0DnwZrGAmWpltDuK7BONVmkR%2BvjyZimalj0OJaKMqRZlwxkBow9VZMqvWhBV33F7YB35yHNG39fM33s4o3MXwO7kdR2RK32rAvEuQqISlFiakMBZb%2BkL3KMzrUf9LTTIOnuZAZ9Q2VpNhmIFExVMHl7M8cyY0JluEbH9J%2Fp6T1tQRIrLnvJCI1E%2FD0jthOC2fMGgxyNL5h5vxntLoO%2BC5FZ%2F9yfjPsE%2B6oFLa%2BbRxWPM3eJgNU4CdmsElItJSLKtYRcJz%2BernCAaVP4QDSY8TeveFaOBuWSc7xA3qZ%2BHNnC4TIlO8QGijhu7YvhnAv6ven7kZR4C1e0WcwrrEE8Y8DL%2Fx50opH8vl0Z0nVgmbnGc2YyHcaY14JK2fgIDIodqYGNOXIy9d%2Fxulk%2BqgCDHIkaXoIj4lOvI4dtSJFW%2FFazLa84Zg5ObtDKTSKMiEJcmpwDHOZQMMOu87M4GOqUBzbgIQ9fXDf%2FyaCeGl5f%2B5IvRRgoo2XJtjxuLtpaTfXpojoXlIYCyDuszsRzrBrhbsmu0x7%2BBoTPv425IRfiLy0yGVz51wi7UyVVAStze2sIkYRWBIFVFBA8%2BIKqYCBZdsLQzTHkNrjS8ZsWQPJXuNYK%2Bi9p60qdq4akPCg0Rl8EzrN%2BPZeckrabhTwiWAQQU6JsCXwgvLzIE94WKe%2BbjPqAmMAVl&X-Amz-Signature=8b014773dd4345120204f4212784e7f53b61396cea9e15bb0a0eac8c628a94d0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject">%E4%BA%92%E5%8B%95%E5%BC%8F%E9%80%A3%E7%B5%90%28x%29.png</a></p><p></p>
+<p>!<a href="https://prod-files-secure.s3.us-west-2.amazonaws.com/0f31a635-97b3-81be-9ddb-0003991bfd4d/20611a8e-bd07-4dcf-aca6-ec0a17b6b29d/%E4%BA%92%E5%8B%95%E5%BC%8F%E9%80%A3%E7%B5%90%28x%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466T4SJNG2H%2F20260412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260412T043213Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIGOULKQUDwxRJHgQIA9xOaj3qFYhjUl7FfFOjGROO%2FQjAiEAx6Wy8JDq9meIQ5FKAil%2FjUAkWgerxZ4Idm8Ly0nVbf0q%2FwMIVRAAGgw2Mzc0MjMxODM4MDUiDEO%2B4pdtmItCyAlBPCrcA4rL58ghTQYl4zLIUgAtUFfKZ7z%2B5BsoiRvpNnOTrxFTyx7MZwdHvKFffp0zfYZ51nEM4swV1MOCfvm%2FZR3lEicaPdTA0eu0G1IlW%2Bl%2BPiy7wObry1PYWIUQi7ZaWGLIACqW9UNZX3PBxk2EUHx5O7Jy67It2LE68VTKPrhzRZkcFeJbXuQ3%2BeFQqDijnjeAYv0EsVgWyFf50qzJBjhCZw91y5hA49gKJwpeqxNWF9DezyGmWu9EHUl36NFxmqgHHb%2B%2B5LUuW0IbgOnrqWqptKEeRCMXd06wPqsxeLAmYjPfYT1G4h4NKq9op0oiPQq5F%2B2raZwXq1bRP60X1%2Fb%2F2FPWJPcStnD8aeYM6%2F5FLhCCidD8Ck9KyVQkYQRKYRnTgqd1sCnuczF5ZA5Qb9MAzUCYL73VAfpbHPie0ps2HEY2aVCaEXnyy%2BJ7twlkzRrcBUboLw3Ixq1cA9UNmGQveZbKxNs5X4NljY4c8nK%2BQIfhNs36tTX5I0tPf%2F3wDSOUUujLPpanGD2rSO3jSmAw7tuLRgSlJsIOTSy4f7LUk6GvZl4eGeD92Vu5b9%2BbJDxe3jEQYTjkJTi0mXe2ptsIStlMdr3LzZ8e6tFFoLmyvJWNgkEYG0tLO6LoWENaMOu87M4GOqUBluB7D8Iot0wV8lrIVhyuSpjOOai3LsyHTZ4y2gqqMQBfHbct%2B2OQz24YdZrFcjSxuFC8Mn%2F%2FPnDeL3W16K3ruVW7fJJM%2FS5CNJAJnK7tZ183jloIOJCiQ3F8OZo6gk2Qu3qXZx3ncS%2FzIZUlswu5O8aliwzJEbg8Bky3ZxvBGJ7jkUNiDciGOqi7zQhbJOMmoNqvCQOgGGsicbqy7FUAD0r0y8%2B%2F&X-Amz-Signature=4eccb3ba68469a3b649fca07aa0c7f003eab83c2028b8dadf6c479541e6988cf&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject">%E4%BA%92%E5%8B%95%E5%BC%8F%E9%80%A3%E7%B5%90%28x%29.png</a></p><p></p>
 <p>我每天練習，至少一天練有100題，就是單純請gemini每次出20題，我回答1A 2B 3C....這樣的模式去刷題，然後再針對錯的題目請gemini跟我解釋，我覺得反覆練習非常有幫助，且gemini也會幫忙記得我比較容易錯哪些地方，考前還可以針對這些重點項目複習。</p><p></p>
 <h2>考試當天</h2></p><p>
 <p>考試是用電腦上機測驗，印象開始前會先有影片教學系統怎麼操作，滿棒的一點是系統還可以記錄不確定的題目，到時候可以回來檢查，超方便👍👍👍</p><p></p>
