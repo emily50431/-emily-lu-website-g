@@ -123,7 +123,7 @@ function markdownToHtml(md) {
     .replace(/^# (.+)$/gm, "<h1>$1</h1>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/={2,}([^=]+)={2,}/g, '<mark class="hl-yellow">$1</mark>')
+    .replace(/\*{0,2}={2,}([^=]+)={2,}\*{0,2}/g, '<mark class="hl-yellow">$1</mark>')
     .replace(/^> (.+)$/gm, '<div class="hl-block">$1</div>')
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;margin:1rem 0;">')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
