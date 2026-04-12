@@ -119,12 +119,13 @@ async function getPostContent(pageId) {
   }
 }
 
-function makeDownloadBtn(downloadUrl) {
+function makeDownloadBtn(downloadUrl, downloadLabel) {
+  const label = downloadLabel || "免費下載完整學習資源";
   const payload = JSON.stringify({ file_name: "google-drive-folder", slug: downloadUrl });
-  return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-btn" onclick="fetch('${SUPABASE_URL}/rest/v1/downloads',{method:'POST',headers:{'Content-Type':'application/json','apikey':'${SUPABASE_KEY}','Authorization':'Bearer ${SUPABASE_KEY}'},body:'${payload.replace(/'/g, "\\'")}' })">📥 下載學習資源</a></div>`;
+  return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-block" onclick="fetch('${SUPABASE_URL}/rest/v1/downloads',{method:'POST',headers:{'Content-Type':'application/json','apikey':'${SUPABASE_KEY}','Authorization':'Bearer ${SUPABASE_KEY}'},body:'${payload.replace(/'/g, "\\'")}' })"><div class="dl-pulse"></div><div class="dl-arrow">前往下載 →</div><div class="dl-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M12 3v13M6 11l6 6 6-6"/><path d="M3 21h18"/></svg></div><div class="dl-title">${label}</div></a></div>`;
 }
 
-function markdownToHtml(md, downloadUrl = "") {
+function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
   return md
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
     .replace(/^## (.+)$/gm, "<h2>$1</h2>")
@@ -135,7 +136,7 @@ function markdownToHtml(md, downloadUrl = "") {
     .replace(/^> (.+)$/gm, '<div class="hl-block">$1</div>')
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;margin:1rem 0;">')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl) : '')
+    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '')
     .replace(/\n\n/g, "</p><p>")
     .replace(/^(.+)$/gm, (line) =>
       line.startsWith("<") ? line : `<p>${line}</p>`
@@ -390,7 +391,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 保持快樂、保持思考
+            © 2026 EMILY LU — 保持快樂、保持專業
         </p>
     </footer>
     <script>
@@ -424,9 +425,10 @@ async function main() {
     const categories = props.Category?.multi_select?.map((c) => c.name) || [];
     const excerpt = props.Excerpt?.rich_text[0]?.plain_text || "";
     const downloadUrl = props.DownloadURL?.url || "";
+    const downloadLabel = props.DownloadLabel?.rich_text[0]?.plain_text || "";
     let content = await getPostContent(post.id);
     content = await processImages(content, slug);
-    const htmlContent = markdownToHtml(content, downloadUrl);
+    const htmlContent = markdownToHtml(content, downloadUrl, downloadLabel);
 
     const postDir = path.join("blog", slug);
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
