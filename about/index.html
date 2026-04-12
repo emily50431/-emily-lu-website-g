@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>關於我 | Emily's LAB</title>
-  <script src="https://cdn.tailwindcss.com"><\/script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-67N1NCPZGK');
-  <\/script>
+  </script>
   <style>
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glowPulse { 0%,100%{box-shadow:0 0 10px rgba(93,95,239,0.25),0 0 0 1px rgba(93,95,239,0.15)}50%{box-shadow:0 0 24px rgba(93,95,239,0.5),0 0 0 1px rgba(93,95,239,0.4)} }
@@ -22,41 +22,27 @@
     @keyframes gradientFlow1 { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     @keyframes gradientFlow2 { 0%{background-position:100% 50%} 50%{background-position:0% 50%} 100%{background-position:100% 50%} }
     @keyframes gradientFlow3 { 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
-
     body { font-family: 'Noto Sans TC', sans-serif; background: #FDFDFF; color: #1d1d1f; overflow-x: hidden; }
-
-    .mesh-gradient {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-      background:
-        radial-gradient(circle at 15% 50%, rgba(93,95,239,0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(93,95,239,0.05) 0%, transparent 50%);
-      background-color: #FDFDFF;
-    }
-
+    .mesh-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(93,95,239,0.1) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(93,95,239,0.05) 0%, transparent 50%); background-color: #FDFDFF; }
     .about-main { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem; display: flex; flex-direction: column; gap: 1.25rem; }
-
     .win { background: white; border-radius: 16px; overflow: hidden; opacity: 0; }
     .w1 { animation: fadeUp 0.6s 0.1s forwards, glowPulse 4s 0.7s ease-in-out infinite; }
     .w2 { animation: fadeUp 0.6s 0.25s forwards, glowPulse 4s 0.85s ease-in-out infinite; }
     .w3 { animation: fadeUp 0.6s 0.4s forwards, glowPulse 4s 1s ease-in-out infinite; }
-
     .win-bar { padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.5rem; background-size: 300% 300%; }
     .win-bar.v1 { background-image: linear-gradient(120deg, #5D5FEF, #6366f1, #5D5FEF, #4f46e5); animation: gradientFlow1 15s ease infinite; }
     .win-bar.v2 { background-image: linear-gradient(120deg, #4C1D95, #5b21b6, #4C1D95, #3b0764); animation: gradientFlow2 15s ease infinite; }
     .win-bar.v3 { background-image: linear-gradient(120deg, #7C3AED, #8b5cf6, #7C3AED, #6D28D9); animation: gradientFlow3 15s ease infinite; }
-
     .win-dots { display: flex; gap: 5px; }
     .win-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.35); }
     .win-dot.g { background: rgba(255,255,255,0.85); }
     .win-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.5rem; }
-
     .photo-body { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 2rem; }
     .photo-frame { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 2.5px solid rgba(93,95,239,0.4); flex-shrink: 0; animation: photoGlow 4s ease-in-out infinite; }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
     .photo-info h2 { font-size: 24px; font-weight: 900; color: #1d1d1f; letter-spacing: -0.02em; margin-bottom: 4px; }
     .photo-info .role { font-size: 11px; font-weight: 700; color: #5D5FEF; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
     .photo-info p { font-size: 14px; color: #6e6e73; line-height: 1.6; font-weight: 300; }
-
     .facts-body { padding: 0.75rem 1rem; }
     .fact { display: flex; align-items: center; gap: 1.25rem; padding: 0.875rem 1rem; border-radius: 10px; margin-bottom: 0.4rem; cursor: default; transition: all 0.3s; border: 1px solid transparent; }
     .fact:last-child { margin-bottom: 0; }
@@ -65,11 +51,9 @@
     .fact:hover .fact-num { background: #5D5FEF; color: white; box-shadow: 0 0 10px rgba(93,95,239,0.5); }
     .fact-text { font-size: 15px; color: #1d1d1f; line-height: 1.5; transition: color 0.3s; }
     .fact:hover .fact-text { color: #5D5FEF; }
-
     .tags-body { padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .about-tag { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: #EEEDFE; color: #3C3489; letter-spacing: 0.04em; transition: all 0.2s; cursor: default; }
     .about-tag:hover { background: #5D5FEF; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(93,95,239,0.3); }
-
     @media (max-width: 600px) {
       .photo-body { flex-direction: column; text-align: center; }
       .about-main { padding: 2rem 1rem 4rem; }
@@ -78,7 +62,6 @@
 </head>
 <body class="antialiased">
   <div class="mesh-gradient"></div>
-
   <style>
     .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.7); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.03); }
     .nav-container { max-width: 1100px; margin: 0 auto; }
@@ -97,9 +80,7 @@
       </div>
     </div>
   </nav>
-
   <main class="about-main">
-
     <div class="win w1">
       <div class="win-bar v1">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
@@ -116,7 +97,6 @@
         </div>
       </div>
     </div>
-
     <div class="win w2">
       <div class="win-bar v2">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
@@ -134,7 +114,6 @@
         <div class="fact"><div class="fact-num">09</div><div class="fact-text">太愛寫東西但不知道放哪，乾脆創一個園地留些數位資產</div></div>
       </div>
     </div>
-
     <div class="win w3">
       <div class="win-bar v3">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
@@ -158,12 +137,9 @@
         <div class="about-tag">喜歡寫東寫西</div>
       </div>
     </div>
-
   </main>
-
   <footer style="padding:3rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
-
 </body>
 </html>
