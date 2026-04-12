@@ -373,7 +373,7 @@ function generateHomeHtml(posts) {
                     用人生實作<br><span class="text-[#5D5FEF]">創造影響力.</span>
                 </h1>
                 <p class="text-base text-slate-400 max-w-md mb-10 leading-relaxed">
-                    Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡有溫度的交流與思考，希望創造一個生活練習與分享的園區。
+                    Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡與人互動聊聊天，希望創造一個生活練習與分享的園區。
                 </p>
                 <div class="flex gap-4">
                     <a href="/-emily-lu-website-g/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
