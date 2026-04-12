@@ -147,6 +147,14 @@ function generatePostHtml(title, date, categories, content) {
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  <\/script>
 </head>
 <body class="antialiased">
   ${NAV_HTML}
@@ -189,6 +197,14 @@ function generateBlogIndexHtml(posts) {
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  <\/script>
 </head>
 <body class="antialiased">
   ${NAV_HTML}
@@ -312,6 +328,14 @@ function generateHomeHtml(posts) {
         .reveal { opacity: 0; transform: translateY(15px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  <\/script>
 </head>
 <body class="antialiased">
     <div class="mesh-gradient"></div>
