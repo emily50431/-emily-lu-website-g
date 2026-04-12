@@ -122,7 +122,7 @@ async function getPostContent(pageId) {
 function makeDownloadBtn(downloadUrl, downloadLabel) {
   const label = downloadLabel || "免費下載完整學習資源";
   const safeUrl = downloadUrl.replace(/'/g, "\\'");
-  const trackScript = `(function(){fetch('${SUPABASE_URL}/rest/v1/downloads',{method:'POST',headers:{'Content-Type':'application/json','apikey':'${SUPABASE_KEY}','Authorization':'Bearer ${SUPABASE_KEY}'},body:JSON.stringify({file_name:'google-drive-folder',slug:'${safeUrl}'})})})()`;
+  const trackScript = `(function(){var now=new Date(new Date().getTime()+8*60*60*1000).toISOString().replace('Z','+08:00');fetch('${SUPABASE_URL}/rest/v1/downloads',{method:'POST',headers:{'Content-Type':'application/json','apikey':'${SUPABASE_KEY}','Authorization':'Bearer ${SUPABASE_KEY}'},body:JSON.stringify({file_name:'google-drive-folder',slug:'${safeUrl}',downloaded_at:now})})})()`;
   return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-block" onclick="${trackScript.replace(/"/g, '&quot;')}"><div class="dl-pulse"></div><div class="dl-arrow">前往下載 →</div><div class="dl-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M12 3v13M6 11l6 6 6-6"/><path d="M3 21h18"/></svg></div><div class="dl-title">${label}</div></a></div>`;
 }
 
