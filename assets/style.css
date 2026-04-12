@@ -27,9 +27,9 @@ body {
 .nav-links { display: flex; align-items: center; gap: 2.5rem; }
 
 .nav-links a {
-  font-size: 10px; font-weight: 700;
+  font-size: 13px; font-weight: 700;
   color: #94A3B8; text-decoration: none;
-  letter-spacing: 0.15em; text-transform: uppercase;
+  letter-spacing: 0.1em; text-transform: uppercase;
   transition: color 0.2s;
 }
 
@@ -91,7 +91,7 @@ body {
 }
 
 .post-card-tag {
-  font-size: 10px; font-weight: 900;
+  font-size: 12px; font-weight: 900;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: #5D5FEF;
   background: rgba(93,95,239,0.08);
@@ -99,7 +99,7 @@ body {
 }
 
 .post-card-date {
-  font-size: 11px; color: #9CA3AF;
+  font-size: 12px; color: #9CA3AF;
 }
 
 .post-card-title {
@@ -125,7 +125,7 @@ body {
 }
 
 .post-tag {
-  font-size: 10px; font-weight: 900;
+  font-size: 12px; font-weight: 900;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: #5D5FEF;
   background: rgba(93,95,239,0.08);
@@ -189,7 +189,7 @@ body {
 .post-list-tags { display: flex; gap: 0.4rem; }
 
 .list-tag {
-  font-size: 10px; font-weight: 900;
+  font-size: 12px; font-weight: 900;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: #5D5FEF;
   background: rgba(93,95,239,0.08);
