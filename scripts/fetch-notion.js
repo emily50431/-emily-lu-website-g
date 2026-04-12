@@ -33,13 +33,18 @@ function markdownToHtml(md) {
     .replace(/^# (.+)$/gm, "<h1>$1</h1>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
     .replace(/\n\n/g, "</p><p>")
     .replace(/^(.+)$/gm, (line) =>
       line.startsWith("<") ? line : `<p>${line}</p>`
     );
 }
 
-function generatePostHtml(title, date, category, content) {
+function generatePostHtml(title, date, categories, content) {
+  const categoryTags = categories
+    .map((c) => `<span class="post-tag">${c}</span>`)
+    .join("");
+
   return `<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -58,7 +63,7 @@ function generatePostHtml(title, date, category, content) {
   </nav>
   <main class="post-wrap">
     <div class="post-meta">
-      <span class="post-tag">${category}</span>
+      ${categoryTags}
       <span class="post-date">${date}</span>
     </div>
     <h1 class="post-title">${title}</h1>
@@ -69,18 +74,21 @@ function generatePostHtml(title, date, category, content) {
 }
 
 function generateBlogIndexHtml(posts) {
-  const cards = posts
-    .map(
-      (p) => `
-    <a class="post-card" href="${BASE_URL}/blog/${p.slug}/">
-      <div class="post-card-meta">
-        <span class="post-card-tag">${p.category}</span>
-        <span class="post-card-date">${p.date}</span>
+  const items = posts
+    .map((p) => {
+      const categoryTags = p.categories
+        .map((c) => `<span class="list-tag">${c}</span>`)
+        .join("");
+      return `
+    <a class="post-list-item" href="${BASE_URL}/blog/${p.slug}/">
+      <div class="post-list-meta">
+        <span class="post-list-date">${p.date}</span>
+        <div class="post-list-tags">${categoryTags}</div>
       </div>
-      <div class="post-card-title">${p.title}</div>
-      <div class="post-card-excerpt">${p.excerpt}</div>
-    </a>`
-    )
+      <div class="post-list-title">${p.title}</div>
+      <div class="post-list-excerpt">${p.excerpt}</div>
+    </a>`;
+    })
     .join("");
 
   return `<!DOCTYPE html>
@@ -101,7 +109,7 @@ function generateBlogIndexHtml(posts) {
   </nav>
   <main class="blog-wrap">
     <h1 class="section-title">所有文章</h1>
-    <div class="posts-grid">${cards}</div>
+    <div class="post-list">${items}</div>
   </main>
 </body>
 </html>`;
@@ -118,7 +126,7 @@ async function main() {
     const title = props.Title?.title[0]?.plain_text || "無標題";
     const slug = props.Slug?.rich_text[0]?.plain_text || post.id;
     const date = props.PublishedDate?.date?.start || "";
-    const category = props.Category?.select?.name || "";
+    const categories = props.Category?.multi_select?.map((c) => c.name) || [];
     const excerpt = props.Excerpt?.rich_text[0]?.plain_text || "";
     const content = await getPostContent(post.id);
     const htmlContent = markdownToHtml(content);
@@ -127,10 +135,10 @@ async function main() {
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
     fs.writeFileSync(
       path.join(postDir, "index.html"),
-      generatePostHtml(title, date, category, htmlContent)
+      generatePostHtml(title, date, categories, htmlContent)
     );
 
-    postData.push({ title, slug, date, category, excerpt });
+    postData.push({ title, slug, date, categories, excerpt });
   }
 
   fs.writeFileSync("blog/index.html", generateBlogIndexHtml(postData));
