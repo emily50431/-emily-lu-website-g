@@ -263,8 +263,9 @@ function generateHomeHtml(posts) {
     <main class="max-w-5xl mx-auto px-8 pt-20 pb-32">
         <div class="flex flex-col lg:flex-row items-center gap-16 mb-40">
             <div class="lg:w-3/5 reveal active">
-                <div class="inline-block px-3 py-1 mb-6 rounded-full bg-indigo-50 border border-indigo-100 text-[#5D5FEF] text-[9px] font-black tracking-widest uppercase">
-                   Solution Planner·Writer·Creator
+                <div class="hero-tag">
+                  <span class="hero-dot"></span>
+                  Solution Planner · Writer · Creator
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-[1.15] tracking-tight text-slate-800">
                     用人生實作<br><span class="text-[#5D5FEF]">創造影響力.</span>
@@ -336,3 +337,9 @@ async function main() {
 }
 
 main().catch(console.error);
+
+@keyframes dotPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
+@keyframes tagSlide { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+
+.hero-tag { display:inline-flex; align-items:center; gap:6px; font-size:9px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:#5D5FEF; background:rgba(93,95,239,0.08); border:1px solid rgba(93,95,239,0.15); padding:5px 12px; border-radius:20px; margin-bottom:1.5rem; animation:tagSlide .5s .3s both; }
+.hero-dot { width:6px; height:6px; border-radius:50%; background:#5D5FEF; animation:dotPulse 2s infinite; flex-shrink:0; }
