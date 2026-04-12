@@ -207,6 +207,7 @@ body {
   font-size: 14px; color: #6B7280;
   line-height: 1.6;
 }
+
 /* Highlight 樣式 */
 mark.hl-yellow {
   background: linear-gradient(120deg, rgba(250,199,117,0) 0%, rgba(250,199,117,0.6) 10%, rgba(250,199,117,0.6) 90%, rgba(250,199,117,0) 100%);
@@ -227,30 +228,108 @@ mark.hl-yellow {
   font-weight: 600;
   line-height: 1.7;
 }
+
+/* 下載區塊 */
+@keyframes dlPulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.05); opacity: 0; }
+}
+
+@keyframes dlFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
 .download-section {
   margin-top: 3rem;
   padding-top: 2.5rem;
   border-top: 1px solid rgba(93,95,239,0.1);
-  text-align: center;
 }
 
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #5D5FEF;
-  color: white;
+.download-block {
+  position: relative;
+  display: block;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 0.875rem 2.5rem;
-  border-radius: 9999px;
-  letter-spacing: 0.05em;
-  transition: all 0.3s;
+  border: 1.5px solid rgba(93,95,239,0.25);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: white;
+  transition: transform 0.3s cubic-bezier(0.165,0.84,0.44,1), border-color 0.3s, box-shadow 0.3s;
 }
 
-.download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(93,95,239,0.35);
-  color: white;
+.download-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(93,95,239,0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  border-radius: 20px;
+}
+
+.download-block:hover {
+  transform: translateY(-6px);
+  border-color: #5D5FEF;
+  box-shadow: 0 20px 40px rgba(93,95,239,0.18);
+}
+
+.download-block:hover::before { opacity: 1; }
+
+.download-block:hover .dl-icon-wrap {
+  background: #5D5FEF;
+  transform: scale(1.1);
+}
+
+.download-block:hover .dl-icon-wrap svg { stroke: white; }
+
+.download-block:hover .dl-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.download-block:active {
+  transform: translateY(-3px) scale(0.98);
+}
+
+.dl-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  border: 2px solid rgba(93,95,239,0.3);
+  animation: dlPulse 2.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.dl-icon-wrap {
+  width: 56px; height: 56px;
+  background: rgba(93,95,239,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dl-icon-wrap svg {
+  animation: dlFloat 2s ease-in-out infinite;
+  stroke: #5D5FEF;
+  transition: stroke 0.3s;
+}
+
+.dl-title {
+  font-size: 16px; font-weight: 700;
+  color: #1F2937;
+}
+
+.dl-arrow {
+  position: absolute;
+  top: 16px; right: 20px;
+  font-size: 12px; font-weight: 700;
+  color: #5D5FEF;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s, transform 0.3s;
+  letter-spacing: 0.05em;
 }
