@@ -133,7 +133,7 @@ function markdownToHtml(md) {
     );
 }
 
-function generatePostHtml(title, date, categories, content) {
+function generatePostHtml(title, date, categories, content, downloadUrl = "") {
   const categoryTags = categories
     .map((c) => `<span class="post-tag">${c}</span>`)
     .join("");
@@ -165,6 +165,21 @@ function generatePostHtml(title, date, categories, content) {
     </div>
     <h1 class="post-title">${title}</h1>
     <div class="post-content">${content}</div>
+    ${downloadUrl ? `
+    <div class="download-section">
+      <a href="${downloadUrl}" target="_blank" class="download-btn"
+        onclick="fetch('https://bicpmisqilziyjuxytbl.supabase.co/rest/v1/downloads', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': 'sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3',
+            'Authorization': 'Bearer sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3'
+          },
+          body: JSON.stringify({ file_name: 'google-drive-folder', slug: '${downloadUrl}' })
+        })">
+        📥 下載學習資源
+      </a>
+    </div>` : ''}
   </main>
 </body>
 </html>`;
@@ -410,6 +425,7 @@ async function main() {
     const date = props.PublishedDate?.date?.start || "";
     const categories = props.Category?.multi_select?.map((c) => c.name) || [];
     const excerpt = props.Excerpt?.rich_text[0]?.plain_text || "";
+    const downloadUrl = props.DownloadURL?.url || "";
     let content = await getPostContent(post.id);
     content = await processImages(content, slug);
     const htmlContent = markdownToHtml(content);
@@ -418,7 +434,7 @@ async function main() {
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
     fs.writeFileSync(
       path.join(postDir, "index.html"),
-      generatePostHtml(title, date, categories, htmlContent)
+      generatePostHtml(title, date, categories, htmlContent, downloadUrl)
     );
 
     postData.push({ title, slug, date, categories, excerpt });
