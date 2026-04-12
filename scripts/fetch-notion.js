@@ -517,7 +517,7 @@ function generateAboutHtml() {
         <div class="fact"><div class="fact-num">01</div><div class="fact-text">是一介即將邁入30歲的巨蟹座女子，坐標臺灣北部人</div></div>
         <div class="fact"><div class="fact-num">02</div><div class="fact-text">MBTI 是 ESFP 表演者，對環境自在可以越表現自己</div></div>
         <div class="fact"><div class="fact-num">03</div><div class="fact-text">大學、研究所都唸測量相關，但本人不耐曬，默默選辦公室工作</div></div>
-        <div class="fact"><div class="fact-num">04</div><div class="fact-text">以前當 Sales，現在當 Presales，資訊軟體業打滾合計約 5 年</div></div>
+        <div class="fact"><div class="fact-num">04</div><div class="fact-text">以前是B2B Sales，現在是Presales，資訊軟體業打滾約 5 年</div></div>
         <div class="fact"><div class="fact-num">05</div><div class="fact-text">積極嘗試各種生活，近期著迷上皮克敏、壁球、看電子書</div></div>
         <div class="fact"><div class="fact-num">06</div><div class="fact-text">人生終極夢想是開一間有個性的豆花店，搭配一隻可愛的店狗</div></div>
         <div class="fact"><div class="fact-num">07</div><div class="fact-text">非常喜歡開車到處晃，覺得在車上冥想放空是一大樂事</div></div>
