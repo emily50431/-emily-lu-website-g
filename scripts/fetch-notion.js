@@ -151,14 +151,16 @@ function generateHomeCards(posts) {
   return top3.map((p, i) => {
     const category = p.categories[0] || "文章";
     return `
-      <div class="spec-item p-10 reveal" style="transition-delay: ${i * 0.15}s;">
+      <div class="spec-item p-10 reveal" style="transition-delay: ${i * 0.15}s; display:flex; flex-direction:column;">
         <div class="mb-8 flex items-center justify-between">
           <span class="text-[9px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">${category}</span>
           <div class="text-[10px] font-black text-slate-200 uppercase">0${i + 1} /</div>
         </div>
         <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">${p.title}</h3>
-        <p class="text-slate-400 text-[13px] leading-relaxed mb-10">${p.excerpt}</p>
-        <a href="${BASE_URL}/blog/${p.slug}/" class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
+        <p class="text-slate-400 text-[13px] leading-relaxed" style="flex:1;">${p.excerpt}</p>
+        <div style="margin-top:2.5rem;">
+          <a href="${BASE_URL}/blog/${p.slug}/" class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
+        </div>
       </div>`;
   }).join("");
 }
