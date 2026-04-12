@@ -1,0 +1,149 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans TC', -apple-system, sans-serif;
+  background: #FDFDFF;
+  color: #1F2937;
+  line-height: 1.7;
+}
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(93,95,239,0.1);
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 18px; font-weight: 900;
+  color: #1F2937; text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-logo span { color: #5D5FEF; }
+
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 13px; font-weight: 700;
+  color: #6B7280; text-decoration: none;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #5D5FEF; }
+
+/* 文章列表頁 */
+.blog-wrap {
+  max-width: 860px; margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 32px; font-weight: 900;
+  color: #1F2937; margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(93,95,239,0.1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: block;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(93,95,239,0.12);
+  border-color: #5D5FEF;
+}
+
+.post-card-meta {
+  display: flex; align-items: center;
+  gap: 0.75rem; margin-bottom: 1rem;
+}
+
+.post-card-tag {
+  font-size: 10px; font-weight: 900;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #5D5FEF;
+  background: rgba(93,95,239,0.08);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+.post-card-date {
+  font-size: 11px; color: #9CA3AF;
+}
+
+.post-card-title {
+  font-size: 17px; font-weight: 700;
+  color: #1F2937; margin-bottom: 0.75rem;
+  line-height: 1.4; letter-spacing: -0.01em;
+}
+
+.post-card-excerpt {
+  font-size: 13px; color: #6B7280;
+  line-height: 1.7;
+}
+
+/* 單篇文章頁 */
+.post-wrap {
+  max-width: 720px; margin: 4rem auto;
+  padding: 0 2rem 6rem;
+}
+
+.post-meta {
+  display: flex; align-items: center;
+  gap: 0.75rem; margin-bottom: 1.5rem;
+}
+
+.post-tag {
+  font-size: 10px; font-weight: 900;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #5D5FEF;
+  background: rgba(93,95,239,0.08);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+.post-date { font-size: 12px; color: #9CA3AF; }
+
+.post-title {
+  font-size: 36px; font-weight: 900;
+  color: #1F2937; line-height: 1.2;
+  letter-spacing: -0.02em; margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(93,95,239,0.1);
+}
+
+.post-content { font-size: 16px; color: #374151; }
+.post-content h1,.post-content h2,.post-content h3 {
+  font-weight: 700; color: #1F2937;
+  margin: 2rem 0 1rem; letter-spacing: -0.01em;
+}
+.post-content h1 { font-size: 26px; }
+.post-content h2 { font-size: 22px; }
+.post-content h3 { font-size: 18px; }
+.post-content p { margin-bottom: 1.25rem; }
+.post-content a { color: #5D5FEF; }
+.post-content strong { font-weight: 700; color: #1F2937; }
+.post-content ul, .post-content ol {
+  padding-left: 1.5rem; margin-bottom: 1.25rem;
+}
+.post-content li { margin-bottom: 0.4rem; }
+
+@media (max-width: 600px) {
+  .nav { padding: 1rem; }
+  .blog-wrap, .post-wrap { margin: 2rem auto; padding: 0 1rem; }
+  .post-title { font-size: 26px; }
+  .posts-grid { grid-template-columns: 1fr; }
+}
