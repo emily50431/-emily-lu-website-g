@@ -120,21 +120,8 @@ async function getPostContent(pageId) {
 }
 
 function makeDownloadBtn(downloadUrl) {
-  return `
-    <div class="download-section">
-      <a href="${downloadUrl}" target="_blank" class="download-btn"
-        onclick="fetch('${SUPABASE_URL}/rest/v1/downloads', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': '${SUPABASE_KEY}',
-            'Authorization': 'Bearer ${SUPABASE_KEY}'
-          },
-          body: JSON.stringify({ file_name: 'google-drive-folder', slug: '${downloadUrl}' })
-        })">
-        📥 下載學習資源
-      </a>
-    </div>`;
+  const payload = JSON.stringify({ file_name: "google-drive-folder", slug: downloadUrl });
+  return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-btn" onclick="fetch('${SUPABASE_URL}/rest/v1/downloads',{method:'POST',headers:{'Content-Type':'application/json','apikey':'${SUPABASE_KEY}','Authorization':'Bearer ${SUPABASE_KEY}'},body:'${payload.replace(/'/g, "\\'")}' })">📥 下載學習資源</a></div>`;
 }
 
 function markdownToHtml(md, downloadUrl = "") {
