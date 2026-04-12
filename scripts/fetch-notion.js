@@ -106,8 +106,12 @@ async function getPostContent(pageId) {
   try {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
     const mdString = n2m.toMarkdownString(mdBlocks);
-    return mdString?.parent || mdString || "";
+    const content = mdString?.parent || mdString || "";
+    console.log("=== 文章內容 ===");
+    console.log(content.substring(0, 500));
+    return content;
   } catch (e) {
+    console.log("錯誤:", e.message);
     return "";
   }
 }
