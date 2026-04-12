@@ -24,6 +24,7 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          GA4_ID: G-67N1NCPZGK
         run: node scripts/fetch-notion.js
 
       - name: Deploy to GitHub Pages
