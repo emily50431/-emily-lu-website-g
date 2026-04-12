@@ -176,6 +176,9 @@ function generatePostHtml(title, date, categories, content) {
     <h1 class="post-title">${title}</h1>
     <div class="post-content">${content}</div>
   </main>
+  <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+  </footer>
 </body>
 </html>`;
 }
@@ -222,6 +225,9 @@ function generateBlogIndexHtml(posts) {
     <h1 class="section-title">所有文章</h1>
     <div class="post-list">${items}</div>
   </main>
+  <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+  </footer>
 </body>
 </html>`;
 }
@@ -391,7 +397,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 保持快樂、保持專業
+            © 2026 EMILY LU — 保持學習、保持快樂
         </p>
     </footer>
     <script>
