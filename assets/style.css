@@ -227,3 +227,30 @@ mark.hl-yellow {
   font-weight: 600;
   line-height: 1.7;
 }
+.download-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(93,95,239,0.1);
+  text-align: center;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5D5FEF;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0.875rem 2.5rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(93,95,239,0.35);
+  color: white;
+}
