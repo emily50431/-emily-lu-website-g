@@ -7,50 +7,129 @@ body {
   line-height: 1.7;
 }
 
-.nav {
+/* ═══════════════════════════════════════════
+   NAV — 共用導覽列（文章頁 / 文章列表頁）
+   首頁與關於我頁面為 inline style，與此同步
+   ═══════════════════════════════════════════ */
+
+.sticky-nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(25px);
   border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.nav-container {
+  max-width: 1100px; margin: 0 auto;
   padding: 1.25rem 2rem;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; justify-content: space-between; align-items: center;
 }
 
 .nav-logo {
   font-size: 20px; font-weight: 900;
   color: #1F2937; text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.02em; flex-shrink: 0;
 }
 
 .nav-logo span { color: #5D5FEF; }
 
-.nav-links { display: flex; align-items: center; gap: 2.5rem; }
+/* 桌面：橫排連結 */
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #94A3B8;
+}
 
 .nav-links a {
-  font-size: 13px; font-weight: 700;
-  color: #94A3B8; text-decoration: none;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; color: inherit;
   transition: color 0.2s;
 }
 
 .nav-links a:hover { color: #5D5FEF; }
 
-.nav-links a.nav-cta {
+.nav-cta {
   background: #5D5FEF;
-  color: white;
+  color: white !important;
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
   font-weight: 700;
+  white-space: nowrap;
   transition: all 0.3s;
 }
 
-.nav-links a.nav-cta:hover {
+.nav-cta:hover {
+  opacity: 0.88;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(93,95,239,0.3);
-  color: white;
 }
 
-/* 文章列表頁 */
+/* 漢堡按鈕（手機才顯示） */
+.nav-burger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 36px; height: 36px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+  flex-shrink: 0;
+}
+
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: #1F2937; border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center;
+}
+
+/* 漢堡 → ✕ 動畫 */
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* 手機下拉選單 */
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(25px);
+  padding: 1rem 2rem 1.5rem;
+  border-top: 1px solid rgba(93,95,239,0.08);
+  gap: 0.25rem;
+}
+
+.nav-mobile.open { display: flex; }
+
+.nav-mobile a {
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #64748B; text-decoration: none;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  transition: color 0.2s;
+}
+
+.nav-mobile a:last-child { border-bottom: none; }
+.nav-mobile a:hover { color: #5D5FEF; }
+
+.nav-mobile .nav-cta {
+  margin-top: 0.75rem;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border-bottom: none !important;
+}
+
+/* RWD 斷點 */
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .nav-container { padding: 1rem 1.25rem; }
+}
+
+
+/* ═══════════════════════════════════════════
+   文章列表頁
+   ═══════════════════════════════════════════ */
+
 .blog-wrap {
   max-width: 860px; margin: 4rem auto;
   padding: 0 2rem;
@@ -62,110 +141,6 @@ body {
   letter-spacing: -0.02em;
 }
 
-.posts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.post-card {
-  background: #fff;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid rgba(93,95,239,0.1);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  display: block;
-}
-
-.post-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(93,95,239,0.12);
-  border-color: #5D5FEF;
-}
-
-.post-card-meta {
-  display: flex; align-items: center;
-  gap: 0.75rem; margin-bottom: 1rem;
-}
-
-.post-card-tag {
-  font-size: 12px; font-weight: 900;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: #5D5FEF;
-  background: rgba(93,95,239,0.08);
-  padding: 3px 10px; border-radius: 20px;
-}
-
-.post-card-date {
-  font-size: 12px; color: #9CA3AF;
-}
-
-.post-card-title {
-  font-size: 17px; font-weight: 700;
-  color: #1F2937; margin-bottom: 0.75rem;
-  line-height: 1.4; letter-spacing: -0.01em;
-}
-
-.post-card-excerpt {
-  font-size: 13px; color: #6B7280;
-  line-height: 1.7;
-}
-
-/* 單篇文章頁 */
-.post-wrap {
-  max-width: 720px; margin: 4rem auto;
-  padding: 0 2rem 6rem;
-}
-
-.post-meta {
-  display: flex; align-items: center;
-  gap: 0.75rem; margin-bottom: 1.5rem;
-}
-
-.post-tag {
-  font-size: 12px; font-weight: 900;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: #5D5FEF;
-  background: rgba(93,95,239,0.08);
-  padding: 3px 10px; border-radius: 20px;
-}
-
-.post-date { font-size: 12px; color: #9CA3AF; }
-
-.post-title {
-  font-size: 36px; font-weight: 900;
-  color: #1F2937; line-height: 1.2;
-  letter-spacing: -0.02em; margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(93,95,239,0.1);
-}
-
-.post-content { font-size: 16px; color: #374151; }
-.post-content h1,.post-content h2,.post-content h3 {
-  font-weight: 700; color: #1F2937;
-  margin: 2rem 0 1rem; letter-spacing: -0.01em;
-}
-.post-content h1 { font-size: 26px; }
-.post-content h2 { font-size: 22px; }
-.post-content h3 { font-size: 18px; }
-.post-content p { margin-bottom: 1.25rem; }
-.post-content a { color: #5D5FEF; }
-.post-content strong { font-weight: 700; color: #1F2937; }
-.post-content ul, .post-content ol {
-  padding-left: 1.5rem; margin-bottom: 1.25rem;
-}
-.post-content li { margin-bottom: 0.4rem; }
-
-@media (max-width: 600px) {
-  .nav { padding: 1rem; }
-  .blog-wrap, .post-wrap { margin: 2rem auto; padding: 0 1rem; }
-  .post-title { font-size: 26px; }
-  .posts-grid { grid-template-columns: 1fr; }
-}
-
-/* 文章列表 - 列表式 */
 .post-list { display: flex; flex-direction: column; gap: 0; }
 
 .post-list-item {
@@ -208,9 +183,78 @@ body {
   line-height: 1.6;
 }
 
-/* Highlight 樣式 */
+
+/* ═══════════════════════════════════════════
+   單篇文章頁
+   ═══════════════════════════════════════════ */
+
+.post-wrap {
+  max-width: 720px; margin: 4rem auto;
+  padding: 0 2rem 6rem;
+}
+
+.post-meta {
+  display: flex; align-items: center;
+  gap: 0.75rem; margin-bottom: 1.5rem;
+}
+
+.post-tag {
+  font-size: 12px; font-weight: 900;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #5D5FEF;
+  background: rgba(93,95,239,0.08);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+.post-date { font-size: 12px; color: #9CA3AF; }
+
+.post-title {
+  font-size: 36px; font-weight: 900;
+  color: #1F2937; line-height: 1.2;
+  letter-spacing: -0.02em; margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(93,95,239,0.1);
+}
+
+.post-content { font-size: 16px; color: #374151; }
+
+.post-content h1, .post-content h2, .post-content h3 {
+  font-weight: 700; color: #1F2937;
+  margin: 2rem 0 1rem; letter-spacing: -0.01em;
+}
+
+.post-content h1 { font-size: 26px; }
+.post-content h2 { font-size: 22px; }
+.post-content h3 { font-size: 18px; }
+.post-content p { margin-bottom: 1.25rem; }
+.post-content a { color: #5D5FEF; }
+.post-content strong { font-weight: 700; color: #1F2937; }
+
+.post-content ul, .post-content ol {
+  padding-left: 1.5rem; margin-bottom: 1.25rem;
+}
+
+.post-content li { margin-bottom: 0.4rem; }
+
+@media (max-width: 640px) {
+  .blog-wrap, .post-wrap { margin: 2rem auto; padding: 0 1rem; }
+  .post-title { font-size: 26px; }
+  .section-title { font-size: 24px; }
+}
+
+
+/* ═══════════════════════════════════════════
+   Highlight 樣式
+   ═══════════════════════════════════════════ */
+
 mark.hl-yellow {
-  background: linear-gradient(120deg, rgba(250,199,117,0) 0%, rgba(250,199,117,0.6) 10%, rgba(250,199,117,0.6) 90%, rgba(250,199,117,0) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(250,199,117,0) 0%,
+    rgba(250,199,117,0.6) 10%,
+    rgba(250,199,117,0.6) 90%,
+    rgba(250,199,117,0) 100%
+  );
   padding: 0 3px;
   border-radius: 2px;
   color: inherit;
@@ -229,15 +273,19 @@ mark.hl-yellow {
   line-height: 1.7;
 }
 
-/* 下載區塊 */
+
+/* ═══════════════════════════════════════════
+   下載區塊
+   ═══════════════════════════════════════════ */
+
 @keyframes dlPulse {
-  0% { transform: scale(1); opacity: 0.5; }
+  0%   { transform: scale(1); opacity: 0.5; }
   100% { transform: scale(1.05); opacity: 0; }
 }
 
 @keyframes dlFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+  50%       { transform: translateY(5px); }
 }
 
 .download-section {
@@ -262,8 +310,7 @@ mark.hl-yellow {
 
 .download-block::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: radial-gradient(circle at 50% 50%, rgba(93,95,239,0.08) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s;
@@ -290,13 +337,10 @@ mark.hl-yellow {
   transform: translateY(0);
 }
 
-.download-block:active {
-  transform: translateY(-3px) scale(0.98);
-}
+.download-block:active { transform: translateY(-3px) scale(0.98); }
 
 .dl-pulse {
-  position: absolute;
-  inset: -2px;
+  position: absolute; inset: -2px;
   border-radius: 22px;
   border: 2px solid rgba(93,95,239,0.3);
   animation: dlPulse 2.5s ease-out infinite;
