@@ -157,7 +157,7 @@
 <p>現在市面上已經有很多很棒的AI們可以一起幫忙，有Claude、Gemini、Codex…（說不定本文上市之後又有新的產品），很多分享上都會宣揚「哪個版本比較好用」，但個人觀點是如果是在實驗階段或是網站整體架構算單純的情況，<mark class="hl-yellow"><strong>推薦選擇用自己覺得上手的就好</strong></mark>。</p><p></p>
 <p>因為說真的對於不懂程式的人來說，要去區分哪個AI做得好，最單純的方式就是從前端畫面感受，但前端畫面的好壞又很取決於使用者輸入的指令，所以到底是因為人的指令讓AI做不好？還是這個AI本身就做不好？在無法準確釐清的情況下，追求「最強工具」不如追求「溝通效率最高」的工具。</p><p></p>
 <h2>系統串接架構</h2></p><p>
-<p>我習慣是通常會在這邊想一下整個的系統運行，特別是資料流程&更新方式，像我這種低等玩家我最在意的就是「這一切是不是可以免費讓我進行」，所以我所有的需求我在一開始就會跟AI說明我需要的方案都是以「免費且方便使用者可以自行更新的方案」。</p><p><div class="hl-block">TIPS💡 重點 → 資料怎麼更新？資料怎麼來？資料放哪？整個網站有無要花錢？</div></p><p>這邊有趣點是，同樣的架構你問不同的AI，會回答你不同方法（這感覺跟問不同朋友建議很像😂）</p><p></p>
+<p>我習慣是通常會在這邊想一下整個的系統運行，特別是資料流程&更新方式，像我這種低等玩家我最在意的就是「這一切是不是可以免費讓我進行」，所以我所有的需求我在一開始就會跟AI說明我需要的方案都是以「免費且方便使用者可以自行更新的方案」。</p><p><div class="hl-block">TIPS💡 重點 → 資料怎麼更新？資料怎麼來？資料放哪？整個網站有無要花錢？</div></p><p>有趣點是同樣的架構你問不同的AI，會回答你不同方法（這感覺跟問不同朋友建議很像😂）</p><p></p>
 <mark class="hl-yellow"><strong>Gemini</strong></mark></p><p>
 <img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-1.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
 <mark class="hl-yellow"><strong>ChatGPT</strong></mark></p><p>
@@ -170,33 +170,35 @@
 <p>建議可先稍微用紙筆畫一下自己的網站要包含什麼樣子的內容，比如今天我要做的是【個人課程網站】，那我就需要有可以放課程資訊的地方、報名流程的設計，Q&A專區，聯絡資訊、報名人數統計、學員回饋區、教材檔案下載等等；那如果我要做的是【股票財經網站】，就需要接API查詢股票、接API看目前相關新聞…等等，可以先思考一下<mark class="hl-yellow"><strong>系統的流程</strong></mark>與<mark class="hl-yellow"><strong>功能</strong></mark>。</p><p></p>
 <h3>網站畫面</h3></p><p>
 <p>這邊可以區分成兩種人：1️⃣ 已經有想法 & 2️⃣ 完全沒想法</p><p></p>
-<strong>針對【已經有想法者】👇</strong></p><p>
+<p>1️⃣<strong>針對【已經有想法者】👇</strong></p><p></p>
 <p>建議直接具體跟AI下prompt說明要的長相，最好的辦法是給它實際參考介面，像是pinterest上或者是其他網站的模樣，更可以讓AI知道你想要的風格是什麼。</p><p></p>
-<strong>針對【完全沒想法者】👇</strong></p><p>
+<p>2️⃣<strong>針對【完全沒想法者】👇</strong></p><p></p>
 <p>可以跟AI討論想要的風格，像是Claude會給你選擇題的方式，一步一步引導，我就覺得滿讚的，可以幫助選擇障礙者比較有方向釐清，像是下面就是當時我跟Claude的一問一答</p><p></p>
-<p>_Q: 你希望網站呈現什麼樣的視覺風格？</p>
-<p>A: 簡約現代（大量留白、乾淨）_</p><p></p>
-<p>_Q: 你打算用什麼方式建置網站？</p>
-<p>A: 希望盡量不碰程式碼，用工具解決_</p><p></p>
-<p>_Q: 網站主要想呈現什麼內容？ (Select all that apply)</p>
-<p>A: 作品集 / Portfolio, 文字部落格 / 文章, 個人履歷 / 經歷_</p><p></p>
+<p>**Q: 你希望網站呈現什麼樣的視覺風格？</p>
+<p>A: 簡約現代（大量留白、乾淨）**</p><p></p>
+<p>**Q: 你打算用什麼方式建置網站？</p>
+<p>A: 希望盡量不碰程式碼，用工具解決**</p><p></p>
+<p>**Q: 網站主要想呈現什麼內容？ (Select all that apply)</p>
+<p>A: 作品集 / Portfolio, 文字部落格 / 文章, 個人履歷 / 經歷**</p><p></p>
 <p>通常這邊AI就會用來回溝通的方式跟你討論你喜歡的介面，讓你選擇你比較喜歡的長相</p><p></p>
 <img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-5.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
 <p>但！通常做到這一步的時候，我個人經驗是網站都會長得滿單一的，都是很單純的圖卡式+各種顏色綜合排版而已，沒有什麼太多前端效果，像是我們看到一些很華麗的漸層、hover、插畫等等，<mark class="hl-yellow"><strong>幾乎都不會在這個階段出現</strong></mark>，所以這時候如果希望可以做到動畫效果，做出差異化的地方，我們就必須要跟AI說。</p><p></p>
 <p>像是下面的GIF，我的prompt是下「希望首頁可以有些吸睛的動畫，不然如果是很一般的網站我看了一下就會想關掉」，就開始有些動畫產生，相較前面的圖卡式活潑許多！</p><p></p>
-<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-6.gif" alt="prompt：希望首頁可以有些吸睛的動畫，不然如果是很一般的網站我看了" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p><div class="hl-block">TIPS💡 介面UI/UX部分是最可以委由AI協助的部分，指令下得好就可以看的見</div></p><p><h2>常見困擾</h2></p><p>
+<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-6.gif" alt="Video_Project_7.gif" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p><div class="hl-block">TIPS💡 介面UI/UX部分是最可以委由AI協助的部分，指令下得好就可以看的見</div></p><p><h2>常見困擾</h2></p><p>
 <p>以下列出幾個我在整個vibe coding遇到的幾個反覆問題，寫下來避免其他人也踩雷</p><p></p>
 <h3>Token用量</h3></p><p>
 <p>在過程當中我們會修修改改（這部分要很有耐心），像是我這版實際產出應該有修了至少50次以上^^a，只能說慢工出細活……每次程式調整完後，AI有可能有2種回應你的方式：1️⃣直接秀程式碼 or 2️⃣產生檔案給你下載，兩者差異在：</p><p></p>
-<p>1️⃣直接秀程式碼比較耗 token，因為程式碼內容會完整出現在對話紀錄裡，之後每一輪對話都會帶著這些內容進入 context window ⇒ 每次問答時都會耗損token ⇒ 比較快用完額度</p><p></p>
+<p>1️⃣<mark class="hl-yellow"><strong>直接秀程式碼比較耗 token</strong></mark>，因為程式碼內容會完整出現在對話紀錄裡，之後每一輪對話都會帶著這些內容進入 context window ⇒ 每次問答時都會耗損token ⇒ 比較快用完額度</p><p></p>
 <p>2️⃣產生檔案下載的方式，程式碼寫入檔案後不會留在對話紀錄中，後續對話的 context 相對乾淨一些 ⇒ 相對而言token消耗比較少量</p><p></p>
 <p>另外，如果只是少量程式要調整，也<mark class="hl-yellow"><strong>可以請AI給你要調的段落，自己手動修正</strong></mark>，不要每一次都靠AI給整個檔案，也能夠減少token用量。</p><p><div class="hl-block">如果你是AI免費仔，務必特別要去注意token的消耗量，不然就得等待解封才能用😂</div></p><p><h3>開發原則</h3></p><p></p>
 <p>1️⃣指令原則</p><p></p>
 <p>常常我們會想要用人類講話的方式去跟AI對話，但是最常遇到的問題就是請AI改A（隱藏我們沒講的話是其他不要動），它會自作主張除了改A之外，還會自己去改B，甚至大改特改！這時候真的會氣死，所以務必要在下指令的時候，<mark class="hl-yellow"><strong>非常清楚的表達：除了我說要改的地方之外其餘不動</strong></mark></p><p><div class="hl-block">可以直接把想要固定下來的指令請AI寫到長期記憶區裡面，讓AI知道這是聖旨，無論如何都不可以牴觸。</div></p><p>2️⃣設計原則</p><p></p>
 <p>顏色👉建議可以先看幾個「主題色」，請AI在配置前端介面的時候不要超出這個主題色去處理，因為它有時候自己會放飛亂選太多顏色反而花花綠綠，效果不一致</p><p></p>
 <p>字體&大小👉因為一開始沒特別指定的時候，AI設計出來的最小字體給我來到9px，實在是看不到！所以後來我有加入規則是所有字體都不得小於12px，閱讀起來舒服許多</p><p></p>
-<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-7.png" alt="調整前" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
-<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-8.png" alt="調整後" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
+<p>調整前👇</p><p></p>
+<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-7.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
+<p>調整後👇</p><p></p>
+<img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/make-website-with-ai-tools/img-8.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p><p>
 <p>RWD設計👉如果有希望可以做到手機版、電腦版行動裝置都可以正常閱覽，務必記得請AI設計時加入RWD設計</p><p><div class="hl-block">清楚告知指令與設計原則，可以幫助在介面設計上可以更省來回討論的時間！</div></p><p><h3>資訊安全</h3></p><p></p>
 <strong>⚠️超重要⚠️超重要⚠️超重要</strong></p><p>
 <p>畢竟我們現在要做的是靠AI幫我們打造一個網站，這當中串接、資料流、金鑰的部分通通都是委由AI幫我們去架設，我們務必要請AI協助一起確認資料是否安全，所以我這邊有做了幾個指令請AI幫忙驗證：</p><p></p>
@@ -205,8 +207,7 @@
 <p>3️⃣ 資料庫是否有公開？</p><p></p>
 <p>4️⃣ API金鑰是否安全？</p><p></p>
 <p>5️⃣ 是否有需要自己做備份的處理？</p><p></p>
-<p>建議大家加減都還是可以針對上述做簡單的處理，尤其是有串資料庫的要更加小心！</p><p><div class="hl-block">vibe coding方便的同時，也必須要注意資訊安全！</div></p><p>---</p><p></p>
-<p>以上先快速把自己的學習心得整理下來，如果有機會繼續跟大家分享🤞</p><p></p></div>
+<p>建議大家加減都還是可以針對上述做簡單的處理，尤其是有串資料庫的要更加小心！</p><p><div class="hl-block">vibe coding方便的同時，也必須要注意資訊安全！</div></p><p>以上先快速把自己的學習心得整理下來，如果有機會繼續跟大家分享🤞</p><p></p></div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
