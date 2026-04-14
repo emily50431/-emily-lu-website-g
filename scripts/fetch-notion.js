@@ -237,10 +237,12 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     );
 }
 
-function generatePostHtml(title, date, categories, content) {
+function generatePostHtml(title, date, categories, content, slug = '', excerpt = '') {
   const categoryTags = categories
     .map((c) => `<span class="post-tag">${c}</span>`)
     .join("");
+
+  const descriptionText = excerpt || content.replace(/<[^>]+>/g, '').substring(0, 160).trim();
 
   return `<!DOCTYPE html>
 <html lang="zh-TW">
@@ -248,6 +250,21 @@ function generatePostHtml(title, date, categories, content) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title} | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="${descriptionText}" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${title} | Emily's LAB" />
+  <meta property="og:description" content="${descriptionText}" />
+  <meta property="og:image" content="${BASE_URL}/og-image.png" />
+  <meta property="og:url" content="${BASE_URL}/blog/${slug}/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${title} | Emily's LAB" />
+  <meta name="twitter:description" content="${descriptionText}" />
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -301,6 +318,21 @@ function generateBlogIndexHtml(posts) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>文章 | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="Emily 的文章分享，涵蓋 AI 應用、職場成長、生活實作等主題。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="文章 | Emily's LAB" />
+  <meta property="og:description" content="Emily 的文章分享，涵蓋 AI 應用、職場成長、生活實作等主題。" />
+  <meta property="og:image" content="${BASE_URL}/og-image.png" />
+  <meta property="og:url" content="${BASE_URL}/blog/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="文章 | Emily's LAB" />
+  <meta name="twitter:description" content="Emily 的文章分享，涵蓋 AI 應用、職場成長、生活實作等主題。" />
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -353,6 +385,21 @@ function generateHomeHtml(posts) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emily's LAB｜Planner·Writer·Creator</title>
+    <!-- SEO -->
+    <meta name="description" content="Emily's LAB — 用人生實作，創造影響力。Solution Planner、Writer、Creator，分享 AI 應用、職場成長與生活實作。" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Emily's LAB｜Planner·Writer·Creator" />
+    <meta property="og:description" content="用人生實作，創造影響力。分享 AI 應用、職場成長與生活實作。" />
+    <meta property="og:image" content="${BASE_URL}/og-image.png" />
+    <meta property="og:url" content="${BASE_URL}/" />
+    <meta property="og:site_name" content="Emily's LAB" />
+    <meta property="og:locale" content="zh_TW" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Emily's LAB｜Planner·Writer·Creator" />
+    <meta name="twitter:description" content="用人生實作，創造影響力。分享 AI 應用、職場成長與生活實作。" />
+    <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
     <script src="https://cdn.tailwindcss.com"><\/script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -526,6 +573,21 @@ function generateAboutHtml() {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>關於我 | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="Hi，我是 Emily！Solution Planner、Writer、Creator，喜歡跟人互動，希望創造一個生活練習與分享的園區。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="關於我 | Emily's LAB" />
+  <meta property="og:description" content="Hi，我是 Emily！Solution Planner、Writer、Creator，喜歡跟人互動，希望創造一個生活練習與分享的園區。" />
+  <meta property="og:image" content="${BASE_URL}/og-image.png" />
+  <meta property="og:url" content="${BASE_URL}/about/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="關於我 | Emily's LAB" />
+  <meta name="twitter:description" content="Hi，我是 Emily！Solution Planner、Writer、Creator。" />
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -736,7 +798,7 @@ async function main() {
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
     fs.writeFileSync(
       path.join(postDir, "index.html"),
-      generatePostHtml(title, date, categories, htmlContent)
+      generatePostHtml(title, date, categories, htmlContent, slug, excerpt)
     );
 
     postData.push({ title, slug, date, categories, excerpt });
