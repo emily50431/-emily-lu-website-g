@@ -342,7 +342,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     function shareTo(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
-        facebook: 'https://www.facebook.com/dialog/feed?link=' + encoded + '&display=popup',
+        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encoded,
         line: 'https://line.me/R/msg/text/?' + encoded,
         threads: 'https://www.threads.net/intent/post?text=' + encoded
       };
