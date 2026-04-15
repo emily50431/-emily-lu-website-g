@@ -265,7 +265,6 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:title" content="${title} | Emily's LAB" />
   <meta name="twitter:description" content="${descriptionText}" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
-  <meta name="sb-key" content="${process.env.SUPABASE_ANON_KEY || ''}" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -337,6 +336,9 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <!-- 複製連結 Toast -->
   <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
   <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
+
+  <script>
+    // 分享功能
     function shareTo(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
@@ -353,7 +355,6 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     // 複製連結
     function copyLink(url) {
       navigator.clipboard.writeText(url).then(function() {
-        // Toast 提示
         var toast = document.getElementById('copyToast');
         if (toast) {
           toast.classList.add('show');
@@ -378,7 +379,6 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       likeCountEl.textContent = count;
     }
 
-    // 載入讚數
     async function loadLikeCount() {
       try {
         var res = await fetch(
@@ -391,14 +391,12 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       } catch(e) { renderLike(); }
     }
 
-    // 按讚（無限按，每次都 +1）
     async function handleLike(s) {
       count++;
       renderLike();
       likeBtn.style.transform = 'scale(1.2)';
       setTimeout(function() { likeBtn.style.transform = ''; }, 200);
       gtag('event', 'like', { content_type: 'article', item_id: s });
-
       try {
         await fetch(SUPABASE_URL + '/rest/v1/likes', {
           method: 'POST',
