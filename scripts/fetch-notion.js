@@ -265,6 +265,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:title" content="${title} | Emily's LAB" />
   <meta name="twitter:description" content="${descriptionText}" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
+  <meta name="sb-key" content="${process.env.SUPABASE_ANON_KEY || ''}" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -362,40 +363,69 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       });
     }
 
-    // 按讚功能（localStorage，純前端）
+    // 按讚功能（Supabase）
+    var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
     var slug = '${slug}';
-    var likeKey = 'liked_' + slug;
-    var countKey = 'likes_' + slug;
-    var liked = localStorage.getItem(likeKey) === '1';
-    var count = parseInt(localStorage.getItem(countKey) || '0');
+    var liked = localStorage.getItem('liked_' + slug) === '1';
+    var count = 0;
 
     var likeBtn = document.getElementById('likeBtn');
-    var likeCount = document.getElementById('likeCount');
+    var likeCountEl = document.getElementById('likeCount');
+
+    // 取得 anon key（從 meta tag 讀取，由 HTML 注入）
+    var metaKey = document.querySelector('meta[name="sb-key"]');
+    var ANON_KEY = metaKey ? metaKey.content : '';
 
     function renderLike() {
-      likeCount.textContent = count;
+      likeCountEl.textContent = count;
       likeBtn.style.opacity = liked ? '1' : '0.6';
     }
 
-    function handleLike(s) {
-      if (!liked) {
-        liked = true;
-        count++;
-        localStorage.setItem(likeKey, '1');
-        localStorage.setItem(countKey, count);
-        gtag('event', 'like', { content_type: 'article', item_id: s });
-        likeBtn.style.transform = 'scale(1.2)';
-        setTimeout(function() { likeBtn.style.transform = ''; }, 200);
-      } else {
-        liked = false;
-        count = Math.max(0, count - 1);
-        localStorage.setItem(likeKey, '0');
-        localStorage.setItem(countKey, count);
-      }
-      renderLike();
+    // 載入讚數
+    async function loadLikeCount() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
+          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+        );
+        var data = await res.json();
+        count = Array.isArray(data) ? data.length : 0;
+        renderLike();
+      } catch(e) { renderLike(); }
     }
 
-    renderLike();
+    // 按讚
+    async function handleLike(s) {
+      if (liked) return; // 已按讚不能重複
+      liked = true;
+      count++;
+      localStorage.setItem('liked_' + s, '1');
+      renderLike();
+      likeBtn.style.transform = 'scale(1.2)';
+      setTimeout(function() { likeBtn.style.transform = ''; }, 200);
+      gtag('event', 'like', { content_type: 'article', item_id: s });
+
+      // 寫入 Supabase（用 ip_hash 防重複，這裡用隨機 token 代替）
+      var token = localStorage.getItem('visitor_token');
+      if (!token) {
+        token = Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem('visitor_token', token);
+      }
+      try {
+        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+          method: 'POST',
+          headers: {
+            'apikey': ANON_KEY,
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ slug: s, ip_hash: token })
+        });
+      } catch(e) {}
+    }
+
+    loadLikeCount();
   <\/script>
 </body>
 </html>`;
