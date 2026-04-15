@@ -106,7 +106,7 @@ const NAV_CSS = `
   }
 `;
 
-// ─── 共用 NAV HTML（文章頁、文章列表頁使用）────────────────────────────────────
+// ─── 共用 NAV HTML（script 不放在這裡，避免 template literal 內 </script> 截斷問題）
 const NAV_HTML = `
   <style>${NAV_CSS}</style>
   <div class="mesh-gradient"></div>
@@ -127,19 +127,7 @@ const NAV_HTML = `
       <a href="/-emily-lu-website-g/blog/">文章分享</a>
       <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
-  </nav>
-  <script>
-    (function(){
-      var btn = document.getElementById('navBurger');
-      var menu = document.getElementById('navMobile');
-      if(btn && menu){
-        btn.addEventListener('click', function(){
-          btn.classList.toggle('open');
-          menu.classList.toggle('open');
-        });
-      }
-    })();
-  <\/script>`;
+  </nav>`;
 
 function downloadImage(url, filepath) {
   return new Promise((resolve, reject) => {
@@ -288,7 +276,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     <h1 class="post-title">${title}</h1>
 
     <!-- 標題下方分享列 -->
-    <div class="share-bar share-bar--top">
+    <div class="share-bar share-bar--top" style="display:flex;gap:0.75rem;align-items:center;margin:1rem 0;">
       <button class="share-btn" onclick="shareTo('facebook','${BASE_URL}/blog/${slug}/')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
       </button>
@@ -438,6 +426,18 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     if (likeBtn) {
       likeBtn.addEventListener('click', doLike);
     }
+
+    // ── 漢堡選單 ──
+    (function(){
+      var navBtn = document.getElementById('navBurger');
+      var navMenu = document.getElementById('navMobile');
+      if(navBtn && navMenu){
+        navBtn.addEventListener('click', function(){
+          navBtn.classList.toggle('open');
+          navMenu.classList.toggle('open');
+        });
+      }
+    })();
 
     loadLikeCount();
   <\/script>
