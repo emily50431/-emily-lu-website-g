@@ -265,6 +265,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:title" content="${title} | Emily's LAB" />
   <meta name="twitter:description" content="${descriptionText}" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
+  <meta name="sb-key" content="${process.env.SUPABASE_ANON_KEY || ''}" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
@@ -305,15 +306,15 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     <div class="post-content">${content}</div>
 
     <!-- 文章結尾：按讚 + 分享 -->
-    <div class="post-footer-bar">
-      <div class="like-area">
+    <div class="post-footer-bar" style="align-items:center;">
+      <div class="like-area" style="align-items:center;">
         <button class="like-btn" id="likeBtn" onclick="handleLike('${slug}')">
           <span class="like-heart">❤️</span>
-          <span class="like-count" id="likeCount">0</span>
+          <span class="like-count" id="likeCount">—</span>
         </button>
         <span class="like-msg">謝謝您的閱讀，<br>您的愛心是莫大的鼓勵</span>
       </div>
-      <div class="share-bar">
+      <div class="share-bar" style="align-items:center;">
         <button class="share-btn" onclick="shareTo('facebook','${BASE_URL}/blog/${slug}/')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </button>
@@ -336,9 +337,6 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <!-- 複製連結 Toast -->
   <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
   <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
-
-  <script>
-    // 分享功能
     function shareTo(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
@@ -355,6 +353,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     // 複製連結
     function copyLink(url) {
       navigator.clipboard.writeText(url).then(function() {
+        // Toast 提示
         var toast = document.getElementById('copyToast');
         if (toast) {
           toast.classList.add('show');
@@ -364,7 +363,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       });
     }
 
-    // 按讚功能（Supabase，無限按）
+    // 按讚功能（Supabase，累積所有讀者愛心）
     var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
     var slug = '${slug}';
     var count = 0;
@@ -379,24 +378,45 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       likeCountEl.textContent = count;
     }
 
+    // 載入讚數：用 count=exact 取得精確總數，效能更好
     async function loadLikeCount() {
       try {
         var res = await fetch(
           SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
-          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+          {
+            headers: {
+              'apikey': ANON_KEY,
+              'Authorization': 'Bearer ' + ANON_KEY,
+              'Prefer': 'count=exact',
+              'Range-Unit': 'items',
+              'Range': '0-0'
+            }
+          }
         );
-        var data = await res.json();
-        count = Array.isArray(data) ? data.length : 0;
+        // Content-Range: 0-0/7  ← 斜線後面是總數
+        var contentRange = res.headers.get('content-range') || res.headers.get('Content-Range') || '';
+        var match = contentRange.match(/\/(\d+)$/);
+        if (match) {
+          count = parseInt(match[1], 10);
+        } else {
+          // fallback：直接數陣列長度
+          var data = await res.json();
+          count = Array.isArray(data) ? data.length : 0;
+        }
         renderLike();
-      } catch(e) { renderLike(); }
+      } catch(e) {
+        likeCountEl.textContent = '0';
+      }
     }
 
+    // 按讚（樂觀更新 + 寫入 Supabase）
     async function handleLike(s) {
       count++;
       renderLike();
       likeBtn.style.transform = 'scale(1.2)';
       setTimeout(function() { likeBtn.style.transform = ''; }, 200);
       gtag('event', 'like', { content_type: 'article', item_id: s });
+
       try {
         await fetch(SUPABASE_URL + '/rest/v1/likes', {
           method: 'POST',
@@ -408,7 +428,9 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
           },
           body: JSON.stringify({ slug: s, ip_hash: 'anon' })
         });
-      } catch(e) {}
+      } catch(e) {
+        // 寫入失敗時 count 保留（樂觀更新），不回退
+      }
     }
 
     loadLikeCount();
