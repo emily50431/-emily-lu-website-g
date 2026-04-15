@@ -2,7 +2,7 @@ name: Deploy Blog from Notion
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,7 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           GA4_ID: G-67N1NCPZGK
         run: node scripts/fetch-notion.js
 
