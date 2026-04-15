@@ -308,7 +308,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     <!-- 文章結尾：按讚 + 分享 -->
     <div class="post-footer-bar" style="align-items:center;">
       <div class="like-area" style="align-items:center;">
-        <button class="like-btn" id="likeBtn" onclick="handleLike('${slug}')">
+        <button class="like-btn" id="likeBtn">
           <span class="like-heart">❤️</span>
           <span class="like-count" id="likeCount">—</span>
         </button>
@@ -337,7 +337,9 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <!-- 複製連結 Toast -->
   <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
   <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
-    function shareTo(platform, url) {
+  <script>
+    // ── 分享函式（掛到 window 讓 inline onclick 找得到）──
+    window.shareTo = function(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
         facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encoded,
@@ -348,12 +350,11 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
         window.open(urls[platform], '_blank');
         gtag('event', 'share', { method: platform, content_type: 'article', item_id: '${slug}' });
       }
-    }
+    };
 
-    // 複製連結
-    function copyLink(url) {
+    // ── 複製連結 ──
+    window.copyLink = function(url) {
       navigator.clipboard.writeText(url).then(function() {
-        // Toast 提示
         var toast = document.getElementById('copyToast');
         if (toast) {
           toast.classList.add('show');
@@ -361,9 +362,9 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
         }
         gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: '${slug}' });
       });
-    }
+    };
 
-    // 按讚功能（Supabase，累積所有讀者愛心）
+    // ── 按讚功能（Supabase，累積所有讀者愛心）──
     var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
     var slug = '${slug}';
     var count = 0;
@@ -378,7 +379,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       likeCountEl.textContent = count;
     }
 
-    // 載入讚數：用 count=exact 取得精確總數，效能更好
+    // 載入讚數：用 count=exact 取得精確總數
     async function loadLikeCount() {
       try {
         var res = await fetch(
@@ -393,13 +394,11 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
             }
           }
         );
-        // Content-Range: 0-0/7  ← 斜線後面是總數
         var contentRange = res.headers.get('content-range') || res.headers.get('Content-Range') || '';
         var match = contentRange.match(/\/(\d+)$/);
         if (match) {
           count = parseInt(match[1], 10);
         } else {
-          // fallback：直接數陣列長度
           var data = await res.json();
           count = Array.isArray(data) ? data.length : 0;
         }
@@ -410,15 +409,15 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     }
 
     // 按讚（樂觀更新 + 寫入 Supabase）
-    async function handleLike(s) {
+    async function doLike() {
       count++;
       renderLike();
       likeBtn.style.transform = 'scale(1.2)';
       setTimeout(function() { likeBtn.style.transform = ''; }, 200);
-      gtag('event', 'like', { content_type: 'article', item_id: s });
+      gtag('event', 'like', { content_type: 'article', item_id: slug });
 
       try {
-        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+        var res = await fetch(SUPABASE_URL + '/rest/v1/likes', {
           method: 'POST',
           headers: {
             'apikey': ANON_KEY,
@@ -426,11 +425,18 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
             'Content-Type': 'application/json',
             'Prefer': 'return=minimal'
           },
-          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
+          body: JSON.stringify({ slug: slug, ip_hash: 'anon' })
         });
+        if (!res.ok) {
+          console.warn('like insert failed:', res.status, await res.text());
+        }
       } catch(e) {
-        // 寫入失敗時 count 保留（樂觀更新），不回退
+        console.warn('like error:', e);
       }
+    }
+
+    if (likeBtn) {
+      likeBtn.addEventListener('click', doLike);
     }
 
     loadLikeCount();
