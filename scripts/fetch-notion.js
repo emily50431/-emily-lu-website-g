@@ -366,7 +366,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
 
     // 按讚功能（Supabase，無限按）
     var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
-    var ANON_KEY = '${process.env.SUPABASE_ANON_KEY || ''}';
+    var ANON_KEY = '` + (process.env.SUPABASE_ANON_KEY || '') + `';
     var slug = '${slug}';
     var count = 0;
 
