@@ -292,8 +292,10 @@
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
-  <script>
-    // 分享功能
+
+  <!-- 複製連結 Toast -->
+  <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
+  <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
     function shareTo(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
@@ -310,34 +312,29 @@
     // 複製連結
     function copyLink(url) {
       navigator.clipboard.writeText(url).then(function() {
-        var btns = ['copyBtnTop', 'copyBtnBottom'];
-        btns.forEach(function(id) {
-          var btn = document.getElementById(id);
-          if (btn) {
-            btn.style.background = 'rgba(93,95,239,0.12)';
-            setTimeout(function() { btn.style.background = ''; }, 1500);
-          }
-        });
+        // Toast 提示
+        var toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        }
         gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: 'ipas-ai-planner-beginner' });
       });
     }
 
-    // 按讚功能（Supabase）
+    // 按讚功能（Supabase，無限按）
     var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
     var slug = 'ipas-ai-planner-beginner';
-    var liked = localStorage.getItem('liked_' + slug) === '1';
     var count = 0;
 
     var likeBtn = document.getElementById('likeBtn');
     var likeCountEl = document.getElementById('likeCount');
 
-    // 取得 anon key（從 meta tag 讀取，由 HTML 注入）
     var metaKey = document.querySelector('meta[name="sb-key"]');
     var ANON_KEY = metaKey ? metaKey.content : '';
 
     function renderLike() {
       likeCountEl.textContent = count;
-      likeBtn.style.opacity = liked ? '1' : '0.6';
     }
 
     // 載入讚數
@@ -353,23 +350,14 @@
       } catch(e) { renderLike(); }
     }
 
-    // 按讚
+    // 按讚（無限按，每次都 +1）
     async function handleLike(s) {
-      if (liked) return; // 已按讚不能重複
-      liked = true;
       count++;
-      localStorage.setItem('liked_' + s, '1');
       renderLike();
       likeBtn.style.transform = 'scale(1.2)';
       setTimeout(function() { likeBtn.style.transform = ''; }, 200);
       gtag('event', 'like', { content_type: 'article', item_id: s });
 
-      // 寫入 Supabase（用 ip_hash 防重複，這裡用隨機 token 代替）
-      var token = localStorage.getItem('visitor_token');
-      if (!token) {
-        token = Math.random().toString(36).slice(2) + Date.now().toString(36);
-        localStorage.setItem('visitor_token', token);
-      }
       try {
         await fetch(SUPABASE_URL + '/rest/v1/likes', {
           method: 'POST',
@@ -379,7 +367,7 @@
             'Content-Type': 'application/json',
             'Prefer': 'return=minimal'
           },
-          body: JSON.stringify({ slug: s, ip_hash: token })
+          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
         });
       } catch(e) {}
     }
