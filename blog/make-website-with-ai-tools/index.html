@@ -282,7 +282,7 @@
     function shareTo(platform, url) {
       var encoded = encodeURIComponent(url);
       var urls = {
-        facebook: 'https://www.facebook.com/sharer.php?u=' + encoded,
+        facebook: 'https://www.facebook.com/dialog/feed?link=' + encoded + '&display=popup',
         line: 'https://line.me/R/msg/text/?' + encoded,
         threads: 'https://www.threads.net/intent/post?text=' + encoded
       };
