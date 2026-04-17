@@ -925,7 +925,20 @@ async function main() {
   if (!fs.existsSync("about")) fs.mkdirSync("about");
   fs.writeFileSync("about/index.html", generateAboutHtml());
 
-  console.log(`完成！共產生 ${postData.length} 篇文章`);
+  // 產生 Sitemap
+  const today = new Date().toISOString().split('T')[0];
+  const sitemapUrls = [
+    `  <url><loc>${BASE_URL}/</loc><lastmod>${today}</lastmod><priority>1.0</priority></url>`,
+    `  <url><loc>${BASE_URL}/blog/</loc><lastmod>${today}</lastmod><priority>0.8</priority></url>`,
+    `  <url><loc>${BASE_URL}/about/</loc><lastmod>${today}</lastmod><priority>0.7</priority></url>`,
+    ...postData.map(p => `  <url><loc>${BASE_URL}/blog/${p.slug}/</loc><lastmod>${p.date || today}</lastmod><priority>0.9</priority></url>`)
+  ];
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.join('\n')}
+</urlset>`;
+  fs.writeFileSync("sitemap.xml", sitemap);
+  console.log(`完成！共產生 ${postData.length} 篇文章，sitemap.xml 已產生`);
 }
 
 main().catch(console.error);
