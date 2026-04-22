@@ -864,12 +864,11 @@ function generateAboutHtml() {
         <div class="about-tag">測量系</div>
         <div class="about-tag">B2B 資訊軟體</div>
         <div class="about-tag">豆花店夢想</div>
-        <div class="about-tag">紐西蘭</div>
+        <div class="about-tag">喜歡跟人交流</div>
         <div class="about-tag">愛狗</div>
         <div class="about-tag">愛開車</div>
         <div class="about-tag">皮克敏</div>
         <div class="about-tag">壁球</div>
-        <div class="about-tag">電子書</div>
         <div class="about-tag">儀式感</div>
         <div class="about-tag">喜歡寫東寫西</div>
       </div>
