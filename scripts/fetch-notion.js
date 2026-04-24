@@ -236,35 +236,33 @@ function makeInfoCard(label, title, desc) {
 }
 
 function groupInfoCards(html) {
-  const cardPattern = /(<div class="info-card info-card--[^"]+">(?:(?!<div class="info-card ).)*?<\/div><\/div>)/gs;
-  const parts = [];
-  let last = 0;
-  const matches = [...html.matchAll(/<div class="info-card info-card--([^"]+)">([\s\S]*?)<\/div><\/div>/g)];
-  if (matches.length === 0) return html;
-  let i = 0;
-  while (i < matches.length) {
-    const m = matches[i];
-    parts.push(html.slice(last, m.index));
-    const labelMatch = m[2].match(/<p class="info-card__label">(.*?)<\/p>/);
-    const currentLabel = labelMatch ? labelMatch[1] : '';
-    const color = m[1];
-    let rows = m[2].replace(/<p class="info-card__label">.*?<\/p>/, '').replace(/<div class="info-card__icon">[\s\S]*?<\/div>/, '');
-    let j = i + 1;
-    while (j < matches.length) {
-      const next = matches[j];
-      if (next.index !== (matches[j-1].index + matches[j-1][0].length + (html.slice(matches[j-1].index + matches[j-1][0].length, next.index).trim() === '' ? html.slice(matches[j-1].index + matches[j-1][0].length, next.index).length : -1))) break;
-      const nextLabel = (next[2].match(/<p class="info-card__label">(.*?)<\/p>/) || [])[1] || '';
-      if (nextLabel !== currentLabel) break;
-      rows += next[2].replace(/<p class="info-card__label">.*?<\/p>/, '').replace(/<div class="info-card__icon">[\s\S]*?<\/div>/, '');
-      j++;
+  // 用 CARD_SPLIT 標記每張卡的邊界，再逐張掃描合併連續同標籤的卡
+  const MARKER = '<!--CARD_END-->';
+  const lines = html.split('\n');
+  const result = [];
+  let pending = null; // { color, label, icon, rows }
+
+  for (const line of lines) {
+    const m = line.match(/^<div class="info-card info-card--([^"]+)"><div class="info-card__icon"><svg[^>]*>(.*?)<\/svg><\/div><div class="info-card__body"><p class="info-card__label">(.*?)<\/p>(.*)<\/div><\/div>$/);
+    if (m) {
+      const [, color, icon, label, rows] = m;
+      if (pending && pending.label === label) {
+        pending.rows += rows;
+      } else {
+        if (pending) result.push(renderCard(pending));
+        pending = { color, label, icon, rows };
+      }
+    } else {
+      if (pending) { result.push(renderCard(pending)); pending = null; }
+      result.push(line);
     }
-    const type = INFO_CARD_TYPE_MAP[currentLabel] || { icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
-    parts.push(`<div class="info-card info-card--${color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${currentLabel}</p>${rows}</div></div>`);
-    last = matches[j-1].index + matches[j-1][0].length;
-    i = j;
   }
-  parts.push(html.slice(last));
-  return parts.join('');
+  if (pending) result.push(renderCard(pending));
+  return result.join('\n');
+}
+
+function renderCard({ color, label, icon, rows }) {
+  return `<div class="info-card info-card--${color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div><div class="info-card__body"><p class="info-card__label">${label}</p>${rows}</div></div>`;
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
