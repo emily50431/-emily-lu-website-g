@@ -231,56 +231,55 @@ const INFO_CARD_TYPE_MAP = {
 function makeInfoCard(label, title, desc) {
   const trimLabel = label.trim();
   const type = INFO_CARD_TYPE_MAP[trimLabel] || { color: 'purple', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
-  const descHtml = desc.trim() ? `<p class="info-card__desc">${desc.trim().replace(/\\\\n/g, '<br>')}</p>` : '';
-  return `<!--CARD:${trimLabel}--><div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p><div class="info-card__row"><p class="info-card__title">${title.trim()}</p>${descHtml}</div></div></div><!--/CARD-->`;
+  const descHtml = desc.trim() ? `<p class="info-card__desc">${desc.trim()}</p>` : '';
+  return `<div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p><div class="info-card__row"><p class="info-card__title">${title.trim()}</p>${descHtml}</div></div></div>`;
 }
 
-function groupInfoCards(html) {
-  // 把連續相同標籤的卡片合併，用 <!--CARD:標籤--> 和 <!--/CARD--> 當邊界
-  const cardRe = /<!--CARD:([^-]+)-->([\s\S]*?)<!--\/CARD-->/g;
-  const tokens = [];
-  let last = 0;
-  let m;
-  while ((m = cardRe.exec(html)) !== null) {
-    if (m.index > last) tokens.push({ type: 'text', val: html.slice(last, m.index) });
-    tokens.push({ type: 'card', label: m[1], html: m[2] });
-    last = m.index + m[0].length;
-  }
-  if (last < html.length) tokens.push({ type: 'text', val: html.slice(last) });
+function makeCardGroup(label, rows) {
+  // rows 是陣列，每個元素是 { title, desc }
+  const trimLabel = label.trim();
+  const type = INFO_CARD_TYPE_MAP[trimLabel] || { color: 'purple', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
+  const rowsHtml = rows.map(({ title, desc }) => {
+    const safeDesc = desc.trim().replace(/\\n/g, '<br>');
+    const descHtml = safeDesc ? `<p class="info-card__desc">${safeDesc}</p>` : '';
+    return `<div class="info-card__row"><p class="info-card__title">${title.trim()}</p>${descHtml}</div>`;
+  }).join('');
+  return `<div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p>${rowsHtml}</div></div>`;
+}
 
-  const out = [];
+function processCardGroups(md) {
+  // 把 {{cardgroup:標籤\n行1\n行2\n}} 轉成 HTML
+  // 用 split 逐行掃描，找到 {{cardgroup: 開頭到 }} 結尾
+  const lines = md.split('\n');
+  const result = [];
   let i = 0;
-  while (i < tokens.length) {
-    const t = tokens[i];
-    if (t.type !== 'card') { out.push(t.val); i++; continue; }
-    // 收集連續相同標籤
-    const label = t.label;
-    const type = INFO_CARD_TYPE_MAP[label] || { color: 'purple', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
-    // 從第一張卡取 color 和 icon
-    const colorM = t.html.match(/info-card--([^"]+)"/);
-    const color = colorM ? colorM[1] : type.color;
-    const iconM = t.html.match(/<svg[^>]*>([\s\S]*?)<\/svg>/);
-    const icon = iconM ? iconM[1] : type.icon;
-    // 取所有 row
-    const rowRe = /<div class="info-card__row">[\s\S]*?<\/div>/g;
-    let rows = '';
-    let rm;
-    let combined = t.html;
-    let j = i + 1;
-    while (j < tokens.length && tokens[j].type === 'card' && tokens[j].label === label) {
-      combined += tokens[j].html;
-      j++;
+  while (i < lines.length) {
+    const startMatch = lines[i].match(/^\{\{cardgroup:(.+)$/);
+    if (startMatch) {
+      const label = startMatch[1].trim();
+      const rows = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '}}') {
+        const line = lines[i].trim();
+        if (line) {
+          const parts = line.split('|');
+          rows.push({ title: parts[0] || '', desc: parts[1] || '' });
+        }
+        i++;
+      }
+      i++; // 跳過 }}
+      result.push(makeCardGroup(label, rows));
+    } else {
+      result.push(lines[i]);
+      i++;
     }
-    let rMatch;
-    while ((rMatch = rowRe.exec(combined)) !== null) rows += rMatch[0];
-    out.push(`<div class="info-card info-card--${color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div><div class="info-card__body"><p class="info-card__label">${label}</p>${rows}</div></div>`);
-    i = j;
   }
-  return out.join('');
+  return result.join('\n');
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
-  let html = md
+  const processed = processCardGroups(md);
+  return processed
     .replace(/\{\{card:(.*?)\|(.*?)\|(.*?)\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
     .replace(/\{\{card:(.*?)\|(.*?)\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
@@ -297,7 +296,6 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     .replace(/^(.+)$/gm, (line) =>
       line.startsWith("<") ? line : `<p>${line}</p>`
     );
-  return groupInfoCards(html);
 }
 
 function generatePostHtml(title, date, categories, content, slug = '', excerpt = '') {
