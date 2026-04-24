@@ -10,6 +10,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const BASE_URL = "https://emily50431.github.io/-emily-lu-website-g";
+const BASE_PATH = process.env.BASE_PATH !== undefined ? process.env.BASE_PATH : "/-emily-lu-website-g";
 
 // ─── 共用 NAV CSS（注入到 <style> 內）─────────────────────────────────────────
 const NAV_CSS = `
@@ -112,10 +113,10 @@ const NAV_HTML = `
   <div class="mesh-gradient"></div>
   <nav class="sticky-nav">
     <div class="nav-container">
-      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
       <div class="nav-links">
-        <a href="/-emily-lu-website-g/about/">關於我</a>
-        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="`${BASE_PATH}/about/">關於我</a>
+        <a href="`${BASE_PATH}/blog/">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -123,8 +124,8 @@ const NAV_HTML = `
       </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="/-emily-lu-website-g/about/">關於我</a>
-      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="`${BASE_PATH}/about/">關於我</a>
+      <a href="`${BASE_PATH}/blog/">文章分享</a>
       <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
@@ -169,7 +170,7 @@ async function processImages(md, slug) {
 
   for (let i = 0; i < matches.length; i++) {
     const [full, alt, url] = matches[i];
-    if (!url || url.startsWith("/-emily-lu-website-g")) continue;
+    if (!url || url.startsWith(BASE_PATH)) continue;
 
     try {
       const ext = url.split("?")[0].split(".").pop().split("/").pop() || "png";
@@ -328,7 +329,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -510,7 +511,7 @@ function generateBlogIndexHtml(posts) {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -668,10 +669,10 @@ function generateHomeHtml(posts) {
     <div class="mesh-gradient"></div>
     <nav class="sticky-nav">
         <div class="nav-container">
-            <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+            <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
             <div class="nav-links">
-                <a href="/-emily-lu-website-g/about/">關於我</a>
-                <a href="/-emily-lu-website-g/blog/">文章分享</a>
+                <a href="`${BASE_PATH}/about/">關於我</a>
+                <a href="`${BASE_PATH}/blog/">文章分享</a>
                 <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
             </div>
             <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -679,8 +680,8 @@ function generateHomeHtml(posts) {
             </button>
         </div>
         <div class="nav-mobile" id="navMobile">
-            <a href="/-emily-lu-website-g/about/">關於我</a>
-            <a href="/-emily-lu-website-g/blog/">文章分享</a>
+            <a href="`${BASE_PATH}/about/">關於我</a>
+            <a href="`${BASE_PATH}/blog/">文章分享</a>
             <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
         </div>
     </nav>
@@ -698,14 +699,14 @@ function generateHomeHtml(posts) {
                     Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
                 </p>
                 <div class="flex gap-4">
-                    <a href="/-emily-lu-website-g/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
-                    <a href="/-emily-lu-website-g/about/" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
+                    <a href="`${BASE_PATH}/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
+                    <a href="`${BASE_PATH}/about/" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
                 </div>
             </div>
             <div class="lg:w-2/5 reveal active" style="transition-delay: 0.3s;">
                 <div class="photo-base">
                    <div class="photo-card">
-                        <img src="/-emily-lu-website-g/profile.jpg" alt="Emily Lu">
+                        <img src="${BASE_PATH}/profile.jpg" alt="Emily Lu">
                     </div>
                 </div>
             </div>
@@ -765,7 +766,7 @@ function generateAboutHtml() {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -850,10 +851,10 @@ function generateAboutHtml() {
   <div class="mesh-gradient"></div>
   <nav class="sticky-nav">
     <div class="nav-container">
-      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
       <div class="nav-links">
-        <a href="/-emily-lu-website-g/about/">關於我</a>
-        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="`${BASE_PATH}/about/">關於我</a>
+        <a href="`${BASE_PATH}/blog/">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -861,8 +862,8 @@ function generateAboutHtml() {
       </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="/-emily-lu-website-g/about/">關於我</a>
-      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="`${BASE_PATH}/about/">關於我</a>
+      <a href="`${BASE_PATH}/blog/">文章分享</a>
       <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
@@ -886,7 +887,7 @@ function generateAboutHtml() {
       </div>
       <div class="photo-body">
         <div class="photo-frame">
-          <img src="/-emily-lu-website-g/about-photo.jpg" alt="Emily" />
+          <img src="${BASE_PATH}/about-photo.jpg" alt="Emily" />
         </div>
         <div class="photo-info">
           <h2>Emily</h2>
