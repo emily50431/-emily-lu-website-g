@@ -483,19 +483,19 @@ mark.hl-yellow {
 .info-card__label {
   font-size: 12px; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
-  margin: 0 0 2px;
+  margin: 0;
   line-height: 24px;
 }
 
 .info-card__title {
   font-size: 14px; font-weight: 700;
   color: #1F2937;
-  margin: 0 0 2px;
+  margin: 0;
   line-height: 1.4;
 }
 
 .info-card__desc {
-  font-size: 13px;
+  font-size: 14px;
   color: #6B7280;
   margin: 0;
   line-height: 1.5;
