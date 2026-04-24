@@ -471,25 +471,26 @@ mark.hl-yellow {
 }
 
 .info-card__icon {
-  width: 30px; height: 30px;
-  border-radius: 7px;
+  width: 24px; height: 24px;
+  border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 0;
 }
 
 .info-card__body { flex: 1; }
 
 .info-card__label {
-  font-size: 11px; font-weight: 700;
+  font-size: 12px; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
   margin: 0 0 2px;
+  line-height: 24px;
 }
 
 .info-card__title {
   font-size: 14px; font-weight: 700;
   color: #1F2937;
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   line-height: 1.4;
 }
 
@@ -497,7 +498,7 @@ mark.hl-yellow {
   font-size: 13px;
   color: #6B7280;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 /* 紫色（重點整理） */
