@@ -219,22 +219,56 @@ function makeDownloadBtn(downloadUrl, downloadLabel) {
   return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-block" onclick="${trackScript.replace(/"/g, '&quot;')}"><div class="dl-pulse"></div><div class="dl-arrow">前往查看 →</div><div class="dl-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="dl-title">${label}</div></a></div>`;
 }
 
+const INFO_CARD_TYPE_MAP = {
+  '重點整理': { color: 'purple', icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>' },
+  '實用技巧': { color: 'teal',   icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+  '注意事項': { color: 'amber',  icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+  '小提醒':   { color: 'amber',  icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+  '延伸閱讀': { color: 'blue',   icon: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>' },
+  '基本資料': { color: 'blue',   icon: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' },
+};
+
 function makeInfoCard(label, title, desc) {
-  const typeMap = {
-    '重點整理': { color: 'purple', icon: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>' },
-    '實用技巧': { color: 'teal',   icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
-    '注意事項': { color: 'amber',  icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
-    '小提醒':   { color: 'amber',  icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
-    '延伸閱讀': { color: 'blue',   icon: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>' },
-    '基本資料': { color: 'blue',   icon: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' },
-  };
   const trimLabel = label.trim();
-  const type = typeMap[trimLabel] || { color: 'purple', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
-  return `<div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p><p class="info-card__title">${title.trim()}</p>${desc.trim() ? `<p class="info-card__desc">${desc.trim()}</p>` : ''}</div></div>`;
+  const type = INFO_CARD_TYPE_MAP[trimLabel] || { color: 'purple', icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
+  const descHtml = desc.trim() ? `<p class="info-card__desc">${desc.trim().replace(/\\n/g, '<br>')}</p>` : '';
+  return `<div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p><div class="info-card__row"><p class="info-card__title">${title.trim()}</p>${descHtml}</div></div></div>`;
+}
+
+function groupInfoCards(html) {
+  const cardPattern = /(<div class="info-card info-card--[^"]+">(?:(?!<div class="info-card ).)*?<\/div><\/div>)/gs;
+  const parts = [];
+  let last = 0;
+  const matches = [...html.matchAll(/<div class="info-card info-card--([^"]+)">([\s\S]*?)<\/div><\/div>/g)];
+  if (matches.length === 0) return html;
+  let i = 0;
+  while (i < matches.length) {
+    const m = matches[i];
+    parts.push(html.slice(last, m.index));
+    const labelMatch = m[2].match(/<p class="info-card__label">(.*?)<\/p>/);
+    const currentLabel = labelMatch ? labelMatch[1] : '';
+    const color = m[1];
+    let rows = m[2].replace(/<p class="info-card__label">.*?<\/p>/, '').replace(/<div class="info-card__icon">[\s\S]*?<\/div>/, '');
+    let j = i + 1;
+    while (j < matches.length) {
+      const next = matches[j];
+      if (next.index !== (matches[j-1].index + matches[j-1][0].length + (html.slice(matches[j-1].index + matches[j-1][0].length, next.index).trim() === '' ? html.slice(matches[j-1].index + matches[j-1][0].length, next.index).length : -1))) break;
+      const nextLabel = (next[2].match(/<p class="info-card__label">(.*?)<\/p>/) || [])[1] || '';
+      if (nextLabel !== currentLabel) break;
+      rows += next[2].replace(/<p class="info-card__label">.*?<\/p>/, '').replace(/<div class="info-card__icon">[\s\S]*?<\/div>/, '');
+      j++;
+    }
+    const type = INFO_CARD_TYPE_MAP[currentLabel] || { icon: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>' };
+    parts.push(`<div class="info-card info-card--${color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${currentLabel}</p>${rows}</div></div>`);
+    last = matches[j-1].index + matches[j-1][0].length;
+    i = j;
+  }
+  parts.push(html.slice(last));
+  return parts.join('');
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
-  return md
+  let html = md
     .replace(/\{\{card:(.*?)\|(.*?)\|(.*?)\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
     .replace(/\{\{card:(.*?)\|(.*?)\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
@@ -251,6 +285,7 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     .replace(/^(.+)$/gm, (line) =>
       line.startsWith("<") ? line : `<p>${line}</p>`
     );
+  return groupInfoCards(html);
 }
 
 function generatePostHtml(title, date, categories, content, slug = '', excerpt = '') {
