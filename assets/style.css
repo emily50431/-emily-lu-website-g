@@ -480,6 +480,14 @@ mark.hl-yellow {
 
 .info-card__body { flex: 1; }
 
+.info-card__row {
+  margin-top: 8px;
+}
+
+.info-card__row:first-of-type {
+  margin-top: 0;
+}
+
 .info-card__label {
   font-size: 12px; font-weight: 700;
   letter-spacing: 0.08em; text-transform: uppercase;
