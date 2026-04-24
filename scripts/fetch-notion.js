@@ -113,10 +113,10 @@ const NAV_HTML = `
   <div class="mesh-gradient"></div>
   <nav class="sticky-nav">
     <div class="nav-container">
-      <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <a href="${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
       <div class="nav-links">
-        <a href="`${BASE_PATH}/about/">關於我</a>
-        <a href="`${BASE_PATH}/blog/">文章分享</a>
+        <a href="${BASE_PATH}/about/">關於我</a>
+        <a href="${BASE_PATH}/blog/">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -124,8 +124,8 @@ const NAV_HTML = `
       </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="`${BASE_PATH}/about/">關於我</a>
-      <a href="`${BASE_PATH}/blog/">文章分享</a>
+      <a href="${BASE_PATH}/about/">關於我</a>
+      <a href="${BASE_PATH}/blog/">文章分享</a>
       <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
@@ -329,7 +329,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
+  <link rel="stylesheet" href="${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -511,7 +511,7 @@ function generateBlogIndexHtml(posts) {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
+  <link rel="stylesheet" href="${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -669,10 +669,10 @@ function generateHomeHtml(posts) {
     <div class="mesh-gradient"></div>
     <nav class="sticky-nav">
         <div class="nav-container">
-            <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
+            <a href="${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
             <div class="nav-links">
-                <a href="`${BASE_PATH}/about/">關於我</a>
-                <a href="`${BASE_PATH}/blog/">文章分享</a>
+                <a href="${BASE_PATH}/about/">關於我</a>
+                <a href="${BASE_PATH}/blog/">文章分享</a>
                 <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
             </div>
             <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -680,8 +680,8 @@ function generateHomeHtml(posts) {
             </button>
         </div>
         <div class="nav-mobile" id="navMobile">
-            <a href="`${BASE_PATH}/about/">關於我</a>
-            <a href="`${BASE_PATH}/blog/">文章分享</a>
+            <a href="${BASE_PATH}/about/">關於我</a>
+            <a href="${BASE_PATH}/blog/">文章分享</a>
             <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
         </div>
     </nav>
@@ -699,8 +699,8 @@ function generateHomeHtml(posts) {
                     Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
                 </p>
                 <div class="flex gap-4">
-                    <a href="`${BASE_PATH}/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
-                    <a href="`${BASE_PATH}/about/" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
+                    <a href="${BASE_PATH}/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
+                    <a href="${BASE_PATH}/about/" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
                 </div>
             </div>
             <div class="lg:w-2/5 reveal active" style="transition-delay: 0.3s;">
@@ -766,7 +766,7 @@ function generateAboutHtml() {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
   <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="`${BASE_PATH}/assets/style.css" />
+  <link rel="stylesheet" href="${BASE_PATH}/assets/style.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
   <script>
@@ -851,10 +851,10 @@ function generateAboutHtml() {
   <div class="mesh-gradient"></div>
   <nav class="sticky-nav">
     <div class="nav-container">
-      <a href="`${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <a href="${BASE_PATH}/" class="nav-logo">Emily's LAB<span>.</span></a>
       <div class="nav-links">
-        <a href="`${BASE_PATH}/about/">關於我</a>
-        <a href="`${BASE_PATH}/blog/">文章分享</a>
+        <a href="${BASE_PATH}/about/">關於我</a>
+        <a href="${BASE_PATH}/blog/">文章分享</a>
         <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
       </div>
       <button class="nav-burger" id="navBurger" aria-label="開啟選單">
@@ -862,8 +862,8 @@ function generateAboutHtml() {
       </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="`${BASE_PATH}/about/">關於我</a>
-      <a href="`${BASE_PATH}/blog/">文章分享</a>
+      <a href="${BASE_PATH}/about/">關於我</a>
+      <a href="${BASE_PATH}/blog/">文章分享</a>
       <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
