@@ -216,7 +216,7 @@ function makeDownloadBtn(downloadUrl, downloadLabel) {
   const label = downloadLabel || "免費下載完整學習資源";
   const safeUrl = downloadUrl.replace(/'/g, "\\'");
   const trackScript = `gtag('event','download',{'file_name':'google-drive-folder','page_slug':'${safeUrl}'})`;
-  return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-block" onclick="${trackScript.replace(/"/g, '&quot;')}"><div class="dl-pulse"></div><div class="dl-arrow">前往查看 →</div><div class="dl-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M12 3v13M6 11l6 6 6-6"/><path d="M3 21h18"/></svg></div><div class="dl-title">${label}</div></a></div>`;
+  return `<div class="download-section"><a href="${downloadUrl}" target="_blank" class="download-block" onclick="${trackScript.replace(/"/g, '&quot;')}"><div class="dl-pulse"></div><div class="dl-arrow">前往查看 →</div><div class="dl-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="dl-title">${label}</div></a></div>`;
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
