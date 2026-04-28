@@ -277,25 +277,74 @@ function processCardGroups(md) {
   return result.join('\n');
 }
 
-function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
-  const processed = processCardGroups(md);
-  return processed
-    .replace(/\{\{card:(.*?)\|(.*?)\|(.*?)\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
-    .replace(/\{\{card:(.*?)\|(.*?)\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
-    .replace(/^### (.+)$/gm, "<h3>$1</h3>")
-    .replace(/^## (.+)$/gm, "<h2>$1</h2>")
-    .replace(/^# (.+)$/gm, "<h1>$1</h1>")
+function parseInline(text) {
+  return text
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/(?:\*\*)?==\*{0,2}([\s\S]+?)\*{0,2}==(?:\*\*)?/g, '<mark class="hl-yellow"><strong>$1</strong></mark>')
-    .replace(/^> (.+)$/gm, '<div class="hl-block">$1</div>')
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width:100%;border-radius:8px;margin:1rem 0;">')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '')
-    .replace(/\n\n/g, "</p><p>")
-    .replace(/^(.+)$/gm, (line) =>
-      line.startsWith("<") ? line : `<p>${line}</p>`
-    );
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+}
+
+function parseListBlock(lines, startIndex) {
+  const result = [];
+  let i = startIndex;
+  const getIndent = (line) => { const m = line.match(/^(\s*)/); return m ? m[1].length : 0; };
+  const baseIndent = getIndent(lines[i]);
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const indent = getIndent(line);
+    const listMatch = line.match(/^\s*[-*]\s+(.*)/);
+    if (!listMatch) break;
+    if (indent < baseIndent) break;
+    if (indent > baseIndent) { i++; continue; }
+    const content = parseInline(listMatch[1]);
+    let childHtml = '';
+    if (i + 1 < lines.length) {
+      const nextIndent = getIndent(lines[i + 1]);
+      const nextIsList = /^\s*[-*]\s+/.test(lines[i + 1]);
+      if (nextIsList && nextIndent > indent) {
+        const child = parseListBlock(lines, i + 1);
+        childHtml = child.html;
+        i = child.nextIndex - 1;
+      }
+    }
+    result.push(`<li>${content}${childHtml}</li>`);
+    i++;
+  }
+  return { html: `<ul>${result.join('')}</ul>`, nextIndex: i };
+}
+
+function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
+  const processed = processCardGroups(md);
+  const preProcessed = processed
+    .replace(/\{\{card:(.*?)\|(.*?)\|(.*?)\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
+    .replace(/\{\{card:(.*?)\|(.*?)\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
+    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
+
+  const lines = preProcessed.split('\n');
+  const output = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    if (/^\s*[-*]\s+/.test(line)) {
+      const { html, nextIndex } = parseListBlock(lines, i);
+      output.push(html);
+      i = nextIndex;
+      continue;
+    }
+    if (/^### /.test(line)) { output.push(`<h3>${parseInline(line.slice(4))}</h3>`); i++; continue; }
+    if (/^## /.test(line))  { output.push(`<h2>${parseInline(line.slice(3))}</h2>`); i++; continue; }
+    if (/^# /.test(line))   { output.push(`<h1>${parseInline(line.slice(2))}</h1>`); i++; continue; }
+    if (/^> /.test(line))   { output.push(`<div class="hl-block">${parseInline(line.slice(2))}</div>`); i++; continue; }
+    if (line.trim().startsWith('<')) { output.push(line); i++; continue; }
+    if (line.trim() === '') { i++; continue; }
+    output.push(`<p>${parseInline(line)}</p>`);
+    i++;
+  }
+  return output.join('\n');
 }
 
 function generatePostHtml(title, date, categories, content, slug = '', excerpt = '') {
