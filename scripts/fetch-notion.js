@@ -356,12 +356,6 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     .replace(/\{\{\s*download\s*\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
 
   const lines = preProcessed.split('\n');
-  // Debug: log lines around datablock
-  lines.forEach((l, idx) => {
-    if (l.includes('data-block') || (idx > 0 && lines[idx-1] && lines[idx-1].includes('data-block'))) {
-      console.log('LINE', idx, JSON.stringify(l.substring(0, 80)));
-    }
-  });
   const output = [];
   let i = 0;
 
@@ -377,8 +371,8 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     if (/^## /.test(line))  { output.push(`<h2>${parseInline(line.slice(3))}</h2>`); i++; continue; }
     if (/^# /.test(line))   { output.push(`<h1>${parseInline(line.slice(2))}</h1>`); i++; continue; }
     if (/^> /.test(line))   { output.push(`<div class="hl-block">${parseInline(line.slice(2))}</div>`); i++; continue; }
-    if (line.trim().startsWith('<')) {
-      output.push(line);
+    if (line.trim().startsWith('<div') || line.trim().startsWith('<ul') || line.trim().startsWith('<p')) {
+      output.push(line.trim());
       i++;
       // 跳過緊接在 HTML block 後的空行
       while (i < lines.length && lines[i].trim() === '') { i++; }
