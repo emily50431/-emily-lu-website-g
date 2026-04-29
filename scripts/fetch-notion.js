@@ -204,7 +204,7 @@ async function getPostContent(pageId) {
     const mdString = n2m.toMarkdownString(mdBlocks);
     const content = mdString?.parent || mdString || "";
     console.log("=== 文章內容 ===");
-    console.log(content.substring(0, 2000));
+    console.log(content.substring(0, 500));
     return content;
   } catch (e) {
     console.log("錯誤:", e.message);
@@ -347,9 +347,7 @@ function parseListBlock(lines, startIndex) {
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
-  // notion-to-md 可能把 @@ 轉義成 \@\@，先還原
-  const cleaned = md.replace(/\\@\\@/g, '@@').replace(/\\@/g, '@');
-  const processed = processCardGroups(cleaned);
+  const processed = processCardGroups(md);
   const preProcessed = processed
     .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
     .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
@@ -371,14 +369,8 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     if (/^## /.test(line))  { output.push(`<h2>${parseInline(line.slice(3))}</h2>`); i++; continue; }
     if (/^# /.test(line))   { output.push(`<h1>${parseInline(line.slice(2))}</h1>`); i++; continue; }
     if (/^> /.test(line))   { output.push(`<div class="hl-block">${parseInline(line.slice(2))}</div>`); i++; continue; }
-    if (line.trim().startsWith('<div') || line.trim().startsWith('<ul') || line.trim().startsWith('<p')) {
-      output.push(line.trim());
-      i++;
-      // 跳過緊接在 HTML block 後的空行
-      while (i < lines.length && lines[i].trim() === '') { i++; }
-      continue;
-    }
-    if (line.trim() === '' || line.trim() === '}}') { i++; continue; }
+    if (line.trim().startsWith('<')) { output.push(line); i++; continue; }
+    if (line.trim() === '') { i++; continue; }
     output.push(`<p>${parseInline(line)}</p>`);
     i++;
   }
