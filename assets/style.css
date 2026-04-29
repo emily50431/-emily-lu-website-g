@@ -566,3 +566,25 @@ mark.hl-yellow {
   color: #185FA5;
 }
 .info-card--blue .info-card__label { color: #185FA5; }
+
+/* 綠色（最喜歡的） */
+.info-card--green {
+  background: rgba(99,153,34,0.06);
+  border-color: rgba(99,153,34,0.2);
+}
+.info-card--green .info-card__icon {
+  background: rgba(99,153,34,0.12);
+  color: #3B6D11;
+}
+.info-card--green .info-card__label { color: #3B6D11; }
+
+/* 紅色（最不喜歡） */
+.info-card--red {
+  background: rgba(226,75,74,0.05);
+  border-color: rgba(226,75,74,0.2);
+}
+.info-card--red .info-card__icon {
+  background: rgba(226,75,74,0.12);
+  color: #A32D2D;
+}
+.info-card--red .info-card__label { color: #A32D2D; }
