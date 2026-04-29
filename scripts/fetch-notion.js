@@ -281,25 +281,26 @@ function processCardGroups(md) {
       }
       i++;
       result.push(makeDataBlock(rows));
-    } else
-    const startMatch = lines[i].match(/^\{\{cardgroup:(.+)$/);
-    if (startMatch) {
-      const label = startMatch[1].trim();
-      const rows = [];
-      i++;
-      while (i < lines.length && lines[i].trim() !== '}}') {
-        const line = lines[i].trim();
-        if (line) {
-          const parts = line.split('|');
-          rows.push({ title: parts[0] || '', desc: parts[1] || '' });
+    } else {
+      const startMatch = lines[i].match(/^\{\{cardgroup:(.+)$/);
+      if (startMatch) {
+        const label = startMatch[1].trim();
+        const rows = [];
+        i++;
+        while (i < lines.length && lines[i].trim() !== '}}') {
+          const line = lines[i].trim();
+          if (line) {
+            const parts = line.split('|');
+            rows.push({ title: parts[0] || '', desc: parts[1] || '' });
+          }
+          i++;
         }
+        i++; // 跳過 }}
+        result.push(makeCardGroup(label, rows));
+      } else {
+        result.push(lines[i]);
         i++;
       }
-      i++; // 跳過 }}
-      result.push(makeCardGroup(label, rows));
-    } else {
-      result.push(lines[i]);
-      i++;
     }
   }
   return result.join('\n');
