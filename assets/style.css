@@ -567,27 +567,41 @@ mark.hl-yellow {
 }
 .info-card--blue .info-card__label { color: #185FA5; }
 
-/* 綠色（最喜歡的） */
+/* 喜歡的地方 — B2 上邊線風格 */
 .info-card--green {
-  background: rgba(99,153,34,0.06);
-  border-color: rgba(99,153,34,0.2);
+  background: #ffffff;
+  border-color: rgba(93,95,239,0.15);
+  border-top: 3px solid #5D5FEF;
+  border-radius: 0 0 10px 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.info-card--green:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(93,95,239,0.15);
 }
 .info-card--green .info-card__icon {
-  background: rgba(99,153,34,0.12);
-  color: #3B6D11;
+  background: rgba(93,95,239,0.08);
+  color: #534AB7;
 }
-.info-card--green .info-card__label { color: #3B6D11; }
+.info-card--green .info-card__label { color: #534AB7; }
 
-/* 紅色（最不喜歡） */
+/* 不喜歡的地方 — B2 上邊線風格（淡） */
 .info-card--red {
-  background: rgba(226,75,74,0.05);
-  border-color: rgba(226,75,74,0.2);
+  background: rgba(93,95,239,0.03);
+  border-color: rgba(93,95,239,0.1);
+  border-top: 3px solid #AFA9EC;
+  border-radius: 0 0 10px 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.info-card--red:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(93,95,239,0.08);
 }
 .info-card--red .info-card__icon {
-  background: rgba(226,75,74,0.12);
-  color: #A32D2D;
+  background: rgba(175,169,236,0.12);
+  color: #AFA9EC;
 }
-.info-card--red .info-card__label { color: #A32D2D; }
+.info-card--red .info-card__label { color: #AFA9EC; }
 
 /* ═══════════════════════════════════════════
    行內 Highlight
@@ -660,4 +674,21 @@ hr.post-divider {
   border: none;
   border-top: 1.5px solid rgba(93,95,239,0.25);
   margin: 2rem 0;
+}
+
+/* ═══════════════════════════════════════════
+   Scroll 淡入動畫
+   ═══════════════════════════════════════════ */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: fadeSlideUp 0.6s ease both;
 }
