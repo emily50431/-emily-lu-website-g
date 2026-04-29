@@ -253,8 +253,8 @@ function makeCardGroup(label, rows) {
 function makeDataBlock(rows) {
   const barIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>';
   const items = rows.map(({ title, desc }) => {
-    const titleHtml = title.replace(/\\n/g, '<br>');
-    const descHtml = desc ? `<p class="data-block__desc">${desc.trim().replace(/\\n/g, '<br>')}</p>` : '';
+    const titleHtml = parseInline(title.replace(/\\n/g, '<br>'));
+    const descHtml = desc ? `<p class="data-block__desc">${parseInline(desc.trim().replace(/\\n/g, '<br>'))}</p>` : '';
     return `<div class="data-block__item"><p class="data-block__title">${titleHtml}</p>${descHtml}</div>`;
   }).join('');
   return `<div class="data-block"><div class="data-block__header">${barIcon}<span class="data-block__label">數據分享</span></div>${items}</div>`;
@@ -347,11 +347,13 @@ function parseListBlock(lines, startIndex) {
 }
 
 function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
-  const processed = processCardGroups(md);
+  // notion-to-md 可能把 @@ 轉義成 \@\@，先還原
+  const cleaned = md.replace(/\\@\\@/g, '@@').replace(/\\@/g, '@');
+  const processed = processCardGroups(cleaned);
   const preProcessed = processed
-    .replace(/\{\{card:(.*?)\|(.*?)\|(.*?)\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
-    .replace(/\{\{card:(.*?)\|(.*?)\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
-    .replace(/\{\{download\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
+    .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
+    .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
+    .replace(/\{\{\s*download\s*\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
 
   const lines = preProcessed.split('\n');
   const output = [];
