@@ -371,22 +371,6 @@
     loadLikeCount();
   </script>
 
-  <script>
-    // Scroll 淡入動畫
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationDelay = (i * 0.08) + 's';
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.post-content > *').forEach(el => {
-      el.classList.add('reveal');
-      revealObserver.observe(el);
-    });
-  </script>
 </body>
 </html>
