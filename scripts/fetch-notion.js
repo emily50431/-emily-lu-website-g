@@ -250,6 +250,16 @@ function makeCardGroup(label, rows) {
   return `<div class="info-card info-card--${type.color}"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${type.icon}</svg></div><div class="info-card__body"><p class="info-card__label">${trimLabel}</p>${rowsHtml}</div></div>`;
 }
 
+function makeDataBlock(rows) {
+  const barIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>';
+  const items = rows.map(({ title, desc }) => {
+    const titleHtml = title.replace(/\\n/g, '<br>');
+    const descHtml = desc ? `<p class="data-block__desc">${desc.trim().replace(/\\n/g, '<br>')}</p>` : '';
+    return `<div class="data-block__item"><p class="data-block__title">${titleHtml}</p>${descHtml}</div>`;
+  }).join('');
+  return `<div class="data-block"><div class="data-block__header">${barIcon}<span class="data-block__label">數據分享</span></div>${items}</div>`;
+}
+
 function processCardGroups(md) {
   // 把 {{cardgroup:標籤\n行1\n行2\n}} 轉成 HTML
   // 用 split 逐行掃描，找到 {{cardgroup: 開頭到 }} 結尾
@@ -257,6 +267,21 @@ function processCardGroups(md) {
   const result = [];
   let i = 0;
   while (i < lines.length) {
+    const datablockMatch = lines[i].match(/^\{\{datablock:?\s*$/);
+    if (datablockMatch) {
+      const rows = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '}}') {
+        const line = lines[i].trim();
+        if (line) {
+          const parts = line.split('|');
+          rows.push({ title: (parts[0] || '').trim(), desc: (parts[1] || '').trim() });
+        }
+        i++;
+      }
+      i++;
+      result.push(makeDataBlock(rows));
+    } else
     const startMatch = lines[i].match(/^\{\{cardgroup:(.+)$/);
     if (startMatch) {
       const label = startMatch[1].trim();
@@ -282,6 +307,7 @@ function processCardGroups(md) {
 
 function parseInline(text) {
   return text
+    .replace(/@@(.+?)@@/g, '<span class="hl-inline">$1</span>')
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/(?:\*\*)?==\*{0,2}([\s\S]+?)\*{0,2}==(?:\*\*)?/g, '<mark class="hl-yellow"><strong>$1</strong></mark>')
