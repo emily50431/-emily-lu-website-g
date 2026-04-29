@@ -588,3 +588,66 @@ mark.hl-yellow {
   color: #A32D2D;
 }
 .info-card--red .info-card__label { color: #A32D2D; }
+
+/* ═══════════════════════════════════════════
+   行內 Highlight
+   用法：@@文字@@
+   ═══════════════════════════════════════════ */
+
+.hl-inline {
+  color: #5D5FEF;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: #5D5FEF;
+}
+
+/* ═══════════════════════════════════════════
+   數據分享區塊
+   用法：{{datablock: ... }}
+   ═══════════════════════════════════════════ */
+
+.data-block {
+  border-left: 3px solid #5D5FEF;
+  padding: 4px 0 4px 16px;
+  margin: 1.5rem 0;
+}
+
+.data-block__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.data-block__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #5D5FEF;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-block__item {
+  padding: 10px 0;
+  border-top: 0.5px solid rgba(93,95,239,0.15);
+}
+
+.data-block__item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.data-block__title {
+  font-size: 15px;
+  color: #1F2937;
+  line-height: 1.7;
+  margin: 0 0 2px;
+}
+
+.data-block__desc {
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0;
+}
