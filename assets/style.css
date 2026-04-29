@@ -639,14 +639,14 @@ mark.hl-yellow {
 }
 
 .data-block__title {
-  font-size: 15px;
+  font-size: 16px;
   color: #1F2937;
   line-height: 1.7;
   margin: 0 0 2px;
 }
 
 .data-block__desc {
-  font-size: 13px;
+  font-size: 16px;
   color: #6B7280;
   line-height: 1.6;
   margin: 0;
