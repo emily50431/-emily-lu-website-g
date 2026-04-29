@@ -204,7 +204,7 @@ async function getPostContent(pageId) {
     const mdString = n2m.toMarkdownString(mdBlocks);
     const content = mdString?.parent || mdString || "";
     console.log("=== 文章內容 ===");
-    console.log(content.substring(0, 500));
+    console.log(content.substring(0, 2000));
     return content;
   } catch (e) {
     console.log("錯誤:", e.message);
