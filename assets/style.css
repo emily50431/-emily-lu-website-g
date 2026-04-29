@@ -650,3 +650,14 @@ mark.hl-yellow {
   line-height: 1.6;
   margin: 0 !important;
 }
+
+/* ═══════════════════════════════════════════
+   文章分隔線
+   用法：Notion 分隔線 → ---
+   ═══════════════════════════════════════════ */
+
+hr.post-divider {
+  border: none;
+  border-top: 1.5px solid rgba(93,95,239,0.25);
+  margin: 2rem 0;
+}
