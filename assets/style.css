@@ -621,11 +621,10 @@ mark.hl-yellow {
 }
 
 .data-block__label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: #5D5FEF;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .data-block__item {
