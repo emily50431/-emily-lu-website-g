@@ -356,6 +356,12 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     .replace(/\{\{\s*download\s*\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
 
   const lines = preProcessed.split('\n');
+  // Debug: log lines around datablock
+  lines.forEach((l, idx) => {
+    if (l.includes('data-block') || (idx > 0 && lines[idx-1] && lines[idx-1].includes('data-block'))) {
+      console.log('LINE', idx, JSON.stringify(l.substring(0, 80)));
+    }
+  });
   const output = [];
   let i = 0;
 
