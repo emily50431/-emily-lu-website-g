@@ -371,7 +371,13 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
     if (/^## /.test(line))  { output.push(`<h2>${parseInline(line.slice(3))}</h2>`); i++; continue; }
     if (/^# /.test(line))   { output.push(`<h1>${parseInline(line.slice(2))}</h1>`); i++; continue; }
     if (/^> /.test(line))   { output.push(`<div class="hl-block">${parseInline(line.slice(2))}</div>`); i++; continue; }
-    if (line.trim().startsWith('<')) { output.push(line); i++; continue; }
+    if (line.trim().startsWith('<')) {
+      output.push(line);
+      i++;
+      // 跳過緊接在 HTML block 後的空行
+      while (i < lines.length && lines[i].trim() === '') { i++; }
+      continue;
+    }
     if (line.trim() === '' || line.trim() === '}}') { i++; continue; }
     output.push(`<p>${parseInline(line)}</p>`);
     i++;
