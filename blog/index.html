@@ -157,37 +157,46 @@
       }
     })();
   </script>
+  <style>
+    .tag-bar { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 1rem; border-bottom: 1.5px solid rgba(93,95,239,0.12); margin-bottom: 2rem; }
+    .tag-filter-btn { font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; border: 1.5px solid rgba(93,95,239,0.25); cursor: pointer; color: #6B7280; background: #fff; transition: color .2s, background .2s, border-color .2s, transform .15s cubic-bezier(.34,1.56,.64,1); }
+    .tag-filter-btn:hover { color: #5D5FEF; border-color: #5D5FEF; background: rgba(93,95,239,0.06); }
+    .tag-filter-btn.active { color: #fff; background: #5D5FEF; border-color: #5D5FEF; transform: scale(1.05); box-shadow: 0 4px 12px rgba(93,95,239,0.25), 0 0 14px rgba(93,95,239,0.12); }
+    .post-list-item { cursor: pointer; }
+    .list-tag { cursor: pointer; }
+  </style>
   <main class="blog-wrap">
     <h1 class="section-title">所有文章</h1>
-    <div class="post-list">
-    <a class="post-list-item" href="https://emily50431.github.io/-emily-lu-website-g/blog/online-clothing-shopping-owner/">
+    <div class="tag-bar"><button class="tag-filter-btn active" onclick="filterTag('全部', this)">全部</button><button class="tag-filter-btn" onclick="filterTag('AI相關', this)">AI相關</button><button class="tag-filter-btn" onclick="filterTag('百工百業', this)">百工百業</button></div>
+    <div class="post-list" id="post-list">
+    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/online-clothing-shopping-owner/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-30</span>
-        <div class="post-list-tags"><span class="list-tag">百工百業</span></div>
+        <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
       </div>
       <div class="post-list-title">百工百業project#1：服飾網拍老闆娘 Online Clothing Shopping Owner</div>
       <div class="post-list-excerpt">你知道網拍一天要做什麼嗎？</div>
     </a>
-    <a class="post-list-item" href="https://emily50431.github.io/-emily-lu-website-g/blog/what-is-your-job/">
+    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/what-is-your-job/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-24</span>
-        <div class="post-list-tags"><span class="list-tag">百工百業</span></div>
+        <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
       </div>
       <div class="post-list-title">百工百業project：前傳</div>
       <div class="post-list-excerpt">世界這麼大，有趣的職業這麼多，聊聊你的工作，讓更多人認識你的世界吧！</div>
     </a>
-    <a class="post-list-item" href="https://emily50431.github.io/-emily-lu-website-g/blog/make-website-with-ai-tools/">
+    <a class="post-list-item" data-tag="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/make-website-with-ai-tools/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-22</span>
-        <div class="post-list-tags"><span class="list-tag">AI相關</span></div>
+        <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('AI相關')">AI相關</span></div>
       </div>
       <div class="post-list-title">AI 工具實測：Vibe Coding實錄</div>
       <div class="post-list-excerpt">不懂程式也能做網站！記錄我用 AI vibe coding 從零打造個人網站的完整過程，涵蓋工具選擇、系統架構、介面設計與實際踩坑經驗，想用 AI 做網站的你一定要看。</div>
     </a>
-    <a class="post-list-item" href="https://emily50431.github.io/-emily-lu-website-g/blog/ipas-ai-planner-beginner/">
+    <a class="post-list-item" data-tag="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/ipas-ai-planner-beginner/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-18</span>
-        <div class="post-list-tags"><span class="list-tag">AI相關</span></div>
+        <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('AI相關')">AI相關</span></div>
       </div>
       <div class="post-list-title">如何在60日內取得AI應用規劃師初級證照</div>
       <div class="post-list-excerpt">非本科也能考過！完整記錄 iPAS AI應用規劃師初級證照 60天備考過程，包含報名資訊、讀書方法，附免費筆記下載，跟著做你也可以高分通過！</div>
@@ -196,5 +205,18 @@
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
+  <script>
+    function filterTag(tag, btn) {
+      document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.post-list-item').forEach(item => {
+        item.classList.toggle('hidden', tag !== '全部' && item.dataset.tag !== tag);
+      });
+    }
+    function filterTagFromPill(tag) {
+      const btn = [...document.querySelectorAll('.tag-filter-btn')].find(b => b.textContent === tag);
+      if (btn) filterTag(tag, btn);
+    }
+  </script>
 </body>
 </html>
