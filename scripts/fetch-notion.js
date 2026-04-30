@@ -552,13 +552,22 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
 }
 
 function generateBlogIndexHtml(posts) {
+  // 收集所有不重複的 tags
+  const allTags = [...new Set(posts.flatMap(p => p.categories))].sort();
+
+  const tagButtons = [
+    `<button class="tag-filter-btn active" onclick="filterTag('全部', this)">全部</button>`,
+    ...allTags.map(t => `<button class="tag-filter-btn" onclick="filterTag('${t}', this)">${t}</button>`)
+  ].join('');
+
   const items = posts
     .map((p) => {
+      const firstTag = p.categories[0] || '';
       const categoryTags = p.categories
-        .map((c) => `<span class="list-tag">${c}</span>`)
+        .map((c) => `<span class="list-tag" onclick="filterTagFromPill('${c}')">${c}</span>`)
         .join("");
       return `
-    <a class="post-list-item" href="${BASE_URL}/blog/${p.slug}/">
+    <a class="post-list-item" data-tag="${firstTag}" href="${BASE_URL}/blog/${p.slug}/">
       <div class="post-list-meta">
         <span class="post-list-date">${p.date}</span>
         <div class="post-list-tags">${categoryTags}</div>
@@ -604,13 +613,35 @@ function generateBlogIndexHtml(posts) {
 </head>
 <body class="antialiased">
   ${NAV_HTML}
+  <style>
+    .tag-bar { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 1rem; border-bottom: 1.5px solid rgba(93,95,239,0.12); margin-bottom: 2rem; }
+    .tag-filter-btn { font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; border: 1.5px solid rgba(93,95,239,0.25); cursor: pointer; color: #6B7280; background: #fff; transition: color .2s, background .2s, border-color .2s, transform .15s cubic-bezier(.34,1.56,.64,1); }
+    .tag-filter-btn:hover { color: #5D5FEF; border-color: #5D5FEF; background: rgba(93,95,239,0.06); }
+    .tag-filter-btn.active { color: #fff; background: #5D5FEF; border-color: #5D5FEF; transform: scale(1.05); box-shadow: 0 4px 12px rgba(93,95,239,0.25), 0 0 14px rgba(93,95,239,0.12); }
+    .post-list-item { cursor: pointer; }
+    .list-tag { cursor: pointer; }
+  </style>
   <main class="blog-wrap">
     <h1 class="section-title">所有文章</h1>
-    <div class="post-list">${items}</div>
+    <div class="tag-bar">${tagButtons}</div>
+    <div class="post-list" id="post-list">${items}</div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
+  <script>
+    function filterTag(tag, btn) {
+      document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.post-list-item').forEach(item => {
+        item.classList.toggle('hidden', tag !== '全部' && item.dataset.tag !== tag);
+      });
+    }
+    function filterTagFromPill(tag) {
+      const btn = [...document.querySelectorAll('.tag-filter-btn')].find(b => b.textContent === tag);
+      if (btn) filterTag(tag, btn);
+    }
+  <\/script>
 </body>
 </html>`;
 }
