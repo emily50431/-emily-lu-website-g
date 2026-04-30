@@ -465,7 +465,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     </div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終將所得</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
 
   <!-- 複製連結 Toast -->
@@ -627,7 +627,7 @@ function generateBlogIndexHtml(posts) {
     <div class="post-list" id="post-list">${items}</div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終將所得</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
   <script>
     function filterTag(tag, btn) {
@@ -812,7 +812,7 @@ function generateHomeHtml(posts) {
                 </p>
                 <div class="flex gap-4">
                     <a href="/-emily-lu-website-g/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
-                    <a href="/-emily-lu-website-g/about/" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
+                    <a href="/-emily-lu-website-g/about/" class="px-10 py-3.5 border rounded-xl font-bold text-sm transition" style="border-color:#E5E7EB;color:#1F2937;background:transparent;text-decoration:none;display:inline-block;transition:all 0.3s;" onmouseover="this.style.borderColor='#5D5FEF';this.style.color='#5D5FEF';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 20px rgba(93,95,239,0.15)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.color='#1F2937';this.style.transform='';this.style.boxShadow=''">關於我</a>
                 </div>
             </div>
             <div class="lg:w-2/5 reveal active" style="transition-delay: 0.3s;">
@@ -829,7 +829,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[12px] font-black tracking-[0.3em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 貢獻所長、假以時日、終將所得
+            © 2026 EMILY LU — 保持學習、保持快樂
         </p>
     </footer>
     <script>
@@ -1049,7 +1049,7 @@ function generateAboutHtml() {
     </div>
   </main>
   <footer style="padding:3rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終將所得</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
   </footer>
 </body>
 </html>`;
