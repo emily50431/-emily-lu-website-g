@@ -465,7 +465,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
     </div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
   </footer>
 
   <!-- 複製連結 Toast -->
@@ -627,7 +627,7 @@ function generateBlogIndexHtml(posts) {
     <div class="post-list" id="post-list">${items}</div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
   </footer>
   <script>
     function filterTag(tag, btn) {
@@ -829,7 +829,7 @@ function generateHomeHtml(posts) {
     </main>
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
         <p class="text-[12px] font-black tracking-[0.3em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 保持學習、保持快樂
+            © 2026 EMILY LU — 貢獻所長、假以時日、終有所得
         </p>
     </footer>
     <script>
@@ -1049,7 +1049,7 @@ function generateAboutHtml() {
     </div>
   </main>
   <footer style="padding:3rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
   </footer>
 </body>
 </html>`;
