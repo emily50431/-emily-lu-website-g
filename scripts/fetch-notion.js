@@ -351,7 +351,8 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
   const preProcessed = processed
     .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title, desc) => makeInfoCard(label, title, desc))
     .replace(/\{\{\s*card:\s*(.*?)\|\s*(.*?)\s*\}\}/g, (_, label, title) => makeInfoCard(label, title, ''))
-    .replace(/\{\{\s*download\s*\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '');
+    .replace(/\{\{\s*download\s*\}\}/g, downloadUrl ? makeDownloadBtn(downloadUrl, downloadLabel) : '')
+    .replace(/\{\{\s*quote:\s*([\s\S]*?)\s*\}\}/g, (_, text) => `<div class="quote-block">${parseInline(text.trim())}</div>`);
 
   const lines = preProcessed.split('\n');
   const output = [];
