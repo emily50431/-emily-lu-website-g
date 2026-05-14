@@ -418,6 +418,10 @@ mark.hl-yellow {
 .share-btn:hover { background: rgba(93,95,239,0.08); }
 .share-btn svg { width: 24px; height: 24px; }
 
+.post-footer-bar .share-bar {
+  margin-bottom: 0;
+}
+
 .post-footer-bar {
   display: flex;
   align-items: center;
@@ -464,7 +468,11 @@ mark.hl-yellow {
 }
 
 @media (max-width: 640px) {
-  .post-footer-bar { flex-direction: column; align-items: flex-start; }
+  .post-footer-bar .share-bar {
+  margin-bottom: 0;
+}
+
+.post-footer-bar { flex-direction: column; align-items: flex-start; }
   .share-bar--top { display: none; }
 }
 
