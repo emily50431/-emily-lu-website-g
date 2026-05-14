@@ -379,7 +379,7 @@ function markdownToHtml(md, downloadUrl = "", downloadLabel = "") {
   return output.join('\n');
 }
 
-function generatePostHtml(title, date, categories, content, slug = '', excerpt = '') {
+function generatePostHtml(title, date, categories, content, slug = '', excerpt = '', nextPost = null) {
   const categoryTags = categories
     .map((c) => `<span class="post-tag">${c}</span>`)
     .join("");
@@ -464,6 +464,21 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
         </button>
       </div>
     </div>
+  ${nextPost ? `
+  <div style="max-width:720px;margin:0 auto;padding:0 2rem 3rem;">
+    <hr style="border:none;border-top:1px solid rgba(93,95,239,0.08);margin:2rem 0;">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin:0 0 1rem;">NEXT</p>
+    <a href="${BASE_URL}/blog/${nextPost.slug}/" style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:#fff;border:0.5px solid rgba(93,95,239,0.15);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='#5D5FEF';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(93,95,239,0.1)';this.querySelector('.next-arrow').style.background='#5D5FEF';this.querySelector('.next-arrow').style.borderColor='#5D5FEF';this.querySelector('.next-arrow').style.color='white';" onmouseout="this.style.borderColor='rgba(93,95,239,0.15)';this.style.transform='';this.style.boxShadow='';this.querySelector('.next-arrow').style.background='';this.querySelector('.next-arrow').style.borderColor='rgba(93,95,239,0.2)';this.querySelector('.next-arrow').style.color='#5D5FEF';">
+      <div style="flex:1;min-width:0;">
+        ${nextPost.categories.length ? `<span style="font-size:11px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#5D5FEF;background:rgba(93,95,239,0.08);padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:0.5rem;">${nextPost.categories[0]}</span>` : ''}
+        <p style="font-size:17px;font-weight:700;color:#1F2937;margin:0 0 0.3rem;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${nextPost.title}</p>
+        <p style="font-size:13px;color:#6B7280;margin:0;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${nextPost.excerpt}</p>
+      </div>
+      <div class="next-arrow" style="flex-shrink:0;width:40px;height:40px;border-radius:50%;border:0.5px solid rgba(93,95,239,0.2);display:flex;align-items:center;justify-content:center;color:#5D5FEF;transition:background 0.2s,border-color 0.2s,color 0.2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+  </div>` : ''}
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
@@ -626,6 +641,21 @@ function generateBlogIndexHtml(posts) {
     <h1 class="section-title">所有文章</h1>
     <div class="tag-bar">${tagButtons}</div>
     <div class="post-list" id="post-list">${items}</div>
+  ${nextPost ? `
+  <div style="max-width:720px;margin:0 auto;padding:0 2rem 3rem;">
+    <hr style="border:none;border-top:1px solid rgba(93,95,239,0.08);margin:2rem 0;">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#9CA3AF;margin:0 0 1rem;">NEXT</p>
+    <a href="${BASE_URL}/blog/${nextPost.slug}/" style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:#fff;border:0.5px solid rgba(93,95,239,0.15);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;color:inherit;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.borderColor='#5D5FEF';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(93,95,239,0.1)';this.querySelector('.next-arrow').style.background='#5D5FEF';this.querySelector('.next-arrow').style.borderColor='#5D5FEF';this.querySelector('.next-arrow').style.color='white';" onmouseout="this.style.borderColor='rgba(93,95,239,0.15)';this.style.transform='';this.style.boxShadow='';this.querySelector('.next-arrow').style.background='';this.querySelector('.next-arrow').style.borderColor='rgba(93,95,239,0.2)';this.querySelector('.next-arrow').style.color='#5D5FEF';">
+      <div style="flex:1;min-width:0;">
+        ${nextPost.categories.length ? `<span style="font-size:11px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:#5D5FEF;background:rgba(93,95,239,0.08);padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:0.5rem;">${nextPost.categories[0]}</span>` : ''}
+        <p style="font-size:17px;font-weight:700;color:#1F2937;margin:0 0 0.3rem;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${nextPost.title}</p>
+        <p style="font-size:13px;color:#6B7280;margin:0;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${nextPost.excerpt}</p>
+      </div>
+      <div class="next-arrow" style="flex-shrink:0;width:40px;height:40px;border-radius:50%;border:0.5px solid rgba(93,95,239,0.2);display:flex;align-items:center;justify-content:center;color:#5D5FEF;transition:background 0.2s,border-color 0.2s,color 0.2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+  </div>` : ''}
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
@@ -1084,12 +1114,23 @@ async function main() {
 
     const postDir = path.join("blog", slug);
     if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
+    postData.push({ title, slug, date, categories, excerpt, htmlContent });
+  }
+
+  // 產生每篇文章 HTML（此時 postData 已完整，可計算 nextPost）
+  // postData 已按 PublishedDate 降序排列（最新在前）
+  for (let i = 0; i < postData.length; i++) {
+    const p = postData[i];
+    // 下一篇：往新的方向（index-1），最新一篇(i=0)循環到最舊(最後一篇)
+    const nextIndex = i === 0 ? postData.length - 1 : i - 1;
+    const nextPost = postData.length > 1 ? postData[nextIndex] : null;
+
+    const postDir = path.join("blog", p.slug);
+    if (!fs.existsSync(postDir)) fs.mkdirSync(postDir, { recursive: true });
     fs.writeFileSync(
       path.join(postDir, "index.html"),
-      generatePostHtml(title, date, categories, htmlContent, slug, excerpt)
+      generatePostHtml(p.title, p.date, p.categories, p.htmlContent, p.slug, p.excerpt, nextPost)
     );
-
-    postData.push({ title, slug, date, categories, excerpt });
   }
 
   fs.writeFileSync("blog/index.html", generateBlogIndexHtml(postData));
