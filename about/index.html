@@ -4,17 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>關於我 | Emily's LAB</title>
-  <script src="https://cdn.tailwindcss.com"><\/script>
+  <!-- SEO -->
+  <meta name="description" content="Hi，我是 Emily！Solution Planner、Writer、Creator，喜歡跟人互動，希望創造一個生活練習與分享的園區。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="關於我 | Emily's LAB" />
+  <meta property="og:description" content="Hi，我是 Emily！Solution Planner、Writer、Creator，喜歡跟人互動，希望創造一個生活練習與分享的園區。" />
+  <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/about/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="關於我 | Emily's LAB" />
+  <meta name="twitter:description" content="Hi，我是 Emily！Solution Planner、Writer、Creator。" />
+  <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"><\/script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-67N1NCPZGK');
-  <\/script>
+  </script>
   <style>
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes glowPulse { 0%,100%{box-shadow:0 0 10px rgba(93,95,239,0.25),0 0 0 1px rgba(93,95,239,0.15)}50%{box-shadow:0 0 24px rgba(93,95,239,0.5),0 0 0 1px rgba(93,95,239,0.4)} }
@@ -22,41 +37,54 @@
     @keyframes gradientFlow1 { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     @keyframes gradientFlow2 { 0%{background-position:100% 50%} 50%{background-position:0% 50%} 100%{background-position:100% 50%} }
     @keyframes gradientFlow3 { 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
-
     body { font-family: 'Noto Sans TC', sans-serif; background: #FDFDFF; color: #1d1d1f; overflow-x: hidden; }
-
-    .mesh-gradient {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-      background:
-        radial-gradient(circle at 15% 50%, rgba(93,95,239,0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(93,95,239,0.05) 0%, transparent 50%);
-      background-color: #FDFDFF;
+    .mesh-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(93,95,239,0.1) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(93,95,239,0.05) 0%, transparent 50%); background-color: #FDFDFF; }
+    /* ── About Nav ── */
+    .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.7); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.03); }
+    .nav-container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em; text-decoration: none; color: #1F2937; flex-shrink: 0; }
+    .nav-logo span { color: #5D5FEF; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8; }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .nav-links a:hover { color: #5D5FEF; }
+    .nav-cta { background: #5D5FEF; color: white !important; padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 700; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-burger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #1F2937; border-radius: 2px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; flex-direction: column; background: rgba(255,255,255,0.97); backdrop-filter: blur(25px); padding: 1rem 2rem 1.5rem; border-top: 1px solid rgba(93,95,239,0.08); gap: 0.25rem; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #64748B; text-decoration: none; padding: 0.75rem 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.04); transition: color 0.2s; }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover { color: #5D5FEF; }
+    .nav-mobile .nav-cta { margin-top: 0.75rem; text-align: center; padding: 0.75rem 1.5rem; border-radius: 12px; border-bottom: none !important; }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-container { padding: 1rem 1.25rem; }
     }
-
+    /* ── About 內容 ── */
     .about-main { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem; display: flex; flex-direction: column; gap: 1.25rem; }
-
     .win { background: white; border-radius: 16px; overflow: hidden; opacity: 0; }
     .w1 { animation: fadeUp 0.6s 0.1s forwards, glowPulse 4s 0.7s ease-in-out infinite; }
     .w2 { animation: fadeUp 0.6s 0.25s forwards, glowPulse 4s 0.85s ease-in-out infinite; }
     .w3 { animation: fadeUp 0.6s 0.4s forwards, glowPulse 4s 1s ease-in-out infinite; }
-
     .win-bar { padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.5rem; background-size: 300% 300%; }
     .win-bar.v1 { background-image: linear-gradient(120deg, #5D5FEF, #6366f1, #5D5FEF, #4f46e5); animation: gradientFlow1 15s ease infinite; }
     .win-bar.v2 { background-image: linear-gradient(120deg, #4C1D95, #5b21b6, #4C1D95, #3b0764); animation: gradientFlow2 15s ease infinite; }
     .win-bar.v3 { background-image: linear-gradient(120deg, #7C3AED, #8b5cf6, #7C3AED, #6D28D9); animation: gradientFlow3 15s ease infinite; }
-
     .win-dots { display: flex; gap: 5px; }
     .win-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.35); }
     .win-dot.g { background: rgba(255,255,255,0.85); }
-    .win-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.5rem; }
-
+    .win-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.5rem; }
     .photo-body { display: flex; align-items: center; gap: 2rem; padding: 1.75rem 2rem; }
     .photo-frame { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 2.5px solid rgba(93,95,239,0.4); flex-shrink: 0; animation: photoGlow 4s ease-in-out infinite; }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
     .photo-info h2 { font-size: 24px; font-weight: 900; color: #1d1d1f; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .photo-info .role { font-size: 11px; font-weight: 700; color: #5D5FEF; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-    .photo-info p { font-size: 14px; color: #6e6e73; line-height: 1.6; font-weight: 300; }
-
+    .photo-info .role { font-size: 12px; font-weight: 700; color: #5D5FEF; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .photo-info p { font-size: 15px; color: #374151; line-height: 1.6; font-weight: 400; }
     .facts-body { padding: 0.75rem 1rem; }
     .fact { display: flex; align-items: center; gap: 1.25rem; padding: 0.875rem 1rem; border-radius: 10px; margin-bottom: 0.4rem; cursor: default; transition: all 0.3s; border: 1px solid transparent; }
     .fact:last-child { margin-bottom: 0; }
@@ -65,11 +93,9 @@
     .fact:hover .fact-num { background: #5D5FEF; color: white; box-shadow: 0 0 10px rgba(93,95,239,0.5); }
     .fact-text { font-size: 15px; color: #1d1d1f; line-height: 1.5; transition: color 0.3s; }
     .fact:hover .fact-text { color: #5D5FEF; }
-
     .tags-body { padding: 1.25rem 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .about-tag { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: #EEEDFE; color: #3C3489; letter-spacing: 0.04em; transition: all 0.2s; cursor: default; }
     .about-tag:hover { background: #5D5FEF; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(93,95,239,0.3); }
-
     @media (max-width: 600px) {
       .photo-body { flex-direction: column; text-align: center; }
       .about-main { padding: 2rem 1rem 4rem; }
@@ -78,28 +104,37 @@
 </head>
 <body class="antialiased">
   <div class="mesh-gradient"></div>
-
-  <style>
-    .sticky-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.7); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(0,0,0,0.03); }
-    .nav-container { max-width: 1100px; margin: 0 auto; }
-  </style>
   <nav class="sticky-nav">
-    <div class="nav-container px-8 py-5 flex justify-between items-center">
-      <div class="text-xl font-black tracking-tighter">
-        <a href="/-emily-lu-website-g/" style="text-decoration:none;color:#1F2937;">
-          Emily's LAB<span style="color:#5D5FEF;">.</span>
-        </a>
+    <div class="nav-container">
+      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <div class="nav-links">
+        <a href="/-emily-lu-website-g/about/">關於我</a>
+        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
       </div>
-      <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
-        <a href="/-emily-lu-website-g/about/" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
-        <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
-        <a href="mailto:emily50431@gmail.com" target="_blank" style="background:#5D5FEF;color:white;padding:0.5rem 1.5rem;border-radius:9999px;font-weight:700;text-decoration:none;">聯絡交流</a>
-      </div>
+      <button class="nav-burger" id="navBurger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="/-emily-lu-website-g/about/">關於我</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
     </div>
   </nav>
-
+  <script>
+    (function(){
+      var btn = document.getElementById('navBurger');
+      var menu = document.getElementById('navMobile');
+      if(btn && menu){
+        btn.addEventListener('click', function(){
+          btn.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
   <main class="about-main">
-
     <div class="win w1">
       <div class="win-bar v1">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
@@ -116,25 +151,23 @@
         </div>
       </div>
     </div>
-
     <div class="win w2">
       <div class="win-bar v2">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
         <div class="win-title">關於我的 9 件事</div>
       </div>
       <div class="facts-body">
-        <div class="fact"><div class="fact-num">01</div><div class="fact-text">是一介即將邁入30歲的巨蟹座女子</div></div>
-        <div class="fact"><div class="fact-num">02</div><div class="fact-text">MBTI 是 ESFP 表演者，越熟越可以放心表演自己</div></div>
-        <div class="fact"><div class="fact-num">03</div><div class="fact-text">大學、研究所都唸測量相關，但本人不耐曬，故默默選辦公室工作</div></div>
-        <div class="fact"><div class="fact-num">04</div><div class="fact-text">以前當 Sales，現在當 Presales，資訊軟體業打滾合計約 5 年</div></div>
+        <div class="fact"><div class="fact-num">01</div><div class="fact-text">是一介即將邁入30歲的巨蟹座女子，坐標臺灣北部人</div></div>
+        <div class="fact"><div class="fact-num">02</div><div class="fact-text">MBTI 是 ESFP 表演者，對環境越自在，越可以好好表現自己</div></div>
+        <div class="fact"><div class="fact-num">03</div><div class="fact-text">大學、研究所都唸測量相關，但本人不耐曬，默默選辦公室工作</div></div>
+        <div class="fact"><div class="fact-num">04</div><div class="fact-text">以前是B2B Sales，現在是Presales，資訊軟體業打滾約 5 年</div></div>
         <div class="fact"><div class="fact-num">05</div><div class="fact-text">積極嘗試各種生活，近期著迷上皮克敏、壁球、看電子書</div></div>
-        <div class="fact"><div class="fact-num">06</div><div class="fact-text">人生終極夢想是開一間有個性的豆花店，搭配一隻宇宙可愛的店狗</div></div>
-        <div class="fact"><div class="fact-num">07</div><div class="fact-text">有點怪的喜好是喜歡奇數、質數、開車</div></div>
-        <div class="fact"><div class="fact-num">08</div><div class="fact-text">目前最想去的國家是紐西蘭</div></div>
+        <div class="fact"><div class="fact-num">06</div><div class="fact-text">人生終極夢想是開一間有個性的豆花店，搭配一隻可愛的店狗</div></div>
+        <div class="fact"><div class="fact-num">07</div><div class="fact-text">非常喜歡開車到處晃，覺得在車上冥想放空是一大樂事</div></div>
+        <div class="fact"><div class="fact-num">08</div><div class="fact-text">對於飲食忠貞度異常高，去同間店只會點同樣的食物</div></div>
         <div class="fact"><div class="fact-num">09</div><div class="fact-text">太愛寫東西但不知道放哪，乾脆創一個園地留些數位資產</div></div>
       </div>
     </div>
-
     <div class="win w3">
       <div class="win-bar v3">
         <div class="win-dots"><div class="win-dot"></div><div class="win-dot"></div><div class="win-dot g"></div></div>
@@ -148,22 +181,18 @@
         <div class="about-tag">測量系</div>
         <div class="about-tag">B2B 資訊軟體</div>
         <div class="about-tag">豆花店夢想</div>
-        <div class="about-tag">紐西蘭</div>
+        <div class="about-tag">喜歡跟人交流</div>
         <div class="about-tag">愛狗</div>
         <div class="about-tag">愛開車</div>
         <div class="about-tag">皮克敏</div>
         <div class="about-tag">壁球</div>
-        <div class="about-tag">電子書</div>
         <div class="about-tag">儀式感</div>
         <div class="about-tag">喜歡寫東寫西</div>
       </div>
     </div>
-
   </main>
-
   <footer style="padding:3rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
-    <p style="font-size:9px;font-weight:900;letter-spacing:0.4em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 保持學習、保持快樂</p>
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.3em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
   </footer>
-
 </body>
 </html>
