@@ -96,6 +96,11 @@ const NAV_CSS = `
     .nav-burger { display: flex; }
     .nav-container { padding: 1rem 1.25rem; }
   }
+`;
+
+// ─── 共用 NAV HTML（文章頁、文章列表頁使用）────────────────────────────────────
+const NAV_HTML = `
+  <style>${NAV_CSS}
   .mesh-gradient {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1;
@@ -104,11 +109,7 @@ const NAV_CSS = `
       radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
     background-color: #FDFDFF;
   }
-`;
-
-// ─── 共用 NAV HTML（文章頁、文章列表頁使用）────────────────────────────────────
-const NAV_HTML = `
-  <style>${NAV_CSS}</style>
+  </style>
   <div class="mesh-gradient"></div>
   <nav class="sticky-nav">
     <div class="nav-container">
@@ -407,7 +408,6 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
   <meta name="twitter:title" content="${title} | Emily's LAB" />
   <meta name="twitter:description" content="${descriptionText}" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
-  <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
   <!-- Google tag (gtag.js) -->
@@ -436,7 +436,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       <button class="share-btn" onclick="shareTo('threads','${BASE_URL}/blog/${slug}/')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.468 7.458L19.11 1h-1.328l-4.896 5.695L8.787 1H4l5.928 8.622L4 17h1.328l5.183-6.025L15.213 17H20l-6.532-9.542zM11.19 10.12l-.601-.859L5.8 1.875h2.059l3.86 5.52.601.859 5.016 7.17h-2.058l-4.087-5.304z"/></svg>
       </button>
-      <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')" id="copyBtnTop">
+      <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')"
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       </button>
     </div>
@@ -459,7 +459,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
         <button class="share-btn" onclick="shareTo('threads','${BASE_URL}/blog/${slug}/')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.468 7.458L19.11 1h-1.328l-4.896 5.695L8.787 1H4l5.928 8.622L4 17h1.328l5.183-6.025L15.213 17H20l-6.532-9.542zM11.19 10.12l-.601-.859L5.8 1.875h2.059l3.86 5.52.601.859 5.016 7.17h-2.058l-4.087-5.304z"/></svg>
         </button>
-        <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')" id="copyBtnBottom">
+        <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')"
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </button>
       </div>
@@ -646,7 +646,6 @@ function generateBlogIndexHtml(posts) {
   <meta name="twitter:title" content="文章 | Emily's LAB" />
   <meta name="twitter:description" content="Emily 的文章分享，涵蓋 AI 應用、職場成長、生活實作等主題。" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
-  <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
   <!-- Google tag (gtag.js) -->
@@ -923,7 +922,6 @@ function generateAboutHtml() {
   <meta name="twitter:title" content="關於我 | Emily's LAB" />
   <meta name="twitter:description" content="Hi，我是 Emily！Solution Planner、Writer、Creator。" />
   <meta name="twitter:image" content="${BASE_URL}/og-image.png" />
-  <script src="https://cdn.tailwindcss.com"><\/script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
   <!-- Google tag (gtag.js) -->
