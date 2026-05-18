@@ -330,7 +330,7 @@
         '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
         '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
         '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
-        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;}.post-nav-divider{display:none;}.post-nav-item.prev{border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next{align-items:flex-start;text-align:left;}.post-nav-item.next .post-nav-direction{flex-direction:row;}}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;display:flex;flex-direction:column;}.post-nav-divider{display:none;}.post-nav-item.next{order:1;align-items:flex-start;text-align:left;border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.prev{order:2;border-bottom:none;}.post-nav-empty{order:1;}}' +
         '</style>' +
         '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
     })();
