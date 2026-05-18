@@ -321,9 +321,9 @@
         '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
         '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
         '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
-        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;}.post-nav-divider{display:none;}.post-nav-item.prev{border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next{align-items:flex-start;text-align:left;}.post-nav-item.next .post-nav-direction{flex-direction:row;}}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;}.post-nav-divider{display:none;}.post-nav-item.next{align-items:flex-start;text-align:left;}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.next{border-bottom:1px solid rgba(93,95,239,0.1);}}' +
         '</style>' +
-        '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
+        '<div class="post-nav-wrap"><div class="post-nav">' + nextHtml + divider + prevHtml + '</div></div>';
     })();
   </script>
     <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
