@@ -436,7 +436,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
       <button class="share-btn" onclick="shareTo('threads','${BASE_URL}/blog/${slug}/')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.468 7.458L19.11 1h-1.328l-4.896 5.695L8.787 1H4l5.928 8.622L4 17h1.328l5.183-6.025L15.213 17H20l-6.532-9.542zM11.19 10.12l-.601-.859L5.8 1.875h2.059l3.86 5.52.601.859 5.016 7.17h-2.058l-4.087-5.304z"/></svg>
       </button>
-      <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')"
+      <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       </button>
     </div>
@@ -459,7 +459,7 @@ function generatePostHtml(title, date, categories, content, slug = '', excerpt =
         <button class="share-btn" onclick="shareTo('threads','${BASE_URL}/blog/${slug}/')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.468 7.458L19.11 1h-1.328l-4.896 5.695L8.787 1H4l5.928 8.622L4 17h1.328l5.183-6.025L15.213 17H20l-6.532-9.542zM11.19 10.12l-.601-.859L5.8 1.875h2.059l3.86 5.52.601.859 5.016 7.17h-2.058l-4.087-5.304z"/></svg>
         </button>
-        <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')"
+        <button class="share-btn" onclick="copyLink('${BASE_URL}/blog/${slug}/')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </button>
       </div>
@@ -614,7 +614,7 @@ function generateBlogIndexHtml(posts) {
         .map((c) => `<span class="list-tag" onclick="filterTagFromPill('${c}')">${c}</span>`)
         .join("");
       return `
-    <a class="post-list-item" data-tag="${firstTag}" href="${BASE_URL}/blog/${p.slug}/">
+    <a class="post-list-item" data-tags="${p.categories.join(',')}" href="${BASE_URL}/blog/${p.slug}/">
       <div class="post-list-meta">
         <span class="post-list-date">${p.date}</span>
         <div class="post-list-tags">${categoryTags}</div>
@@ -680,7 +680,8 @@ function generateBlogIndexHtml(posts) {
       document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.post-list-item').forEach(item => {
-        item.classList.toggle('hidden', tag !== '全部' && item.dataset.tag !== tag);
+        const tags = item.dataset.tags ? item.dataset.tags.split(',') : [];
+        item.classList.toggle('hidden', tag !== '全部' && !tags.includes(tag));
       });
     }
     function filterTagFromPill(tag) {
