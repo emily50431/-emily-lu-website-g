@@ -169,7 +169,7 @@
     <h1 class="section-title">所有文章</h1>
     <div class="tag-bar"><button class="tag-filter-btn active" onclick="filterTag('全部', this)">全部</button><button class="tag-filter-btn" onclick="filterTag('AI相關', this)">AI相關</button><button class="tag-filter-btn" onclick="filterTag('百工百業', this)">百工百業</button></div>
     <div class="post-list" id="post-list">
-    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/">
+    <a class="post-list-item" data-tags="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-05-14</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
@@ -177,7 +177,7 @@
       <div class="post-list-title">百工百業project#3：會展專員 MICE Industry Project Manager</div>
       <div class="post-list-excerpt">你知道會展專員一天要做什麼嗎？</div>
     </a>
-    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/account-officer/">
+    <a class="post-list-item" data-tags="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/account-officer/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-05-08</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
@@ -185,7 +185,7 @@
       <div class="post-list-title">百工百業project#2：個金行員 Account Officer</div>
       <div class="post-list-excerpt">你知道個金一天要做什麼嗎？</div>
     </a>
-    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/online-clothing-shopping-owner/">
+    <a class="post-list-item" data-tags="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/online-clothing-shopping-owner/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-30</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
@@ -193,7 +193,7 @@
       <div class="post-list-title">百工百業project#1：服飾網拍老闆娘 Online Clothing Shopping Owner</div>
       <div class="post-list-excerpt">你知道網拍一天要做什麼嗎？</div>
     </a>
-    <a class="post-list-item" data-tag="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/what-is-your-job/">
+    <a class="post-list-item" data-tags="百工百業" href="https://emily50431.github.io/-emily-lu-website-g/blog/what-is-your-job/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-24</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('百工百業')">百工百業</span></div>
@@ -201,7 +201,7 @@
       <div class="post-list-title">百工百業project：前傳</div>
       <div class="post-list-excerpt">世界這麼大，有趣的職業這麼多，聊聊你的工作，讓更多人認識你的世界吧！</div>
     </a>
-    <a class="post-list-item" data-tag="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/make-website-with-ai-tools/">
+    <a class="post-list-item" data-tags="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/make-website-with-ai-tools/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-22</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('AI相關')">AI相關</span></div>
@@ -209,7 +209,7 @@
       <div class="post-list-title">AI 工具實測：Vibe Coding實錄</div>
       <div class="post-list-excerpt">不懂程式也能做網站！記錄我用 AI vibe coding 從零打造個人網站的完整過程，涵蓋工具選擇、系統架構、介面設計與實際踩坑經驗，想用 AI 做網站的你一定要看。</div>
     </a>
-    <a class="post-list-item" data-tag="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/ipas-ai-planner-beginner/">
+    <a class="post-list-item" data-tags="AI相關" href="https://emily50431.github.io/-emily-lu-website-g/blog/ipas-ai-planner-beginner/">
       <div class="post-list-meta">
         <span class="post-list-date">2026-04-18</span>
         <div class="post-list-tags"><span class="list-tag" onclick="filterTagFromPill('AI相關')">AI相關</span></div>
@@ -226,7 +226,8 @@
       document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.post-list-item').forEach(item => {
-        item.classList.toggle('hidden', tag !== '全部' && item.dataset.tag !== tag);
+        const tags = item.dataset.tags ? item.dataset.tags.split(',') : [];
+        item.classList.toggle('hidden', tag !== '全部' && !tags.includes(tag));
       });
     }
     function filterTagFromPill(tag) {
