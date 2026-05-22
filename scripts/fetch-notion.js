@@ -853,7 +853,7 @@ function generateHomeHtml(posts) {
                   Solution Planner · Writer · Creator
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-[1.15] tracking-tight text-slate-800">
-                    用人生動手實作<br><span class="text-[#5D5FEF]">創造一些有趣.</span>
+                    用人生做實驗<br><span class="text-[#5D5FEF]">創造一些有趣.</span>
                 </h1>
                 <p class="text-base text-slate-400 max-w-md mb-10 leading-relaxed">
                     Hello 我是 Emily，一個靠資訊軟體業養活的女子，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
