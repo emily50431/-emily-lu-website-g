@@ -853,10 +853,10 @@ function generateHomeHtml(posts) {
                   Solution Planner · Writer · Creator
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-[1.15] tracking-tight text-slate-800">
-                    用人生實作<br><span class="text-[#5D5FEF]">創造影響力.</span>
+                    用人生動手實作<br><span class="text-[#5D5FEF]">創造一些有趣.</span>
                 </h1>
                 <p class="text-base text-slate-400 max-w-md mb-10 leading-relaxed">
-                    Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
+                    Hello 我是 Emily，一個靠資訊軟體業養活的女子，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
                 </p>
                 <div class="flex gap-4">
                     <a href="/-emily-lu-website-g/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
@@ -1064,7 +1064,7 @@ function generateAboutHtml() {
         <div class="fact"><div class="fact-num">01</div><div class="fact-text">是一介即將邁入30歲的巨蟹座女子，坐標臺灣北部人</div></div>
         <div class="fact"><div class="fact-num">02</div><div class="fact-text">MBTI 是 ESFP 表演者，對環境越自在，越可以好好表現自己</div></div>
         <div class="fact"><div class="fact-num">03</div><div class="fact-text">大學、研究所都唸測量相關，但本人不耐曬，默默選辦公室工作</div></div>
-        <div class="fact"><div class="fact-num">04</div><div class="fact-text">以前是B2B Sales，現在是Presales，資訊軟體業打滾約 5 年</div></div>
+        <div class="fact"><div class="fact-num">04</div><div class="fact-text">在資訊軟體業做Sales相關，打滾資歷約 5 年，持續有學不完的東西</div></div>
         <div class="fact"><div class="fact-num">05</div><div class="fact-text">積極嘗試各種生活，近期著迷上皮克敏、壁球、看電子書</div></div>
         <div class="fact"><div class="fact-num">06</div><div class="fact-text">人生終極夢想是開一間有個性的豆花店，搭配一隻可愛的店狗</div></div>
         <div class="fact"><div class="fact-num">07</div><div class="fact-text">非常喜歡開車到處晃，覺得在車上冥想放空是一大樂事</div></div>
