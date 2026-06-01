@@ -242,23 +242,122 @@
       <div class="post-list-title">如何在60日內取得AI應用規劃師初級證照</div>
       <div class="post-list-excerpt">非本科也能考過！完整記錄 iPAS AI應用規劃師初級證照 60天備考過程，包含報名資訊、讀書方法，附免費筆記下載，跟著做你也可以高分通過！</div>
     </a></div>
+    <div class="pagination" id="pagination"></div>
   </main>
   <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
     <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
   </footer>
+  <style>
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 2.5rem 0 1rem;
+    }
+    .page-btn {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(93,95,239,0.25);
+      cursor: pointer;
+      color: #6B7280;
+      background: #fff;
+      transition: color .2s, background .2s, border-color .2s, transform .15s cubic-bezier(.34,1.56,.64,1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-btn:hover:not(:disabled) {
+      color: #5D5FEF;
+      border-color: #5D5FEF;
+      background: rgba(93,95,239,0.06);
+    }
+    .page-btn.active {
+      color: #fff;
+      background: #5D5FEF;
+      border-color: #5D5FEF;
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(93,95,239,0.25);
+    }
+    .page-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .page-arrow {
+      width: 38px;
+      height: 38px;
+    }
+  </style>
   <script>
+    var POSTS_PER_PAGE = 10;
+    var currentPage = 1;
+    var currentTag = '全部';
+
+    function getFilteredItems() {
+      return [...document.querySelectorAll('.post-list-item')].filter(item => {
+        if (currentTag === '全部') return true;
+        const tags = item.dataset.tags ? item.dataset.tags.split(',') : [];
+        return tags.includes(currentTag);
+      });
+    }
+
+    function renderPage(page) {
+      currentPage = page;
+      var filtered = getFilteredItems();
+      var total = filtered.length;
+      var totalPages = Math.ceil(total / POSTS_PER_PAGE);
+      var start = (page - 1) * POSTS_PER_PAGE;
+      var end = start + POSTS_PER_PAGE;
+
+      // 隱藏所有，再顯示當頁的
+      document.querySelectorAll('.post-list-item').forEach(item => item.classList.add('hidden'));
+      filtered.slice(start, end).forEach(item => item.classList.remove('hidden'));
+
+      renderPagination(totalPages);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderPagination(totalPages) {
+      var pg = document.getElementById('pagination');
+      if (totalPages <= 1) { pg.innerHTML = ''; return; }
+
+      var html = '';
+      // 上一頁
+      html += '<button class="page-btn page-arrow" onclick="renderPage(' + (currentPage - 1) + ')" ' + (currentPage === 1 ? 'disabled' : '') + '>' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>' +
+        '</button>';
+
+      // 頁碼
+      for (var i = 1; i <= totalPages; i++) {
+        html += '<button class="page-btn' + (i === currentPage ? ' active' : '') + '" onclick="renderPage(' + i + ')">' + i + '</button>';
+      }
+
+      // 下一頁
+      html += '<button class="page-btn page-arrow" onclick="renderPage(' + (currentPage + 1) + ')" ' + (currentPage === totalPages ? 'disabled' : '') + '>' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
+        '</button>';
+
+      pg.innerHTML = html;
+    }
+
     function filterTag(tag, btn) {
       document.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.post-list-item').forEach(item => {
-        const tags = item.dataset.tags ? item.dataset.tags.split(',') : [];
-        item.classList.toggle('hidden', tag !== '全部' && !tags.includes(tag));
-      });
+      currentTag = tag;
+      renderPage(1);
     }
+
     function filterTagFromPill(tag) {
       const btn = [...document.querySelectorAll('.tag-filter-btn')].find(b => b.textContent === tag);
       if (btn) filterTag(tag, btn);
     }
+
+    // 初始化第一頁
+    renderPage(1);
   </script>
 </body>
 </html>
