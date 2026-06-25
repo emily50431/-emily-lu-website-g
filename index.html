@@ -3,216 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emily's LAB｜Planner·Writer·Creator</title>
-    <!-- SEO -->
-    <meta name="description" content="Emily's LAB — 用人生實作，創造影響力。Solution Planner、Writer、Creator，分享 AI 應用、職場成長與生活實作。" />
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Emily's LAB｜Planner·Writer·Creator" />
-    <meta property="og:description" content="用人生實作，創造影響力。分享 AI 應用、職場成長與生活實作。" />
-    <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
-    <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/" />
-    <meta property="og:site_name" content="Emily's LAB" />
-    <meta property="og:locale" content="zh_TW" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Emily's LAB｜Planner·Writer·Creator" />
-    <meta name="twitter:description" content="用人生實作，創造影響力。分享 AI 應用、職場成長與生活實作。" />
-    <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+    <title>Emily's LAB｜Planner·Writer·Creator </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans TC', sans-serif; background-color: #ffffff; overflow-x: hidden; color: #1F2937; }
+
+        /* 復刻「暈染紫色」背景 */
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background:
+            background: 
                 radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
             background-color: #FDFDFF;
         }
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 15px 2px rgba(93, 95, 239, 0.2); }
-            50% { box-shadow: 0 0 25px 5px rgba(93, 95, 239, 0.4); }
+
+        /* --- 深化紫色呼吸動畫 --- */
+        @keyframes glowPulse { 
+            0%, 100% { 
+                box-shadow: 0 0 15px 2px rgba(93, 95, 239, 0.2); 
+            } 
+            50% { 
+                box-shadow: 0 0 25px 5px rgba(93, 95, 239, 0.4); 
+            } 
         }
-        @keyframes dotPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
-        @keyframes tagSlide { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
-        .hero-tag { display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:900; letter-spacing:.1em; text-transform:uppercase; color:#5D5FEF; background:rgba(93,95,239,0.08); border:1px solid rgba(93,95,239,0.15); padding:5px 12px; border-radius:20px; margin-bottom:1.5rem; animation:tagSlide .5s .3s both; }
-        .hero-dot { width:6px; height:6px; border-radius:50%; background:#5D5FEF; animation:dotPulse 2s infinite; flex-shrink:0; }
-        /* ── 首頁 Nav ── */
+
+        /* 置頂導覽列 */
         .sticky-nav {
             position: sticky; top: 0; z-index: 100;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(0,0,0,0.03);
         }
-        .nav-container { max-width: 1100px; margin: 0 auto; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em; text-decoration: none; color: #1F2937; flex-shrink: 0; }
-        .nav-logo span { color: #5D5FEF; }
-        .nav-links { display: flex; align-items: center; gap: 2.5rem; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8; }
-        .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
-        .nav-links a:hover { color: #5D5FEF; }
-        .nav-cta { background: #5D5FEF; color: white !important; padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 700; white-space: nowrap; }
-        .nav-cta:hover { opacity: 0.88; }
-        .nav-burger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
-        .nav-burger span { display: block; width: 22px; height: 2px; background: #1F2937; border-radius: 2px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
-        .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-        .nav-mobile { display: none; flex-direction: column; background: rgba(255,255,255,0.97); backdrop-filter: blur(25px); padding: 1rem 2rem 1.5rem; border-top: 1px solid rgba(93,95,239,0.08); gap: 0.25rem; }
-        .nav-mobile.open { display: flex; }
-        .nav-mobile a { font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #64748B; text-decoration: none; padding: 0.75rem 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.04); transition: color 0.2s; }
-        .nav-mobile a:last-child { border-bottom: none; }
-        .nav-mobile a:hover { color: #5D5FEF; }
-        .nav-mobile .nav-cta { margin-top: 0.75rem; text-align: center; padding: 0.75rem 1.5rem; border-radius: 12px; border-bottom: none !important; }
-        @media (max-width: 640px) {
-          .nav-links { display: none; }
-          .nav-burger { display: flex; }
-          .nav-container { padding: 1rem 1.25rem; }
-        }
-        /* ── 其他樣式 ── */
+        .nav-container { max-width: 1100px; margin: 0 auto; }
+
         .photo-base {
             background: rgba(243, 244, 246, 0.6);
-            border-radius: 3.5rem; padding: 2.5rem;
-            width: 100%; max-width: 320px; margin-left: auto;
+            border-radius: 3.5rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 320px;
+            margin-left: auto;
         }
+
+        /* --- 照片卡片基礎與懸停特效 --- */
         .photo-card {
-            background: #ffffff; border-radius: 2.5rem;
-            width: 100%; aspect-ratio: 4/5;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden; border: 1.5px solid rgba(93, 95, 239, 0.3);
+            background: #ffffff;
+            border-radius: 2.5rem;
+            width: 100%;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center; justify-content: center;
+            overflow: hidden;
+            
+            /* 基礎狀態：輕微紫色呼吸 */
+            border: 1.5px solid rgba(93, 95, 239, 0.3);
             animation: glowPulse 4s ease-in-out infinite;
+            
+            /* 平滑過渡效果 */
             transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative; z-index: 1;
+            position: relative;
+            z-index: 1;
         }
+
+        /* --- 游標懸停時：微調後的優雅紫色螢光 --- */
         .photo-card:hover {
+            /* 向上浮動幅度稍微減小，更穩重 */
             transform: translateY(-10px) scale(1.01);
+            
+            /* 縮小發光範圍，改為細緻的邊緣感 */
             border-color: rgba(93, 95, 239, 0.6);
-            box-shadow: 0 0 15px 4px rgba(93,95,239,0.4), 0 0 30px 10px rgba(93,95,239,0.15), 0 15px 30px rgba(0,0,0,0.08);
-            animation: none;
+            box-shadow: 
+                0 0 15px 4px rgba(93, 95, 239, 0.4),   /* 核心發光縮小 */
+                0 0 30px 10px rgba(93, 95, 239, 0.15), /* 外圍擴散縮小 */
+                0 15px 30px rgba(0, 0, 0, 0.08);       /* 底部投影更淡 */
+            
+            animation: none; 
         }
-        .photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; transform: scale(1.3); pointer-events: none; }
-        .spec-item { background: #ffffff; border-radius: 2rem; transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); border: 1px solid rgba(0,0,0,0.03); }
-        .spec-item:hover { transform: translateY(-15px); box-shadow: 0 40px 80px -15px rgba(93,95,239,0.15); border-color: #5D5FEF; }
-        .btn-brand { background: #5D5FEF; color: white; transition: all 0.3s; }
-        .btn-brand:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(93,95,239,0.3); }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 10%;
+            transform: scale(1.3);
+            pointer-events: none; 
+        }
+
+        /* 中間區塊：資訊條 */
+        .spec-item {
+            background: #ffffff;
+            border-radius: 2rem;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .spec-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px -15px rgba(93, 95, 239, 0.15);
+            border-color: #5D5FEF;
+        }
+
+        .btn-brand {
+            background: #5D5FEF;
+            color: white; transition: all 0.3s;
+        }
+        .btn-brand:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(93, 95, 239, 0.3); }
+
         .reveal { opacity: 0; transform: translateY(15px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-67N1NCPZGK');
-  </script>
 </head>
 <body class="antialiased">
+
     <div class="mesh-gradient"></div>
+
     <nav class="sticky-nav">
-        <div class="nav-container">
-            <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
-            <div class="nav-links">
-                <a href="/-emily-lu-website-g/about/">關於我</a>
-                <a href="/-emily-lu-website-g/blog/">文章分享</a>
-                <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+        <div class="nav-container px-8 py-5 flex justify-between items-center">
+            <div class="text-xl font-black tracking-tighter">Emily's LAB<span class="text-[#5D5FEF]">.</span></div>
+            <div class="flex items-center space-x-10 text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase">
+                <a href="#" class="hover:text-[#5D5FEF] transition-colors">關於我</a>
+                <a href="/-emily-lu-website-g/blog/" class="hover:text-[#5D5FEF] transition-colors">文章分享</a>
+                <a href="#" class="btn-brand px-6 py-2 rounded-full text-white font-bold">聯絡交流</a>
             </div>
-            <button class="nav-burger" id="navBurger" aria-label="開啟選單">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="nav-mobile" id="navMobile">
-            <a href="/-emily-lu-website-g/about/">關於我</a>
-            <a href="/-emily-lu-website-g/blog/">文章分享</a>
-            <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
         </div>
     </nav>
+
     <main class="max-w-5xl mx-auto px-8 pt-20 pb-32">
         <div class="flex flex-col lg:flex-row items-center gap-16 mb-40">
             <div class="lg:w-3/5 reveal active">
-                <div class="hero-tag">
-                  <span class="hero-dot"></span>
-                  Solution Planner · Writer · Creator
+                <div class="inline-block px-3 py-1 mb-6 rounded-full bg-indigo-50 border border-indigo-100 text-[#5D5FEF] text-[9px] font-black tracking-widest uppercase">
+                   Solution Planner·Writer·Creator
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-[1.15] tracking-tight text-slate-800">
-                    用人生做實驗<br><span class="text-[#5D5FEF]">創造一些有趣.</span>
+                    用人生實作<br><span class="text-[#5D5FEF]">創造影響力.</span>
                 </h1>
                 <p class="text-base text-slate-400 max-w-md mb-10 leading-relaxed">
-                    Hello 我是 Emily，一個靠資訊軟體業養活的女子，喜歡跟人互動聊聊天，希望創造一個生活練習與分享的園區。
+                    Hello 我是 Emily，擁有5年B2B資訊軟體解決方案規劃經歷，喜歡有溫度的交流與思考，希望創造一個生活練習與分享的園區。
                 </p>
                 <div class="flex gap-4">
                     <a href="/-emily-lu-website-g/blog/" class="btn-brand px-10 py-3.5 rounded-xl font-bold text-sm">查看分享</a>
-                    <a href="/-emily-lu-website-g/about/" class="px-10 py-3.5 border rounded-xl font-bold text-sm transition" style="border-color:#E5E7EB;color:#1F2937;background:transparent;text-decoration:none;display:inline-block;transition:all 0.3s;" onmouseover="this.style.borderColor='#5D5FEF';this.style.color='#5D5FEF';this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 20px rgba(93,95,239,0.15)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.color='#1F2937';this.style.transform='';this.style.boxShadow=''">關於我</a>
+                    <a href="#" class="px-10 py-3.5 border border-slate-200 rounded-xl font-bold text-sm bg-white/40 hover:bg-white transition text-slate-500 shadow-sm">關於我</a>
                 </div>
             </div>
+            
             <div class="lg:w-2/5 reveal active" style="transition-delay: 0.3s;">
                 <div class="photo-base">
                    <div class="photo-card">
-                        <img src="/-emily-lu-website-g/profile.jpg" alt="Emily Lu">
+                        <img src="profile.jpg" alt="Emily Lu">
                     </div>
                 </div>
             </div>
         </div>
+
         <section id="work" class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
-            
-      <div class="spec-item p-10 reveal" style="transition-delay: 0s; display:flex; flex-direction:column;">
-        <div class="mb-8 flex items-center justify-between">
-          <span class="text-[12px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">百工百業</span>
-          <div class="text-[12px] font-black text-slate-200 uppercase">01 /</div>
-        </div>
-        <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">百工百業project#8：公共關係 Public Relations</h3>
-        <p class="text-slate-400 text-[13px] leading-relaxed" style="flex:1;">新品上市、財報發布、公關危機，每一個公司對外的關鍵時刻，背後都有公關在統籌。他們的工作，就是讓品牌故事被正確地說出去。</p>
-        <div style="margin-top:2.5rem;">
-          <a href="https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/" class="text-[12px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
-        </div>
-      </div>
-      <div class="spec-item p-10 reveal" style="transition-delay: 0.15s; display:flex; flex-direction:column;">
-        <div class="mb-8 flex items-center justify-between">
-          <span class="text-[12px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">百工百業</span>
-          <div class="text-[12px] font-black text-slate-200 uppercase">02 /</div>
-        </div>
-        <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">百工百業project#7：期貨交易員 Futures Trader</h3>
-        <p class="text-slate-400 text-[13px] leading-relaxed" style="flex:1;">買賣的學問，這行沒有人會教你。同事是競爭者，策略是機密，每天只能靠自己在市場裡找出路，每一個消息都可能影響交易員今天的成績單。</p>
-        <div style="margin-top:2.5rem;">
-          <a href="https://emily50431.github.io/-emily-lu-website-g/blog/futures-trader/" class="text-[12px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
-        </div>
-      </div>
-      <div class="spec-item p-10 reveal" style="transition-delay: 0.3s; display:flex; flex-direction:column;">
-        <div class="mb-8 flex items-center justify-between">
-          <span class="text-[12px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">百工百業</span>
-          <div class="text-[12px] font-black text-slate-200 uppercase">03 /</div>
-        </div>
-        <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">百工百業project#6：廠務助理 Warehouse Assistant</h3>
-        <p class="text-slate-400 text-[13px] leading-relaxed" style="flex:1;">一隻烤雞要出現在架上，要靠廠務助理的協助。他的一天，在分店、廠、總公司之間來回確認，讓對的貨出現在對的地方。</p>
-        <div style="margin-top:2.5rem;">
-          <a href="https://emily50431.github.io/-emily-lu-website-g/blog/warehouse-assistant/" class="text-[12px] font-black text-[#5D5FEF] uppercase tracking-widest" style="text-decoration:none;">Read More →</a>
-        </div>
-      </div>
+            <div class="spec-item p-10">
+                <div class="mb-8 flex items-center justify-between">
+                    <span class="text-[9px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">Case Study</span>
+                    <div class="text-[10px] font-black text-slate-200 uppercase">01 /</div>
+                </div>
+                <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">Claude & Gemini<br>官網產出實記</h3>
+                <p class="text-slate-400 text-[13px] leading-relaxed mb-10">看 AI 如何從團隊夥伴，從 0 到 1 打造品牌空間。</p>
+                <div class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest">Read More →</div>
+            </div>
+
+            <div class="spec-item p-10" style="transition-delay: 0.15s;">
+                <div class="mb-8 flex items-center justify-between">
+                    <span class="text-[9px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">Certification</span>
+                    <div class="text-[10px] font-black text-slate-200 uppercase">02 /</div>
+                </div>
+                <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">iPAS AI 應用<br>規劃師考取</h3>
+                <p class="text-slate-400 text-[13px] leading-relaxed mb-10">梳理考試重點，分享 B2B 角度的 AI 應用與知識體系。</p>
+                <div class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest">View Notes →</div>
+            </div>
+
+            <div class="spec-item p-10" style="transition-delay: 0.3s;">
+                <div class="mb-8 flex items-center justify-between">
+                    <span class="text-[9px] font-black tracking-widest text-[#5D5FEF] bg-indigo-50/50 px-3 py-1 rounded-full uppercase">Mindset</span>
+                    <div class="text-[10px] font-black text-slate-200 uppercase">03 /</div>
+                </div>
+                <h3 class="text-2xl font-black tracking-tight mb-4 leading-tight">保持快樂正面<br>的面對這世界</h3>
+                <p class="text-slate-400 text-[13px] leading-relaxed mb-10">「喜歡做有意義的交流」，這是規劃中最核心的感性力量。</p>
+                <div class="text-[10px] font-black text-[#5D5FEF] uppercase tracking-widest">Connect →</div>
+            </div>
         </section>
+
     </main>
+
     <footer class="py-20 text-center border-t border-slate-100 bg-white/20">
-        <p class="text-[12px] font-black tracking-[0.1em] text-slate-300 uppercase">
-            © 2026 EMILY LU — 貢獻所長、假以時日、終有所得
+        <p class="text-[9px] font-black tracking-[0.4em] text-slate-300 uppercase">
+            © 2026 EMILY LU — 保持快樂、保持思考
         </p>
     </footer>
+
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // 漢堡選單
-        (function(){
-          var btn = document.getElementById('navBurger');
-          var menu = document.getElementById('navMobile');
-          if(btn && menu){
-            btn.addEventListener('click', function(){
-              btn.classList.toggle('open');
-              menu.classList.toggle('open');
-            });
-          }
-        })();
     </script>
+
 </body>
 </html>
