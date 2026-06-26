@@ -1291,4 +1291,7 @@ ${sitemapUrls.join('\n')}
   console.log(`完成！共產生 ${postData.length} 篇文章，sitemap.xml 已產生`);
 }
 
-main().catch(console.error);
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
