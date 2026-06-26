@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>百工百業project#8：公共關係 Public Relations | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="新品上市、財報發布、公關危機，每一個公司對外的關鍵時刻，背後都有公關在統籌。他們的工作，就是讓品牌故事被正確地說出去。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="百工百業project#8：公共關係 Public Relations | Emily's LAB" />
+  <meta property="og:description" content="新品上市、財報發布、公關危機，每一個公司對外的關鍵時刻，背後都有公關在統籌。他們的工作，就是讓品牌故事被正確地說出去。" />
+  <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="百工百業project#8：公共關係 Public Relations | Emily's LAB" />
+  <meta name="twitter:description" content="新品上市、財報發布、公關危機，每一個公司對外的關鍵時刻，背後都有公關在統籌。他們的工作，就是讓品牌故事被正確地說出去。" />
+  <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  </script>
+</head>
+<body class="antialiased">
+  
+  <style>
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .nav-container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em;
+    text-decoration: none; color: #1F2937; flex-shrink: 0;
+  }
+  .nav-logo span { color: #5D5FEF; }
+  /* 桌面選單 */
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8;
+  }
+  .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+  .nav-links a:hover { color: #5D5FEF; }
+  .nav-cta {
+    background: #5D5FEF; color: white !important;
+    padding: 0.5rem 1.5rem; border-radius: 9999px;
+    font-weight: 700; text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+  /* 漢堡按鈕 */
+  .nav-burger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block; width: 22px; height: 2px;
+    background: #1F2937; border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+  /* 漢堡開啟狀態 */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* 手機下拉選單 */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(25px);
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(93,95,239,0.08);
+    gap: 0.25rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #64748B; text-decoration: none;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: #5D5FEF; }
+  .nav-mobile .nav-cta {
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border-bottom: none !important;
+  }
+  /* RWD 斷點 */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .nav-container { padding: 1rem 1.25rem; }
+  }
+
+  .mesh-gradient {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+    background-color: #FDFDFF;
+  }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <div class="nav-links">
+        <a href="/-emily-lu-website-g/about/">關於我</a>
+        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="/-emily-lu-website-g/about/">關於我</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+    </div>
+  </nav>
+  <script>
+    (function(){
+      var btn = document.getElementById('navBurger');
+      var menu = document.getElementById('navMobile');
+      if(btn && menu){
+        btn.addEventListener('click', function(){
+          btn.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+  <main class="post-wrap">
+    <div class="post-meta">
+      <span class="post-tag">百工百業</span>
+      <span class="post-date">2026-06-19</span>
+    </div>
+    <h1 class="post-title">百工百業project#8：公共關係 Public Relations</h1>
+
+    <!-- 標題下方分享列 -->
+    <div class="share-bar share-bar--top">
+      <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </button>
+      <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+        <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+      </button>
+      <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+
+    <div class="post-content"><p>現在很常一不小心就有炎上新聞，新聞也會講說xxx公司面臨公關危機，所謂的公關，其實指的是協助公司經營形象的專業人士，除了公關危機之外，也需要幫公司留意好的曝光機會，歡迎光臨公關的一天👋</p>
+<h2>個人背景</h2>
+<div class="info-card info-card--blue"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="info-card__body"><p class="info-card__label">基本資料</p><div class="info-card__row"><p class="info-card__title">目前產業</p><p class="info-card__desc">軟體資訊業</p></div><div class="info-card__row"><p class="info-card__title">職稱</p><p class="info-card__desc">資深公關</p></div><div class="info-card__row"><p class="info-card__title">學歷背景</p><p class="info-card__desc">倫敦大學學院（UCL）碩士</p></div><div class="info-card__row"><p class="info-card__title">工作經歷</p><p class="info-card__desc">在公關領域已有約5年左右的時間了。會入這行是因為當初在求職徵才時，工作內容有提到「寫作」、「翻譯」、「電子消費產業」，覺得滿有趣的就去實習了，實習完後自己也有興趣，就繼續下去了</p></div><div class="info-card__row"><p class="info-card__title">來點簡單的自我介紹</p><p class="info-card__desc">極度怕生的I人，工作卻是刻板印象中很E的公關。出社會前幾年有點完美主義，想把每件事做到盡善盡美，後來學會適時放過自己，留點餘裕，反而能走得更長遠。閱讀和動漫是生活中的養分，假日喜歡遠離人群親近大自然，或單純待在家享受 Me Time。年近三十最大的體悟是：人生不是只有工作，能照顧好自己、維持喜歡的生活節奏，也同樣重要（握拳）</p></div></div></div>
+<h2>工作秘辛</h2>
+<div class="hl-block">別人最常問你關於這份工作的一個問題是？</div>
+<p>公關是不是在做八大行業？</p>
+<p>👉 答案是：完全不是！公關就是Public Relations，是公司對外關係經營，是正派行業！</p>
+<div class="hl-block">描述一下你的一天——你通常在做什麼？</div>
+<p><mark class="hl-yellow"><strong>對外露出經營、危機處理與機動性任務</strong></mark></p>
+<p><strong>【對外露出經營】</strong></p>
+<p><strong>1️⃣ 新聞稿撰寫</strong>｜有固定的時間點需要協助發新聞稿，比如：每月公司定期活動、每季財報、股東會新聞稿、年報，需要對公司的方針與自家產品有所了解，寫出貼切 + 合宜 + 具公司代表性的文章。</p>
+<p>2️⃣ <strong>通告事宜處理｜</strong>當收到外部活動的通告邀請，會需要對活動內容去做確認，包含像是這個活動的規模、TA主要會是誰、其他主講人的背景、主題合不合適，再請對應的C-level長官協助出席參加，並且提供講稿給長官；正式活動也需要到場，觀摩其他人的優點，以及也可以觀察長官們的解讀與觀點。</p>
+<p>3️⃣ <strong>年節贈禮選物</strong>｜逢年過節時需要製作禮盒，因為這也反映公司的一個形象，會需要跟高階主管討論今年的主題是什麼，再按照這個主題去做合適的禮盒的發想，像是禮盒裡面的內容物、包裝、設計主題等等，做出一份能夠代表公司心意的年節禮盒</p>
+<p>4️⃣ <strong>官網、社群形象經營｜</strong>官網跟社群都是現在大家很常使用的媒介，是公司對外曝光蠻重要的一環，所以上面的文章、圖片、排版跟內容都需要公關的專業協助，<mark class="hl-yellow"><strong>確保公司形象是良好且正向的</strong></mark></p>
+<p><strong>【危機處理】</strong></p>
+<ul><li><mark class="hl-yellow"><strong>偶爾會有需要維護公司聲譽的時刻出現</strong></mark>，像是有次遇到客戶操作系統失誤，不小心對外洩漏出個資，結果在社群網站被炎上。</li><li>公關就會先對整個問題做全盤了解，要找公司相關同仁、客戶確認，釐清事情全貌後，針對目前情勢給予客戶最佳處理方式建議。</li><li>如果遇到更嚴重一點的公關危機，會需要協助需要協助發聲明稿，甚至也得動用些人脈去聯絡相關的媒體，要去解釋、請求盡量報導中性。</li></ul>
+<p><strong>【機動性任務】</strong></p>
+<p>要接下派給幕僚單位的各種小任務，比如像公司有送花的需求的時候，就得幫忙尋找合適的花店，也得想上面的卡片要寫什麼樣的祝賀詞，這種任務雖然不多，但是很常會突然發生，需要擠出時間來完成。</p>
+<div class="hl-block">這份工作最喜歡的地方、以及最不喜歡的地方各是什麼？</div>
+<div class="info-card info-card--green"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">喜歡的地方</p><div class="info-card__row"><p class="info-card__title">可以從C-Level角度看事情</p><p class="info-card__desc">因為這個工作算管理職的幕僚，會與C-Level的人高頻率接觸，所以也會跟著參與高階主管看事情的角度、對專業知識的見解，能有這樣子並肩與強者一起工作的機會很難得</p></div></div></div>
+<div class="info-card info-card--red"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">不喜歡的地方</p><div class="info-card__row"><p class="info-card__title">臨時出現的小麻煩干擾到正事</p><p class="info-card__desc">有些事件會毫無防備的出現，就得在原本排好的工作中臨時擠出來協助處理，比如突然出現的公關危機、臨時性需求。原先就已經處於高度、高壓速度快的備戰狀態，又得臨時加入處理雜事，J人不喜歡被干擾工作節奏🔥🔥🔥</p></div></div></div>
+<div class="hl-block">工作上曾經遇過最挫折的事</div>
+<p>菜鳥時期在公關公司時很忙碌，活動一波接著一波，一到五幾乎沒有自己的時間，下班都八九點、甚至凌晨也有，每天都累得要命，但又因為需要累積經驗，沒辦法離開，只能繼續這樣的生活模式，長期處在這樣狀態下滿辛苦的><</p>
+<div class="hl-block">分享一件工作上的奇葩恐怖故事</div>
+<p><strong>（這是一個情緒堆疊的故事）</strong></p>
+<ul><li>某FMCG產業因為要辦大型活動，前一天需要處理大量媒體禮物、上百副招待用餐具，為了省錢所以讓公關人員自行包裝+搬運到會場，從下午五點搬到晚上十點....（🔥）</li><li>活動前，發現設備廠商送錯桌椅尺寸，同時還在找招待桌的桌巾，已經夠一個頭兩個大，主管還嫌棄說：「怎麼在旁邊納涼」（🔥🔥）</li><li>活動開始後，一邊在飯店門外處理媒體專訪的新聞稿，一邊處理來歡說沒有收到邀請函又吵著要禮物的媒體，還要進去活動會場協助倒茶，又要被嫌棄倒茶倒得不專業（🔥🔥🔥）</li><li>好不容易活動結束，已經很晚又很累了，主管走過來，繼續嫌棄說：「隔壁組來支援的都比你認真」（🔥🔥🔥🔥）</li><li>活動完過幾天，主管把我叫進辦公室說「你要不要檢討一下哪裡可以做更好？怎麼有這麼多事情沒有準備呢？你工作態度太差，需要改善」（🌋🌋🌋🌋）馬上果斷決定直接離職👋</li></ul>
+<div class="hl-block">你認為要入門這個領域，需要具備哪些基本能力？</div>
+<p><strong>1️⃣ 口語表達清楚</strong>｜在這行業必須要跟非常多人接觸，主管、媒體、利害關係人、股東、公司內部同仁等等，所以能夠清楚表達出需求與目的是很重要的</p>
+<p><strong>2️⃣時間管理能力｜</strong>很多事情是有有效期限的，像是需要在規定的時間完成新聞稿、要回覆活動參加意願、要提供素材與簡報等等</p>
+<div class="hl-block">對於第一次想踏入這個領域的人，你有什麼建議？</div>
+<p><strong>1️⃣ 可以先從公關公司累積經驗</strong>｜雖然公關公司比較累，但可以接觸到的客戶範疇廣、活動非常多元，曾經有接觸過像是輪胎產業（此生從來沒想過會進去過某超級跑車辦公室）、咖啡產業、電子消費新品上市等等。如果想要快速學習累積經驗，是一個還不錯的入門磚，等到已經累積一定經驗之後，就可以進入到品牌端或是外商</p>
+<p><strong>2️⃣ 適合喜歡有變化的人</strong>｜因為公關會需要對公司的內容與方向有一定程度的了解，隨著時間過去會一直有新的東西出現，需要一直keep up，才能準確說出品牌的故事，所以要是一個願意接受新東西、覺得新東西有趣的人會較合適</p>
+<hr class="post-divider">
+<div class="hl-block">🔎後記—採訪趣事發現</div>
+<div class="quote-block">當公關幫忙代操時，一方面可以看見很美的一面（像是新產品上市前可以比一般人提前搶先看），但一方面也可以看見客戶的問題（例如被炎上要緊急處理，甚至可能要熬夜加班），也可以藉機觀察產業內幕，尋找好的機會🕵️‍♀️</div></div>
+
+    <!-- 文章結尾：按讚 + 分享 -->
+    <div class="post-footer-bar">
+      <div class="like-area">
+        <button class="like-btn" id="likeBtn" onclick="handleLike('public-relations')">
+          <span class="like-heart">❤️</span>
+          <span class="like-count" id="likeCount">0</span>
+        </button>
+        <span class="like-msg">謝謝您的閱讀，<br>您的愛心是莫大的鼓勵</span>
+      </div>
+      <div class="share-bar">
+        <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </button>
+        <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+          <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+        </button>
+        <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/public-relations/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+  <div id="post-nav-section"></div>
+  <script>
+    (function() {
+      var nextPost = {"slug":"sound-engineer","title":"百工百業project#9：成音工程師 Sound Engineer"};
+      var prevPost = {"slug":"futures-trader","title":"百工百業project#7：期貨交易員 Futures Trader"};
+      if (!nextPost && !prevPost) return;
+      var BASE = 'https://emily50431.github.io/-emily-lu-website-g';
+
+      var prevHtml = prevPost
+        ? '<a href="' + BASE + '/blog/' + prevPost.slug + '/" class="post-nav-item prev">' +
+          '<span class="post-nav-direction">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>' +
+          '上一篇</span>' +
+          '<span class="post-nav-title">' + prevPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var nextHtml = nextPost
+        ? '<a href="' + BASE + '/blog/' + nextPost.slug + '/" class="post-nav-item next">' +
+          '<span class="post-nav-direction">下一篇' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+          '</span>' +
+          '<span class="post-nav-title">' + nextPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var divider = '<div class="post-nav-divider"></div>';
+
+      document.getElementById('post-nav-section').innerHTML =
+        '<style>' +
+        '.post-nav-wrap{max-width:720px;margin:0 auto;padding:0 2rem 2rem;}' +
+        '.post-nav{border-top:1px solid rgba(93,95,239,0.1);display:grid;grid-template-columns:1fr 1px 1fr;}' +
+        '.post-nav-divider{background:rgba(93,95,239,0.1);margin:1.75rem 0;}' +
+        '.post-nav-item{padding:1.75rem 0;display:flex;flex-direction:column;gap:0.5rem;text-decoration:none;color:inherit;}' +
+        '.post-nav-item.prev{align-items:flex-start;}' +
+        '.post-nav-item.next{align-items:flex-end;text-align:right;}' +
+        '.post-nav-empty{padding:1.75rem 0;}' +
+        '.post-nav-direction{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#9CA3AF;}' +
+        '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
+        '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
+        '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;display:flex;flex-direction:column;}.post-nav-divider{display:none;}.post-nav-item.next{order:1;align-items:flex-start;text-align:left;border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.prev{order:2;border-bottom:none;}.post-nav-empty{order:1;}}' +
+        '</style>' +
+        '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
+    })();
+  </script>
+    <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
+  </footer>
+
+  <!-- 複製連結 Toast -->
+  <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
+  <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
+
+  <script>
+    // 分享功能
+    function shareTo(platform, url) {
+      var encoded = encodeURIComponent(url);
+      var urls = {
+        line: 'https://line.me/R/msg/text/?' + encoded,
+        threads: 'https://www.threads.net/intent/post?text=' + encoded
+      };
+      if (urls[platform]) {
+        window.open(urls[platform], '_blank');
+        gtag('event', 'share', { method: platform, content_type: 'article', item_id: 'public-relations' });
+      }
+    }
+
+    // 複製連結
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(function() {
+        var toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        }
+        gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: 'public-relations' });
+      });
+    }
+
+    // 按讚功能（Supabase，無限按）
+    var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
+    var ANON_KEY = '';
+    var slug = 'public-relations';
+    var count = 0;
+
+    var likeBtn = document.getElementById('likeBtn');
+    var likeCountEl = document.getElementById('likeCount');
+
+    function renderLike() {
+      likeCountEl.textContent = count;
+    }
+
+    async function loadLikeCount() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
+          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+        );
+        var data = await res.json();
+        count = Array.isArray(data) ? data.length : 0;
+        renderLike();
+      } catch(e) { renderLike(); }
+    }
+
+    async function handleLike(s) {
+      count++;
+      renderLike();
+      likeBtn.style.transform = 'scale(1.2)';
+      setTimeout(function() { likeBtn.style.transform = ''; }, 200);
+      gtag('event', 'like', { content_type: 'article', item_id: s });
+      try {
+        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+          method: 'POST',
+          headers: {
+            'apikey': ANON_KEY,
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
+        });
+      } catch(e) {}
+    }
+
+    loadLikeCount();
+  </script>
+
+
+</body>
+</html>

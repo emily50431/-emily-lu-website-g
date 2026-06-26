@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>用Claude打造專屬你的離職卡 | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="上班很常會說「我要集離職點數卡」，馬上用AI幫你做一張，環保衛生可重覆再利用。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="用Claude打造專屬你的離職卡 | Emily's LAB" />
+  <meta property="og:description" content="上班很常會說「我要集離職點數卡」，馬上用AI幫你做一張，環保衛生可重覆再利用。" />
+  <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="用Claude打造專屬你的離職卡 | Emily's LAB" />
+  <meta name="twitter:description" content="上班很常會說「我要集離職點數卡」，馬上用AI幫你做一張，環保衛生可重覆再利用。" />
+  <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  </script>
+</head>
+<body class="antialiased">
+  
+  <style>
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .nav-container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em;
+    text-decoration: none; color: #1F2937; flex-shrink: 0;
+  }
+  .nav-logo span { color: #5D5FEF; }
+  /* 桌面選單 */
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8;
+  }
+  .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+  .nav-links a:hover { color: #5D5FEF; }
+  .nav-cta {
+    background: #5D5FEF; color: white !important;
+    padding: 0.5rem 1.5rem; border-radius: 9999px;
+    font-weight: 700; text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+  /* 漢堡按鈕 */
+  .nav-burger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block; width: 22px; height: 2px;
+    background: #1F2937; border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+  /* 漢堡開啟狀態 */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* 手機下拉選單 */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(25px);
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(93,95,239,0.08);
+    gap: 0.25rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #64748B; text-decoration: none;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: #5D5FEF; }
+  .nav-mobile .nav-cta {
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border-bottom: none !important;
+  }
+  /* RWD 斷點 */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .nav-container { padding: 1rem 1.25rem; }
+  }
+
+  .mesh-gradient {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+    background-color: #FDFDFF;
+  }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <div class="nav-links">
+        <a href="/-emily-lu-website-g/about/">關於我</a>
+        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="/-emily-lu-website-g/about/">關於我</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+    </div>
+  </nav>
+  <script>
+    (function(){
+      var btn = document.getElementById('navBurger');
+      var menu = document.getElementById('navMobile');
+      if(btn && menu){
+        btn.addEventListener('click', function(){
+          btn.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+  <main class="post-wrap">
+    <div class="post-meta">
+      <span class="post-tag">AI相關</span>
+      <span class="post-date">2026-06-01</span>
+    </div>
+    <h1 class="post-title">用Claude打造專屬你的離職卡</h1>
+
+    <!-- 標題下方分享列 -->
+    <div class="share-bar share-bar--top">
+      <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </button>
+      <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+        <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+      </button>
+      <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+
+    <div class="post-content"><h2>1分鐘重點總結</h2>
+<p>每天嚷嚷要離職的你我他，直接請Claude做一個離職蓋章集點卡，集滿到N點就正式離職，歡迎大家免費下載使用😂</p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-1.gif" alt="Video_Project_23_compressed_v2.gif" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<div class="hl-block">本篇文章適合：想要使用離職點數蓋章卡，集滿就打算離職的你（老闆不要看）</div>
+<h2>使用教學</h2>
+<p>請先到下方連結下載點數卡（resignation_card.html）&使用手冊.txt</p>
+<div class="download-section"><a href="https://drive.google.com/drive/folders/1W-rxhvOuI1XchJcsf-SuPif_ECYEDjh5?usp=drive_link" target="_blank" class="download-block" onclick="gtag('event','download',{'file_name':'google-drive-folder','page_slug':'https://drive.google.com/drive/folders/1W-rxhvOuI1XchJcsf-SuPif_ECYEDjh5?usp=drive_link'})"><div class="dl-pulse"></div><div class="dl-arrow">前往查看 →</div><div class="dl-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="dl-title">下載點數卡&使用手冊</div></a></div>
+<hr class="post-divider">
+<p><strong>【替換標題】</strong></p>
+<p>為了讓大家可以在日常工作的時候也可安心地打開使用，上方的標題如果直接寫離職點數卡，就太大膽了也不好意思，所以這邊設計<mark class="hl-yellow"><strong>可以修改標題</strong></mark>，點擊標題就可以進入到修改介面，我們就可以訂一個安全的標題，比如：喝水紀錄表😂</p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-2.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><strong>【點數設定】</strong></p>
+<p>這邊會分成正向跟負向的設計，正向的部分是因為還是希望大家可以觀察上班的美好，就算只有一點點的小事情也可以記錄下來；負向就是代表工作上面遇到讓你想離職的事情。</p>
+<p>初始預設集點卡是10點，但因為如果集滿10點就離職對於某些工作來說實在太快，所以上限設定可以開到100點，設定好之後請幫忙點選「套用設定」，就可以看到下方集點卡的點數會跟著連動改變。</p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-3.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><strong>【蓋章與備註】</strong></p>
+<p>點選蓋章後，會跳出備註填寫區。提供這樣的設計是因為有時候當下情緒很滿，但過幾天都會忘記是在氣什麼、或是開心什麼，所以提供備註是為了<mark class="hl-yellow"><strong>幫助記得當時發生的事情</strong></mark>，這部分是「選填」，大家可以填可不填。</p>
+<p><strong>⚠️注意：蓋下去之後就無法消除，也無法更改備註內容，請大家三思後再決定要不要蓋章</strong></p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-4.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p>蓋下去印章之後，我們也會有目前的集點累積進度條，可以知道目前的進度👀</p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-5.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><strong>【集滿點數之後】</strong></p>
+<p>點數的意義，是幫助我們用比較客觀的數據做決策，代表我們的所有感受都不是衝動行事！</p>
+<ul><li>💀 <strong>離職點數集滿</strong> → 跳出警示動畫「可以辭職了！」</li></ul>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-6.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<ul><li>🌱 <strong>正向點數集滿</strong> → 跳出慶祝畫面「恭喜你！公司還不錯 🎉」提示視窗，按「我知道了」關掉 → 接著跳出「要重設繼續集嗎？」或「保持現狀」</li></ul>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-7.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-8.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><strong>【歸零開始】</strong></p>
+<p>假如今天我們重新到一間新公司，要重新計算的話，就可以點選歸零開始重新來過💪 網頁會跳出提醒視窗確認是否要歸零，如果想保留以前的紀錄的話也可以匯出JSON檔案或TXT檔案，至於兩者的差異可以看下方Q&A</p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-9.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<h2>常見Q&A</h2>
+<div class="hl-block">如果關掉分頁，再次開啟html，之前的紀錄還會在嗎？</div>
+<p>會的，只要你用同一台電腦、同一個瀏覽器打開，就算是重新關機再打開，先前的紀錄都會被保留下來，因為資料都會「自動」存進瀏覽器的 localStorage。</p>
+<div class="hl-block">什麼樣的狀況資料會消失？解法是什麼？</div>
+<p>❌ 手動清除瀏覽器快取或瀏覽記錄</p>
+<p>❌ 在瀏覽器設定裡「清除網站資料」</p>
+<p>❌  重灌瀏覽器</p>
+<p>❌  重灌電腦</p>
+<p>❌  換一台電腦使用</p>
+<p>❌  換一個瀏覽器開同一個 HTML（例如之前用 Chrome，改用 Safari）</p>
+<p> 解法👉 點選網站上方的「匯出 JSON」按鈕，匯出可還原的備份檔案。當要還原檔案的話，點選「匯入JSON」按鈕，選擇之前匯出的 JSON 檔案，即可還原所有資料。</p>
+<div class="hl-block">匯出 TXT的功用是什麼呢？</div>
+<p>可以匯出純讀取的文字紀錄，用記事本打開就能閱讀所有蓋章紀錄與備註。</p>
+<p><mark class="hl-yellow"><strong>⚠️注意：TXT檔案僅供閱讀參考，無法代替JSON檔案做到還原，所以如果是要備份務必匯出JSON檔</strong></mark></p>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/vibe-coding-resign-rewards-card/img-10.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><mark class="hl-yellow"><strong>好好上班已經很不容易了！如果遇到困難可以罵一下做抒發，如果遇到好事也可以記錄下來鼓勵自己，希望大家都有個美好友善的職場</strong></mark></p></div>
+
+    <!-- 文章結尾：按讚 + 分享 -->
+    <div class="post-footer-bar">
+      <div class="like-area">
+        <button class="like-btn" id="likeBtn" onclick="handleLike('vibe-coding-resign-rewards-card')">
+          <span class="like-heart">❤️</span>
+          <span class="like-count" id="likeCount">0</span>
+        </button>
+        <span class="like-msg">謝謝您的閱讀，<br>您的愛心是莫大的鼓勵</span>
+      </div>
+      <div class="share-bar">
+        <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </button>
+        <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+          <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+        </button>
+        <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/vibe-coding-resign-rewards-card/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+  <div id="post-nav-section"></div>
+  <script>
+    (function() {
+      var nextPost = {"slug":"warehouse-assistant","title":"百工百業project#6：廠務助理 Warehouse Assistant"};
+      var prevPost = {"slug":"insurance-business","title":"百工百業project#5：保險業務Insurance Business"};
+      if (!nextPost && !prevPost) return;
+      var BASE = 'https://emily50431.github.io/-emily-lu-website-g';
+
+      var prevHtml = prevPost
+        ? '<a href="' + BASE + '/blog/' + prevPost.slug + '/" class="post-nav-item prev">' +
+          '<span class="post-nav-direction">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>' +
+          '上一篇</span>' +
+          '<span class="post-nav-title">' + prevPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var nextHtml = nextPost
+        ? '<a href="' + BASE + '/blog/' + nextPost.slug + '/" class="post-nav-item next">' +
+          '<span class="post-nav-direction">下一篇' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+          '</span>' +
+          '<span class="post-nav-title">' + nextPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var divider = '<div class="post-nav-divider"></div>';
+
+      document.getElementById('post-nav-section').innerHTML =
+        '<style>' +
+        '.post-nav-wrap{max-width:720px;margin:0 auto;padding:0 2rem 2rem;}' +
+        '.post-nav{border-top:1px solid rgba(93,95,239,0.1);display:grid;grid-template-columns:1fr 1px 1fr;}' +
+        '.post-nav-divider{background:rgba(93,95,239,0.1);margin:1.75rem 0;}' +
+        '.post-nav-item{padding:1.75rem 0;display:flex;flex-direction:column;gap:0.5rem;text-decoration:none;color:inherit;}' +
+        '.post-nav-item.prev{align-items:flex-start;}' +
+        '.post-nav-item.next{align-items:flex-end;text-align:right;}' +
+        '.post-nav-empty{padding:1.75rem 0;}' +
+        '.post-nav-direction{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#9CA3AF;}' +
+        '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
+        '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
+        '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;display:flex;flex-direction:column;}.post-nav-divider{display:none;}.post-nav-item.next{order:1;align-items:flex-start;text-align:left;border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.prev{order:2;border-bottom:none;}.post-nav-empty{order:1;}}' +
+        '</style>' +
+        '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
+    })();
+  </script>
+    <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
+  </footer>
+
+  <!-- 複製連結 Toast -->
+  <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
+  <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
+
+  <script>
+    // 分享功能
+    function shareTo(platform, url) {
+      var encoded = encodeURIComponent(url);
+      var urls = {
+        line: 'https://line.me/R/msg/text/?' + encoded,
+        threads: 'https://www.threads.net/intent/post?text=' + encoded
+      };
+      if (urls[platform]) {
+        window.open(urls[platform], '_blank');
+        gtag('event', 'share', { method: platform, content_type: 'article', item_id: 'vibe-coding-resign-rewards-card' });
+      }
+    }
+
+    // 複製連結
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(function() {
+        var toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        }
+        gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: 'vibe-coding-resign-rewards-card' });
+      });
+    }
+
+    // 按讚功能（Supabase，無限按）
+    var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
+    var ANON_KEY = '';
+    var slug = 'vibe-coding-resign-rewards-card';
+    var count = 0;
+
+    var likeBtn = document.getElementById('likeBtn');
+    var likeCountEl = document.getElementById('likeCount');
+
+    function renderLike() {
+      likeCountEl.textContent = count;
+    }
+
+    async function loadLikeCount() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
+          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+        );
+        var data = await res.json();
+        count = Array.isArray(data) ? data.length : 0;
+        renderLike();
+      } catch(e) { renderLike(); }
+    }
+
+    async function handleLike(s) {
+      count++;
+      renderLike();
+      likeBtn.style.transform = 'scale(1.2)';
+      setTimeout(function() { likeBtn.style.transform = ''; }, 200);
+      gtag('event', 'like', { content_type: 'article', item_id: s });
+      try {
+        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+          method: 'POST',
+          headers: {
+            'apikey': ANON_KEY,
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
+        });
+      } catch(e) {}
+    }
+
+    loadLikeCount();
+  </script>
+
+
+</body>
+</html>
