@@ -23,12 +23,16 @@ jobs:
         run: npm install
 
       - name: Fetch Notion and generate HTML
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: node scripts/fetch-notion.js
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           GA4_ID: G-67N1NCPZGK
-        run: node scripts/fetch-notion.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
