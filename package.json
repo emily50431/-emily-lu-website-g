@@ -2,7 +2,7 @@
   "name": "emily-blog",
   "version": "1.0.0",
   "dependencies": {
-    "@notionhq/client": "^2.2.15",
-    "notion-to-md": "^3.1.1"
+    "@notionhq/client": "latest",
+    "notion-to-md": "latest"
   }
 }
