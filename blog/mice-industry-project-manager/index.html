@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>百工百業project#3：會展專員 MICE Industry Project Manager | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="你看到的是一場順利的展覽，她看到的是漏水的天花板、逃跑的巨蜥、還有每一通打來罵人的電話。會展專員的工作，就是把所有意外變成正常。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="百工百業project#3：會展專員 MICE Industry Project Manager | Emily's LAB" />
+  <meta property="og:description" content="你看到的是一場順利的展覽，她看到的是漏水的天花板、逃跑的巨蜥、還有每一通打來罵人的電話。會展專員的工作，就是把所有意外變成正常。" />
+  <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="百工百業project#3：會展專員 MICE Industry Project Manager | Emily's LAB" />
+  <meta name="twitter:description" content="你看到的是一場順利的展覽，她看到的是漏水的天花板、逃跑的巨蜥、還有每一通打來罵人的電話。會展專員的工作，就是把所有意外變成正常。" />
+  <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  </script>
+</head>
+<body class="antialiased">
+  
+  <style>
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .nav-container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em;
+    text-decoration: none; color: #1F2937; flex-shrink: 0;
+  }
+  .nav-logo span { color: #5D5FEF; }
+  /* 桌面選單 */
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8;
+  }
+  .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+  .nav-links a:hover { color: #5D5FEF; }
+  .nav-cta {
+    background: #5D5FEF; color: white !important;
+    padding: 0.5rem 1.5rem; border-radius: 9999px;
+    font-weight: 700; text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+  /* 漢堡按鈕 */
+  .nav-burger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block; width: 22px; height: 2px;
+    background: #1F2937; border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+  /* 漢堡開啟狀態 */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* 手機下拉選單 */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(25px);
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(93,95,239,0.08);
+    gap: 0.25rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #64748B; text-decoration: none;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: #5D5FEF; }
+  .nav-mobile .nav-cta {
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border-bottom: none !important;
+  }
+  /* RWD 斷點 */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .nav-container { padding: 1rem 1.25rem; }
+  }
+
+  .mesh-gradient {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+    background-color: #FDFDFF;
+  }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <div class="nav-links">
+        <a href="/-emily-lu-website-g/about/">關於我</a>
+        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="/-emily-lu-website-g/about/">關於我</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+    </div>
+  </nav>
+  <script>
+    (function(){
+      var btn = document.getElementById('navBurger');
+      var menu = document.getElementById('navMobile');
+      if(btn && menu){
+        btn.addEventListener('click', function(){
+          btn.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+  <main class="post-wrap">
+    <div class="post-meta">
+      <span class="post-tag">百工百業</span>
+      <span class="post-date">2026-05-14</span>
+    </div>
+    <h1 class="post-title">百工百業project#3：會展專員 MICE Industry Project Manager</h1>
+
+    <!-- 標題下方分享列 -->
+    <div class="share-bar share-bar--top">
+      <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </button>
+      <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+        <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+      </button>
+      <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+
+    <div class="post-content"><p>辦展覽、辦演唱會、辦會議，從無到有的一場活動，都會有個核心的總統籌─會展專員，協助主辦單位完成任務。在形形色色的會展產業，沒有一套標準答案可以套用在所有活動上，會遇到各式各樣的奇葩問題，但關關難過關關過，一起來看會展專員的一天是怎麼過的👋</p>
+<h2>個人背景</h2>
+<div class="info-card info-card--blue"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="info-card__body"><p class="info-card__label">基本資料</p><div class="info-card__row"><p class="info-card__title">目前產業</p><p class="info-card__desc">會展產業，也就是俗稱的 MICE 產業（會議 Meeting、獎勵旅遊 Incentive、大型國際會議 Convention、展覽 Exhibition）</p></div><div class="info-card__row"><p class="info-card__title">職稱</p><p class="info-card__desc">專員</p></div><div class="info-card__row"><p class="info-card__title">學歷背景</p><p class="info-card__desc">國立政治大學會計系學士</p></div><div class="info-card__row"><p class="info-card__title">工作經歷</p><p class="info-card__desc">以會展領域來說已經滿7年，擔任會展業務約5年，中間有輪調過其他職務（做展場管理）</p></div><div class="info-card__row"><p class="info-card__title">來點簡單的自我介紹</p><p class="info-card__desc">是個ENFP快樂小狗，覺得自己是個蠻粗心大意又容易健忘的人，下決定常憑藉一股衝動，喜歡在安穩的日常裡放入一點點的冒險，傾向往外跑以及有點三分鐘熱度，所以愛嘗試很多不一樣的事情。不確定是不是因為這樣天意就是不讓我去做會計哈哈哈哈，但現在回頭看來是很心懷感恩的，也堅信一切的發生都有他的原因</p></div></div></div>
+<h2>工作秘辛</h2>
+<div class="hl-block">別人最常問你關於這份工作的一個問題是？</div>
+<p>所以你每天都在看展嗎？</p>
+<p>👉 答案是：不會，因為不是每天都有展！也補充一下自從做了這行之後，開始有職業病，像現在去看個演唱會，會特別去注意燈光設備、動線、垃圾分類標示、人流標示等等，會開始注意到各種背後這些有的沒的😂</p>
+<div class="hl-block">描述一下你的一天——你通常在做什麼？</div>
+<p><mark class="hl-yellow"><strong>提供客戶場域解決方案、處理現場問題、爭取參展標案</strong></mark></p>
+<p><strong>【提供客戶場域解決方案】</strong></p>
+<p>客戶會來洽詢場地，會擔任總窗口去協助，通常會經歷過幾個階段</p>
+<p>1️⃣確定客戶要的需求是展覽 or 活動 or 會議</p>
+<p>2️⃣確定場地檔期、要租用的空間及區域、設備等等</p>
+<p>3️⃣處理合約、報價、訂金（以上這幾個步驟都需要來回溝通，各種email與電話，互相協商）</p>
+<p>4️⃣攤位規劃審查（像是消防、施工安全等等）</p>
+<p>5️⃣展館場勘介紹（與主辦方或協力廠商在討論動線配置、視聽場務設備等等）</p>
+<p>6️⃣開立協調會 （可以理解成是展前的最後確認，包含接通電力與供水時間、活動時間、進場與撤場時間、清潔時間、設備安排、保全排班等等）</p>
+<p><mark class="hl-yellow"><strong>💡知識補充｜展覽 vs 活動 vs 會議</strong></mark></p>
+<ul><li>展覽 ─ 會有攤位，大家可以一攤一攤逛的這種，ex：智慧城市展、寵物展、旅展</li><li>活動 ─ 沒有攤位，通常是一個主題活動，ex：演唱會、尾牙、春酒</li><li>會議 ─ 租用空間做會議交流，ex：研討會</li></ul>
+<p><strong>【處理現場問題】</strong></p>
+<p>真正到了正式展場期間時，<mark class="hl-yellow"><strong>有關「場地」的問題都需要協助</strong></mark>，通常都是些突發狀況居多，有遇過因為地震的關係掉水泥（幸虧所有人都安全）、突發性水管壞掉漏水等等，遇到了就得趕快去找人協助。</p>
+<p>這時候也相當考驗總窗口與客戶的關係，因為突發狀況都是大家不樂見的，需要一起協助度過難關，大家把問題處理好，不要互相刁難。</p>
+<div class="quote-block">印象很深的是有一次水管漏水，一開始還在可控範圍，就先用盆栽去接水（既可接水又符合美觀）。但漸漸水開始滲透，越來越靠近辦展區，眼看就快蔓延到展區正上方了。當時工程組火速救援堵水，現場也已經有拉封鎖線引導民眾繞過這一區，同時還要安撫主辦單位一切都在處理中。最後神奇的是，水在最後一刻成功停了下來，還很戲劇性的恰巧停在辦展區正上方的交界處，真的平常有拜有保佑🙏</div>
+<div class="data-block"><div class="data-block__header"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg><span class="data-block__label">數據分享</span></div><div class="data-block__item"><p class="data-block__title">在展場走來走去勘查時，走路步數可以達<span class="hl-inline">15,000步以上</span></p></div></div>
+<p><strong>【爭取參展標案】</strong></p>
+<p><mark class="hl-yellow"><strong>主動爭取曝光度高的國際案來展場舉辦</strong></mark>，希望可以多多推廣臺灣的貿易。因為辦展可以吸引買主參訪，就會有連帶有更多生意機會，產生經濟價值，幫助臺灣的企業外銷，所以為了協助主辦單位向國際總會爭取來臺主辦權，會需要準備場館以及周邊配套環境等等的相關資料，讓主辦單位去證明臺灣有這個能力舉辦大型年會。</p>
+<p>有次為了協助一個大型國際年會在臺灣順利舉辦（上一次臺灣獲得這個年會的主辦權是32年前），所以主辦單位邀請我們去看2025年他們在加拿大執行的狀況，這樣我們今年實際在臺灣規劃和落地執行的時候，會更有概念以及具象化，籌備期間的討論也能夠更有效率👍</p>
+<div class="hl-block">分享工作上的奇聞軼事們</div>
+<p>1️⃣曾經寵物展有民眾帶老鷹來🦅，飛上去展場天花板後堅持不下來，當然就得想辦法讓牠下來，會場這邊就會需要一起協助。像這次就需要配合在營業時間結束後，把展場的燈全部關起來，放一些肉引誘老鷹飛下來，大家就只能一起加班等老鷹下來，最後老鷹讓大家加班了一個半小時後成功降落⋯</p>
+<p>2️⃣另外一次是某次爬蟲展區，有一隻巨蜥🦎在箱子裡，結果有其他參展商手賤去掀蓋子，一掀開巨蜥就逃竄，從展場門縫溜出去，逃往展館戶外廣場。結果就為了一隻蜥蜴，出動了主辦+館方各組大哥+保全大隊，快20位壯漢尋找和調閱監視器，惟該蜥蜴已經兩年尚未現蹤，到現在也沒有人知道牠在哪裡XD</p>
+<div class="hl-block">這份工作最喜歡的地方、以及最不喜歡的地方各是什麼？</div>
+<div class="info-card info-card--green"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">喜歡的地方</p><div class="info-card__row"><p class="info-card__title">用自己的專業協助完成活動</p><p class="info-card__desc">要辦一個活動背後是很辛苦的，能親手參與並見證萬人級別的國際活動在臺灣發生，並在其中扮演一個關鍵角色，協助把活動順利辦完，心裡會很有成就感。尤其像是遇到缺乏活動經驗的主辦單位， 會由我這邊提供過去經驗與建議，當主辦單位覺得這個建議很棒、願意採用的時候，會覺得有被信賴與被需要的感覺，很高興自己有幫上忙！</p></div></div></div>
+<div class="info-card info-card--red"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">不喜歡的地方</p><div class="info-card__row"><p class="info-card__title">為了不可抗力而承受他人情緒</p><p class="info-card__desc">會面臨很多不是人為能夠控制的事情，比如說展場冷氣突然壞掉、突然沒水沒電、天花板水泥突然掉下來這種；也有時常遇到來自各方壓力（同業主辦單位、政府機關或長官等等），需要去協調客戶原本已經預訂好的檔期。身為總窗口必須要第一線去承擔所有人的情緒，要為自己不能夠控制的事情去收拾善後。</p></div></div></div>
+<div class="hl-block">你認為要入門這個領域，需要具備哪些基本能力？</div>
+<p>1️⃣<strong>危機處理能力</strong>｜心臟要夠大顆，因為活動整個流程當中很難預料會出現什麼狀況，所以需要有「兵來將擋，水來土掩」的應變力，遇到問題就好好處理，靈機應變，見招拆招，並相信事情最終都會迎刃而解</p>
+<p><strong>2️⃣心態平靜穩定｜</strong>這份工作上會有很多可以事前準備的東西，但更多的是無法預料的現場狀況，這輩子我也從來沒想過自己要去收拾這些事情（ex：誘捕老鷹） 所以遇到事情不能太容易恐慌，遇到困難也要鎮定地去處理，化險為夷</p>
+<p>3️⃣<strong>英文溝通能力｜</strong>因為有需要準備國際大型年會籌備的時候，就會有外賓來訪，也會需要跟外國客戶去做聯絡，所以基本英文能力要有</p>
+<div class="hl-block">對於第一次想踏入這個領域的人，你有什麼建議？</div>
+<p><strong>1️⃣樂意與人接觸｜</strong>因為工作上需要來回跟滿多人互動，從前期展場溝通到實際展覽危機處理，都很需要溝通。所以如果說很排斥跟人互動交流講話的，可能會辛苦些</p>
+<p><strong>2️⃣健全心態｜⭐⭐⭐</strong>這點是最重要的！一定要先做好心理建設，也就是<mark class="hl-yellow"><strong>做好肯定會被罵的準備</strong></mark>。在過程當中會遇到形形色色的人，一定會遇到喜歡罵人的客戶。建議要找到方式去釋懷，很多事情也比較不會走心。比如說遇到瘋客，就當一個笑話看，用一個比較幽默的方式去消化這件事情，才可以走得遠</p>
+<hr class="post-divider">
+<div class="hl-block">🔎後記—採訪趣事發現</div>
+<div class="quote-block">採訪中有聊到業務性質的工作很吃遇到的客戶，在職場上凡事都是互相的，以真誠善良待人，建立人與人之間的理解與信任，遇到問題也比較能夠大事化小、小事化無！</div></div>
+
+    <!-- 文章結尾：按讚 + 分享 -->
+    <div class="post-footer-bar">
+      <div class="like-area">
+        <button class="like-btn" id="likeBtn" onclick="handleLike('mice-industry-project-manager')">
+          <span class="like-heart">❤️</span>
+          <span class="like-count" id="likeCount">0</span>
+        </button>
+        <span class="like-msg">謝謝您的閱讀，<br>您的愛心是莫大的鼓勵</span>
+      </div>
+      <div class="share-bar">
+        <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </button>
+        <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+          <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+        </button>
+        <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/mice-industry-project-manager/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+  <div id="post-nav-section"></div>
+  <script>
+    (function() {
+      var nextPost = {"slug":"auditor","title":"百工百業project#4：稽核員 Auditor"};
+      var prevPost = {"slug":"account-officer","title":"百工百業project#2：個金行員 Account Officer"};
+      if (!nextPost && !prevPost) return;
+      var BASE = 'https://emily50431.github.io/-emily-lu-website-g';
+
+      var prevHtml = prevPost
+        ? '<a href="' + BASE + '/blog/' + prevPost.slug + '/" class="post-nav-item prev">' +
+          '<span class="post-nav-direction">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>' +
+          '上一篇</span>' +
+          '<span class="post-nav-title">' + prevPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var nextHtml = nextPost
+        ? '<a href="' + BASE + '/blog/' + nextPost.slug + '/" class="post-nav-item next">' +
+          '<span class="post-nav-direction">下一篇' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+          '</span>' +
+          '<span class="post-nav-title">' + nextPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var divider = '<div class="post-nav-divider"></div>';
+
+      document.getElementById('post-nav-section').innerHTML =
+        '<style>' +
+        '.post-nav-wrap{max-width:720px;margin:0 auto;padding:0 2rem 2rem;}' +
+        '.post-nav{border-top:1px solid rgba(93,95,239,0.1);display:grid;grid-template-columns:1fr 1px 1fr;}' +
+        '.post-nav-divider{background:rgba(93,95,239,0.1);margin:1.75rem 0;}' +
+        '.post-nav-item{padding:1.75rem 0;display:flex;flex-direction:column;gap:0.5rem;text-decoration:none;color:inherit;}' +
+        '.post-nav-item.prev{align-items:flex-start;}' +
+        '.post-nav-item.next{align-items:flex-end;text-align:right;}' +
+        '.post-nav-empty{padding:1.75rem 0;}' +
+        '.post-nav-direction{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#9CA3AF;}' +
+        '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
+        '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
+        '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;display:flex;flex-direction:column;}.post-nav-divider{display:none;}.post-nav-item.next{order:1;align-items:flex-start;text-align:left;border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.prev{order:2;border-bottom:none;}.post-nav-empty{order:1;}}' +
+        '</style>' +
+        '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
+    })();
+  </script>
+    <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
+  </footer>
+
+  <!-- 複製連結 Toast -->
+  <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
+  <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
+
+  <script>
+    // 分享功能
+    function shareTo(platform, url) {
+      var encoded = encodeURIComponent(url);
+      var urls = {
+        line: 'https://line.me/R/msg/text/?' + encoded,
+        threads: 'https://www.threads.net/intent/post?text=' + encoded
+      };
+      if (urls[platform]) {
+        window.open(urls[platform], '_blank');
+        gtag('event', 'share', { method: platform, content_type: 'article', item_id: 'mice-industry-project-manager' });
+      }
+    }
+
+    // 複製連結
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(function() {
+        var toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        }
+        gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: 'mice-industry-project-manager' });
+      });
+    }
+
+    // 按讚功能（Supabase，無限按）
+    var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
+    var ANON_KEY = '';
+    var slug = 'mice-industry-project-manager';
+    var count = 0;
+
+    var likeBtn = document.getElementById('likeBtn');
+    var likeCountEl = document.getElementById('likeCount');
+
+    function renderLike() {
+      likeCountEl.textContent = count;
+    }
+
+    async function loadLikeCount() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
+          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+        );
+        var data = await res.json();
+        count = Array.isArray(data) ? data.length : 0;
+        renderLike();
+      } catch(e) { renderLike(); }
+    }
+
+    async function handleLike(s) {
+      count++;
+      renderLike();
+      likeBtn.style.transform = 'scale(1.2)';
+      setTimeout(function() { likeBtn.style.transform = ''; }, 200);
+      gtag('event', 'like', { content_type: 'article', item_id: s });
+      try {
+        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+          method: 'POST',
+          headers: {
+            'apikey': ANON_KEY,
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
+        });
+      } catch(e) {}
+    }
+
+    loadLikeCount();
+  </script>
+
+
+</body>
+</html>
