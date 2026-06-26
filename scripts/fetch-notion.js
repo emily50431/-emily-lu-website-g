@@ -187,6 +187,21 @@ async function processImages(md, slug) {
   return result;
 }
 
+async function fetchWithRetry(fn, retries = 3, delay = 3000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      if (i < retries - 1) {
+        console.log(`第 ${i + 1} 次失敗，${delay / 1000}s 後重試... (${e.message})`);
+        await new Promise(r => setTimeout(r, delay));
+      } else {
+        throw e;
+      }
+    }
+  }
+}
+
 async function fetchPosts() {
   const response = await notion.databases.query({
     database_id: DATABASE_ID,
@@ -1202,7 +1217,13 @@ function generateAboutHtml() {
 }
 
 async function main() {
-  const posts = await fetchPosts();
+  const posts = await fetchWithRetry(() => fetchPosts());
+
+  if (posts.length === 0) {
+    console.log("⚠️  沒有抓到任何文章，中止執行以保護現有內容");
+    process.exit(1);
+  }
+
   const postData = [];
 
   if (fs.existsSync("blog")) {
