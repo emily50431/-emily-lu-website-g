@@ -189,23 +189,22 @@
 <p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-1.png" alt="%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2_2026-08-24_211916.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
 <div class="hl-block">描述一下你的一天——你通常在做什麼？</div>
 <p>跟普遍工程師應該都蠻像的，前天會先看一下明天有哪些會議要參加，有時會收到主管的任務派工通知，身上同時會有4-5個專案在身，就必須跟各專案PM討論溝通，確保專案可以如期如質完成。</p>
-<p>那我現在負責的主要是遊戲相關，做的就是用戶端的呈現。</p>
-<p><strong>💡<mark class="hl-yellow"><strong>知識科普</strong></mark></strong>｜Netflix的遊戲有分成雲端遊戲&手機遊戲，台灣目前只有手機遊戲，雲端遊戲的話主要是以歐美市場居多。</p>
-<p>分享最近做的幾個有趣任務</p>
-<ul><li>1️⃣目前正在架構遷移的任務，原本遊戲的資料架構是做在比較舊的架構上，隨著遊戲邏輯越來越複雜，以前的設計不夠彈性，所以決定把遊戲從舊架構改到新架構上</li><li>2️⃣即將上架coming soon：以前即將上架只有支援影片相關；現在也有支援遊戲相關了</li></ul>
-<p>    <img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-2.jpg" alt="1.jpg" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
-<ul><li>3️⃣遊戲主看板：大家最熟悉的就是首頁一進去會有個超大的主看板，會放當季最紅的電影或是影劇介紹，現在也有專門聚焦在遊戲出一個新的遊戲主看板</li></ul>
-<p>    <img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-3.jpg" alt="2.jpg" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p>我現在負責的主要是遊戲相關，做的就是用戶端的呈現。分享最近做的幾個有趣任務：</p>
+<ul><li>目前正在架構遷移的任務，原本遊戲的資料架構是做在比較舊的架構上，隨著遊戲邏輯越來越複雜，以前的設計不夠彈性，所以決定把遊戲從舊架構改到新架構上</li><li>即將上架coming soon：以前即將上架只有支援影片相關；現在也有支援遊戲相關了</li></ul>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-2.jpg" alt="1.jpg" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<ul><li>遊戲主看板：大家最熟悉的就是首頁一進去會有個超大的主看板，會放當季最紅的電影或是影劇介紹，現在也有專門聚焦在遊戲出一個新的遊戲主看板</li></ul>
+<p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-3.jpg" alt="2.jpg" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
+<p><strong>💡<mark class="hl-yellow"><strong>科普知識</strong>｜Netflix的遊戲有分成雲端遊戲&手機遊戲，台灣目前只有手機遊戲，雲端遊戲的話主要是以歐美市場居多。<strong></strong></mark></strong></p>
 <div class="hl-block">AI誕生之後，有應用在什麼地方嗎？</div>
-<p><strong>1️⃣</strong>設計架構討論：當今天接到的任務比較大型改動且沒有標準解決方法的時候，就會跟AI討論可行方向，再透過邊討論邊修正作法</p>
-<p>2️⃣Debug跟測試：以前需要人工自己寫一段程式去測試，現在就是請AI幫忙寫程式做Debug跟測試，方便很多</p>
+<p><strong>1️⃣設計架構討論｜</strong>當今天接到的任務比較大型改動且沒有標準解決方法的時候，就會跟AI討論可行方向，再透過邊討論邊修正作法</p>
+<p>2️⃣<strong>Debug跟測試｜</strong>以前需要人工自己寫一段程式去測試，現在就是請AI幫忙寫程式做Debug跟測試，方便很多</p>
 <div class="hl-block">好奇問Netflix會有「猜你也喜歡」是怎麼出現在使用者介面的呢？</div>
 <p>其他組別有專門負責做相關演算法開發的，他們算完之後會提供一組做好的演算法資料庫 → Evidence Engineering會去接演算法的結果+合成前端邏輯 → 呈現出最後使用者看到的長相</p>
 <p><img src="https://emily50431.github.io/-emily-lu-website-g/assets/images/netflix-software-engineer/img-4.png" alt="image.png" style="max-width:100%;border-radius:8px;margin:1rem 0;"></p>
 <div class="hl-block">如何判斷演算法推薦的效果好壞？</div>
 <ul><li><strong><mark class="hl-yellow"><strong>主要會用A/B test 去比較兩組在關鍵指標上的表現差異，判斷新版本是否真的比較好</strong></mark>。</strong>A組（控制組）會用原本的演算法、B組（對照組）是新的演算法，後台會去收集各組使用者的資料，像是：影片停留時間、影片點擊率、用戶活躍程度等等標準的追蹤指標。</li><li>實驗跑完後就會生成報告比較控制組&對照組，新的演算法整體表現有無顯著變化，如果有些重要的追蹤指標進步了，就代表說這是一個有進步的演算法，就可以適合推行。</li><li><strong><mark class="hl-yellow"><strong>這當中很重要的一點是這個實驗設計所找的人都會是隨機的</strong></mark></strong>，比如今天我要針對美國用戶做演算法測試，就得先設定參數決定要找多少百分比的美國使用者出來做實驗，這些使用者都會是隨機選定的，他們也不會知道自己正在被實驗中。</li></ul>
 <div class="hl-block">關於Netflix員工福利的5個fun fact</div>
-<ul><li>1️⃣全職員工的私人Netflix帳號，可以提前28天看到新上架影片！當初就有追黑白大廚，很早就知道冠軍是誰，好處是可以趁冠軍還沒爆紅前趕快去訂餐廳（但也有例外─怪奇物語，它實在太紅了，是據我所知目前唯一一部沒辦法搶先看的）</li><li>2️⃣工程師會有一組測試帳號，可以不用VPN就能切換到各國去看影片🎞️</li><li>3️⃣公司有提供私人飛機飛到洛杉磯（從SJC->LA）， 一天四班，每班只有8個位子，只要預約就可以免費搭(熱門時段就會很搶)，好處是既不用過安檢，也不用帶護照👍</li><li>4️⃣Netflix午餐很難吃，希望公司改進😠</li><li>5️⃣Netflix的辦公室，都是用自己拍的影視作品命名的，所以會有會議室叫做Emily in Paris、Stranger Things、Wednesday</li></ul>
+<ul><li>1️⃣<mark class="hl-yellow"><strong>全職員工的私人Netflix帳號，可以提前28天看到新上架影片</strong></mark>！當初就有追黑白大廚，很早就知道冠軍是誰，好處是可以趁冠軍還沒爆紅前趕快去訂餐廳（但也有例外─怪奇物語，它實在太紅了，是據我所知目前唯一一部沒辦法搶先看的）</li><li>2️⃣工程師會有一組測試帳號，可以不用VPN就能切換到各國去看影片🎞️</li><li>3️⃣公司有提供私人飛機飛到洛杉磯（從SJC->LA）， 一天四班，每班只有8個位子，只要預約就可以免費搭（熱門時段就會很搶），好處是既不用過安檢，也不用帶護照👍</li><li>4️⃣Netflix午餐很難吃，希望公司改進😠</li><li>5️⃣Netflix的辦公室，都是用自己拍的影視作品命名的，所以會有會議室叫做Emily in Paris、Stranger Things、Wednesday</li></ul>
 <div class="hl-block">這份工作最喜歡的地方、以及最不喜歡的地方各是什麼？</div>
 <div class="info-card info-card--green"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">喜歡的地方</p><div class="info-card__row"><p class="info-card__title">可以做接近user端的東西</p><p class="info-card__desc">因為之前的工作是做內部的雲端資源整合平台，提供給內部的工程師使用，所以無法看見自己的成果有實際畫面的產出；現在做的事情就是可以看得到產出，做的東西都是給使用者真的可以用得到、看得到的東西，相比之下就比較有成就感。</p></div></div></div>
 <div class="info-card info-card--red"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">不喜歡的地方</p><div class="info-card__row"><p class="info-card__title">沒有固定制度</p><p class="info-card__desc">因為公司很自由，所以沒什麼規範，這點容易讓新進同仁會感到無所適從。舉個例子來說一般正常要release產品的話，各公司自己會有些規範，但在這裡就是只要你有辦法做出來什麼方法都可以，是所以問10個人可能就會得到10種解法，要自己想辦法。</p></div></div></div>
