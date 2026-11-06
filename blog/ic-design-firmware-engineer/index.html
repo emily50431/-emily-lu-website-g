@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>百工百業project#23：IC設計韌體工程師 IC Design Firmware Engineer | Emily's LAB</title>
+  <!-- SEO -->
+  <meta name="description" content="我們在買這些硬碟的時候，常看到會標榜出讀取和寫入的速度，這個技術跟該職位有很大的關係，在有限的硬體內，如何調度處理韌體，都是由韌體工程師控制的。" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="百工百業project#23：IC設計韌體工程師 IC Design Firmware Engineer | Emily's LAB" />
+  <meta property="og:description" content="我們在買這些硬碟的時候，常看到會標榜出讀取和寫入的速度，這個技術跟該職位有很大的關係，在有限的硬體內，如何調度處理韌體，都是由韌體工程師控制的。" />
+  <meta property="og:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <meta property="og:url" content="https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/" />
+  <meta property="og:site_name" content="Emily's LAB" />
+  <meta property="og:locale" content="zh_TW" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="百工百業project#23：IC設計韌體工程師 IC Design Firmware Engineer | Emily's LAB" />
+  <meta name="twitter:description" content="我們在買這些硬碟的時候，常看到會標榜出讀取和寫入的速度，這個技術跟該職位有很大的關係，在有限的硬體內，如何調度處理韌體，都是由韌體工程師控制的。" />
+  <meta name="twitter:image" content="https://emily50431.github.io/-emily-lu-website-g/og-image.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/-emily-lu-website-g/assets/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67N1NCPZGK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67N1NCPZGK');
+  </script>
+</head>
+<body class="antialiased">
+  
+  <style>
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+  }
+  .nav-container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-size: 1.2rem; font-weight: 900; letter-spacing: -0.04em;
+    text-decoration: none; color: #1F2937; flex-shrink: 0;
+  }
+  .nav-logo span { color: #5D5FEF; }
+  /* 桌面選單 */
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #94A3B8;
+  }
+  .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+  .nav-links a:hover { color: #5D5FEF; }
+  .nav-cta {
+    background: #5D5FEF; color: white !important;
+    padding: 0.5rem 1.5rem; border-radius: 9999px;
+    font-weight: 700; text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+  /* 漢堡按鈕 */
+  .nav-burger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 36px; height: 36px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .nav-burger span {
+    display: block; width: 22px; height: 2px;
+    background: #1F2937; border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+  /* 漢堡開啟狀態 */
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* 手機下拉選單 */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(25px);
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(93,95,239,0.08);
+    gap: 0.25rem;
+  }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #64748B; text-decoration: none;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    transition: color 0.2s;
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: #5D5FEF; }
+  .nav-mobile .nav-cta {
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border-bottom: none !important;
+  }
+  /* RWD 斷點 */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .nav-container { padding: 1rem 1.25rem; }
+  }
+
+  .mesh-gradient {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 15% 50%, rgba(93, 95, 239, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(93, 95, 239, 0.05) 0%, transparent 50%);
+    background-color: #FDFDFF;
+  }
+  </style>
+  <div class="mesh-gradient"></div>
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <a href="/-emily-lu-website-g/" class="nav-logo">Emily's LAB<span>.</span></a>
+      <div class="nav-links">
+        <a href="/-emily-lu-website-g/about/">關於我</a>
+        <a href="/-emily-lu-website-g/blog/">文章分享</a>
+        <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="/-emily-lu-website-g/about/">關於我</a>
+      <a href="/-emily-lu-website-g/blog/">文章分享</a>
+      <a href="mailto:emily50431@gmail.com" target="_blank" class="nav-cta">聯絡交流</a>
+    </div>
+  </nav>
+  <script>
+    (function(){
+      var btn = document.getElementById('navBurger');
+      var menu = document.getElementById('navMobile');
+      if(btn && menu){
+        btn.addEventListener('click', function(){
+          btn.classList.toggle('open');
+          menu.classList.toggle('open');
+        });
+      }
+    })();
+  </script>
+  <main class="post-wrap">
+    <div class="post-meta">
+      <span class="post-tag">百工百業</span>
+      <span class="post-date">2026-11-06</span>
+    </div>
+    <h1 class="post-title">百工百業project#23：IC設計韌體工程師 IC Design Firmware Engineer</h1>
+
+    <!-- 標題下方分享列 -->
+    <div class="share-bar share-bar--top">
+      <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </button>
+      <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+        <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+      </button>
+      <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+
+    <div class="post-content"><p>現代人每天都在用3C產品，卻很少人思考為什麼USB或SSD可以在沒有電源的情況之下儲存資料，要怎麼讀得快、寫得快，資料還一個都不能少，歡迎光臨IC設計韌體工程師的一天👋</p>
+<h2>個人背景</h2>
+<div class="info-card info-card--blue"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="info-card__body"><p class="info-card__label">基本資料</p><div class="info-card__row"><p class="info-card__title">目前產業</p><p class="info-card__desc">半導體業</p></div><div class="info-card__row"><p class="info-card__title">職稱</p><p class="info-card__desc">IC設計韌體工程師</p></div><div class="info-card__row"><p class="info-card__title">學歷背景</p><p class="info-card__desc">臺灣大學機械系碩士</p></div><div class="info-card__row"><p class="info-card__title">工作經歷</p><p class="info-card__desc">約六年，是畢業後的第一份工作</p></div><div class="info-card__row"><p class="info-card__title">來點簡單的自我介紹</p><p class="info-card__desc">我是一個十幾年前誤入機械系的理工人。因為是分數到了剛好填上所以也沒有對機械系有甚麼特別的熱愛，但研究所還是懵懵懂懂的繼續待在機械。在畢業前赫然發現身邊同學都在往半導體產業擠，打聽了出路比較待遇後，匆匆地修了些程式課幸運地搭上科技業列車。跟Emily一樣是表演型人格，興趣是日本深度旅遊、下圍棋、打棒球。</p></div></div></div>
+<h2>工作秘辛</h2>
+<div class="hl-block">別人最常問你關於這份工作的一個問題是？</div>
+<p>公司的股票有沒有內線消息？</p>
+<p>👉 答案是：沒有，底層工程師也是要看新聞才會知道公司發生什麼事情....…</p>
+<div class="hl-block">先幫助大家科普一下IC設計知識</div>
+<ul><li>先介紹一下NAND Flash（快閃記憶體）技術，也就是我們平常用的SSD（固態硬碟）、隨身碟裡存資料的那個晶片。<mark class="hl-yellow"><strong><strong>它最大的特色是在電源關閉後，儲存在內部的資料不會消失</strong></mark></strong>。這類產品主要是美光、海力士、三星在產，那我在的公司主要是在做 NAND Flash 的「控制器」，主要是管理快閃記憶體怎麼讀、怎麼寫入晶片，加工好後就可以把整顆SSD賣給客戶。</li><li>那以韌體來說，韌體大致可以分上、中、下三層：上層負責接收主機的指令，中層負責管理，下層負責直接對 NAND 下指令，我是做下層的。</li></ul>
+<p><strong><mark class="hl-yellow"><strong></strong>💡<strong>知識補充| NAND的技術為何越來越難xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</strong></mark></strong></p>
+<ul><li>以前一個儲存單元就是存 1 個 bit，只存 1 個 bit 時：一個儲存單元只要中間畫1條線就能存；但現在一個儲存單元可以存好幾個 bit，存 4 個 bit 就要分出 16 個電位（0000 到 1111），等於要畫 15 條線。</li><li>這樣的結果就是在同樣的空間下，可以塞更多資訊進來，成本會大幅降低；但缺點因為每一層的間距變得更窄，很容易讀錯、更容易出問題。</li></ul>
+<div class="hl-block">描述一下你的一天——你通常在做什麼？</div>
+<ul><li><strong><mark class="hl-yellow"><strong>我的工作就是針對NAND控制器處理</strong></mark></strong>，NAND 有個特性改資料不能只擦掉一小塊重寫，必須整頁擦掉。打個比方，一本 100 頁的書，你只想改第 97 頁，如果沒有使用特殊的演算法得把整本書擦掉重寫，這滿不合理的；所以韌體裡會有一張「映射表」 ，記錄每一頁資料實際放在哪裡，要改的時候就寫到新的位置，再把表更新，就不必重新寫過，這也是韌體工程師設計出來的管理機制。</li><li>那公司有分很多組，比如有企業用SSD、家用SSD、手機相關的，那我這組做的是企業相關，通常就是企業資料庫中心的Server，所以相對來說規格要求會比較高，因為就想如果是今天要給資料中心使用好了，資料完全不可以有遺漏的狀況。</li><li>但每個客戶的需求差很多，有人要求寫入要快，有人要讀取快，有人要求資料絕對不能掉，所以就必須要做大量的測試。一個專案從開發到能賣給客戶，大約要做3~5年的時間。</li><li>不過好處是當有新的專案進來時，通常不必從零開始，可以把前一個專案的程式搬過來，再依這次客戶的要求去調整。</li></ul>
+<div class="hl-block">通常測試會有什麼樣的方式？</div>
+<p>公司內有專門的測試team，所有產品出貨前都要先過這一組，他們的工作幾乎每週都會不停地打好幾百片的測試，在燒機室裡反覆測，一次可能好幾天。有沒有pass就會看合約的良率定義，比如今天做一百片裡壞十片，這樣就滿嚴重的🤔 也分享一些常見的測試方式：</p>
+<ul><li><strong>溫度</strong>│之前有過懷疑SSD在70度~ 75 度會出事，所以測試的時候就故意把溫度開到那個範圍去測</li><li><strong>照X光</strong>│有過因為封裝造成物理性損傷，要把SSD去掃 X 光檢查，才看到有斷裂</li><li><strong>斷電</strong>│主要是為了確保斷電的時候資料有成功入，所以常見的作法是加入電容，當真的遇上斷電的時候，電容可以多支撐個1~2秒，把資料趕快寫完</li></ul>
+<p>出貨後，客戶那邊也會測好幾個禮拜，如果客戶覺得有問題也會送回來再持續debug，所以測試這一段其實會花上滿多時間的。</p>
+<p>有趣的是<mark class="hl-yellow"><strong>有時錯誤會發生，也可能是原廠 NAND 本身的問題</strong></mark>，不是我們做錯，但這就必須要測試到很後面才會發現。</p>
+<div class="hl-block">這份工作最喜歡的地方、以及最不喜歡的地方各是什麼？</div>
+<div class="info-card info-card--green"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">喜歡的地方</p><div class="info-card__row"><p class="info-card__title">福利不錯</p><p class="info-card__desc">休假算滿多的，公司有多給七天的特休，所以想出國可以自己規劃；每天也都有餐補、加班有便當可以訂，基本的旅遊補助和國旅補助也都有。</p></div></div></div>
+<div class="info-card info-card--red"><div class="info-card__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="info-card__body"><p class="info-card__label">不喜歡的地方</p><div class="info-card__row"><p class="info-card__title">付出和得到不一定成正比</p><p class="info-card__desc">同一個職級裡，付出和得到不一定成正比。有人做的事情可能是別人的兩倍，薪水只高一點點，如果是在意這種事情的人可能沒那麼適合。</p></div></div></div>
+<div class="hl-block">分享一件工作上的奇聞軼事</div>
+<p><strong>debug找不到問題｜</strong>印象比較深的是有一次 debug 卡住，當時設計了很多驗證方法、做了很多實驗，就一直找不到原因。卡了很久之後，後來去請教組長，組長從一個我完全沒想到的角度，很輕鬆地就解開了。就是那一刻有種感覺是前輩真的很厲害，因為這個角度可能是我要鑽研好幾個月才可能搞懂的知識，他幾句話就說中，就打從心底覺得前輩是真的很厲害。</p>
+<div class="hl-block">你認為要入門這個領域，需要具備哪些基本能力？</div>
+<p><strong>⭐⭐⭐理解能力與自主學習｜</strong>個人覺得這是最重要的，當初面試時，大主管完全沒考技術，比較在意遇到新東西會怎麼去學習。公司很在意能不能自己把一件事弄懂，因為前輩不會一直帶你。</p>
+<div class="hl-block">對於第一次想踏入這個領域的人，你有什麼建議？</div>
+<ul><li>如果是有漂亮學歷的話可能會比較好進來，電機、資工最有機會</li><li>N年前面試的時候有先刷網路上流傳的考古題</li><li>半導體業沒有大家想的那麼可怕，只要進公司前先弄清楚是去哪個部門，因為部門之間差很多：輪班制、要顧廠區的和一般研發部門，生活品質不一樣，就看自己可不可以接受</li></ul>
+<hr class="post-divider">
+<div class="hl-block">🔎後記—採訪趣事發現</div>
+<div class="quote-block">因為本身並非半導體業相關，所以回家持續思考NAND Flash，突然一個靈光一閃延伸想到USB不也是這樣的概念嗎？那這樣現在的技術跟使用USB的差別是在哪？查了一下後確實USB也是使用NAND Flash，但差異在於USB的容量通常不大，控制器和韌體相對簡單；但如果是以企業級SSD，讀取跟寫入速度都有很大的要求，資料也絕對不能不見。回想一下確實USB的傳輸速度都頗慢，所以結論是稀奇的不是原理，是在這麼小的電位差下還要做到不掉資料、速度快、壽命長。</div></div>
+
+    <!-- 文章結尾：按讚 + 分享 -->
+    <div class="post-footer-bar">
+      <div class="like-area">
+        <button class="like-btn" id="likeBtn" onclick="handleLike('ic-design-firmware-engineer')">
+          <span class="like-heart">❤️</span>
+          <span class="like-count" id="likeCount">0</span>
+        </button>
+        <span class="like-msg">謝謝您的閱讀，<br>您的愛心是莫大的鼓勵</span>
+      </div>
+      <div class="share-bar">
+        <button class="share-btn" onclick="shareTo('line','https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00B900"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.630 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </button>
+        <button class="share-btn" onclick="shareTo('threads','https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+          <svg width="24" height="24" viewBox="0 0 192 192" fill="currentColor" style="display:block"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.3-38.105 34.65.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.35-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.606 125.202 1.012 97.18.84h-.368c-27.912.17-49.521 9.836-64.224 28.73C20.01 44.445 13.635 66.05 13.409 95.964v.072c.226 29.916 6.6 51.52 19.16 66.394 14.703 18.893 36.312 28.559 64.225 28.729h.368c24.68-.152 42.102-6.642 56.424-20.95 18.977-18.963 18.392-42.565 12.142-57.074-4.484-10.454-13.033-18.945-24.191-24.137zM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.396-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.574 28.713-23.802 29.274z"/></svg>
+        </button>
+        <button class="share-btn" onclick="copyLink('https://emily50431.github.io/-emily-lu-website-g/blog/ic-design-firmware-engineer/')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5D5FEF" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+  <div id="post-nav-section"></div>
+  <script>
+    (function() {
+      var nextPost = {"slug":"ipas-ai-planner-beginner","title":"如何在60日內取得AI應用規劃師初級證照"};
+      var prevPost = {"slug":"ai-customer-success-manger","title":"百工百業project#22：AI客戶成功經理 AI Customer Success Manger"};
+      if (!nextPost && !prevPost) return;
+      var BASE = 'https://emily50431.github.io/-emily-lu-website-g';
+
+      var prevHtml = prevPost
+        ? '<a href="' + BASE + '/blog/' + prevPost.slug + '/" class="post-nav-item prev">' +
+          '<span class="post-nav-direction">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>' +
+          '上一篇</span>' +
+          '<span class="post-nav-title">' + prevPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var nextHtml = nextPost
+        ? '<a href="' + BASE + '/blog/' + nextPost.slug + '/" class="post-nav-item next">' +
+          '<span class="post-nav-direction">下一篇' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+          '</span>' +
+          '<span class="post-nav-title">' + nextPost.title + '</span>' +
+          '</a>'
+        : '<div class="post-nav-item post-nav-empty"></div>';
+
+      var divider = '<div class="post-nav-divider"></div>';
+
+      document.getElementById('post-nav-section').innerHTML =
+        '<style>' +
+        '.post-nav-wrap{max-width:720px;margin:0 auto;padding:0 2rem 2rem;}' +
+        '.post-nav{border-top:1px solid rgba(93,95,239,0.1);display:grid;grid-template-columns:1fr 1px 1fr;}' +
+        '.post-nav-divider{background:rgba(93,95,239,0.1);margin:1.75rem 0;}' +
+        '.post-nav-item{padding:1.75rem 0;display:flex;flex-direction:column;gap:0.5rem;text-decoration:none;color:inherit;}' +
+        '.post-nav-item.prev{align-items:flex-start;}' +
+        '.post-nav-item.next{align-items:flex-end;text-align:right;}' +
+        '.post-nav-empty{padding:1.75rem 0;}' +
+        '.post-nav-direction{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#9CA3AF;}' +
+        '.post-nav-item.next .post-nav-direction{flex-direction:row-reverse;}' +
+        '.post-nav-title{font-size:15px;font-weight:700;color:#1F2937;line-height:1.4;transition:color 0.2s;}' +
+        '.post-nav-item:hover .post-nav-title{color:#5D5FEF;}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr;display:flex;flex-direction:column;}.post-nav-divider{display:none;}.post-nav-item.next{order:1;align-items:flex-start;text-align:left;border-bottom:1px solid rgba(93,95,239,0.1);}.post-nav-item.next .post-nav-direction{flex-direction:row;}.post-nav-item.prev{order:2;border-bottom:none;}.post-nav-empty{order:1;}}' +
+        '</style>' +
+        '<div class="post-nav-wrap"><div class="post-nav">' + prevHtml + divider + nextHtml + '</div></div>';
+    })();
+  </script>
+    <footer style="padding:5rem 0;text-align:center;border-top:1px solid rgba(93,95,239,0.08);">
+    <p style="font-size:12px;font-weight:900;letter-spacing:0.1em;color:#D1D5DB;text-transform:uppercase;">© 2026 EMILY LU — 貢獻所長、假以時日、終有所得</p>
+  </footer>
+
+  <!-- 複製連結 Toast -->
+  <div id="copyToast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1F2937;color:white;font-size:14px;font-weight:700;padding:0.75rem 1.5rem;border-radius:9999px;opacity:0;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;z-index:999;white-space:nowrap;">✓ 已複製連結</div>
+  <style>#copyToast.show{opacity:1!important;transform:translateX(-50%) translateY(0)!important;}</style>
+
+  <script>
+    // 分享功能
+    function shareTo(platform, url) {
+      var encoded = encodeURIComponent(url);
+      var urls = {
+        line: 'https://line.me/R/msg/text/?' + encoded,
+        threads: 'https://www.threads.net/intent/post?text=' + encoded
+      };
+      if (urls[platform]) {
+        window.open(urls[platform], '_blank');
+        gtag('event', 'share', { method: platform, content_type: 'article', item_id: 'ic-design-firmware-engineer' });
+      }
+    }
+
+    // 複製連結
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(function() {
+        var toast = document.getElementById('copyToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(function() { toast.classList.remove('show'); }, 1500);
+        }
+        gtag('event', 'share', { method: 'copy_link', content_type: 'article', item_id: 'ic-design-firmware-engineer' });
+      });
+    }
+
+    // 按讚功能（Supabase，無限按）
+    var SUPABASE_URL = 'https://bicpmisqilziyjuxytbl.supabase.co';
+    var ANON_KEY = 'sb_publishable_pzrT03_c9jhvyDLj0icHVg_yAhJ8pM3';
+    var slug = 'ic-design-firmware-engineer';
+    var count = 0;
+
+    var likeBtn = document.getElementById('likeBtn');
+    var likeCountEl = document.getElementById('likeCount');
+
+    function renderLike() {
+      likeCountEl.textContent = count;
+    }
+
+    async function loadLikeCount() {
+      try {
+        var res = await fetch(
+          SUPABASE_URL + '/rest/v1/likes?slug=eq.' + encodeURIComponent(slug) + '&select=id',
+          { headers: { 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY } }
+        );
+        var data = await res.json();
+        count = Array.isArray(data) ? data.length : 0;
+        renderLike();
+      } catch(e) { renderLike(); }
+    }
+
+    async function handleLike(s) {
+      count++;
+      renderLike();
+      likeBtn.style.transform = 'scale(1.2)';
+      setTimeout(function() { likeBtn.style.transform = ''; }, 200);
+      gtag('event', 'like', { content_type: 'article', item_id: s });
+      try {
+        await fetch(SUPABASE_URL + '/rest/v1/likes', {
+          method: 'POST',
+          headers: {
+            'apikey': ANON_KEY,
+            'Authorization': 'Bearer ' + ANON_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ slug: s, ip_hash: 'anon' })
+        });
+      } catch(e) {}
+    }
+
+    loadLikeCount();
+  </script>
+
+
+</body>
+</html>
